@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "portfolio"
+version = "0.0.1"
+description = "My personal portfolio."
+authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+wagtail = "^6.1"
+django = "^5.0.5"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.7.0"
+commitizen = "^3.25.0"
+djhtml = "^3.0.6"
+ruff = "^0.4.3"
+django-debug-toolbar = "^4.3.0"
+
+[tool.ruff.lint]
+ignore = ["F401", 'F403']
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
