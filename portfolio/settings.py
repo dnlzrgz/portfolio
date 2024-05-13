@@ -16,7 +16,7 @@ env.read_env()
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", True)
+DEBUG = env.bool("DEBUG", False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str(
@@ -24,7 +24,6 @@ SECRET_KEY = env.str(
     "django-insecure-&r9rcqb*2b-pxu)j!q+$e!(#&t=5^v=l3tivxte28cvd^9^w8q",
 )
 
-# SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", ["*"])
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -91,12 +90,69 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "data/db.sqlite3",
+DATABASE_ENGINE = env.str("DB_ENGINE", "sqlite3")
+DATABASES = {}
+
+if DATABASE_ENGINE == "postgres":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env.str("POSTGRES_DB"),
+            "USER": env.str("POSTGRES_USER"),
+            "PASSWORD": env.str("POSTGRES_PASSWORD"),
+            "HOST": env.str("POSTGRES_HOST"),
+            "PORT": env.str("POSTGRES_PORT", 5432),
+        }
     }
-}
+elif DATABASE_ENGINE == "sqlite3":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    raise ValueError("Invalid DATABASE_ENGINE value. Must be 'postgres' or 'sqlite3'.")
+
+
+DATABASES["default"]["ATOMIC_REQUESTS"] = env.bool(
+    "DATABASE_ATOMIC_REQUESTS",
+    True,
+)
+
+
+# Cache
+# https://docs.djangoproject.com/en/5.0/topics/cache/
+
+if env.bool("USE_REDIS", False):
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": env.str("REDIS_LOCATION", ""),
+        }
+    }
+elif env.bool("USE_MEMCACHE", False):
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
+            "LOCATION": env.str("MEMCACHE_LOCATION", ""),
+        }
+    }
+else:
+    if DEBUG:
+        CACHES = {
+            "default": {
+                "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+            }
+        }
+    else:
+        CACHES = {
+            "default": {
+                "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            }
+        }
+
+CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 0)
 
 
 # Password validation
