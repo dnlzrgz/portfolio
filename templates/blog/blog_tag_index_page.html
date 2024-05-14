@@ -4,7 +4,7 @@
 {% block body_class %}tags{% endblock %}
 
 {% block content %}
-    <main class="main">
+    <main>
         {% if request.GET.tag %}
             <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
         {% endif %}

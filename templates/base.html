@@ -23,9 +23,16 @@
             <base target="_blank">
         {% endif %}
 
+        {# CSS #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
         {% block extra_css %}
+        {% endblock %}
+
+        {# JavaScript #}
+        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+        {% block extra_js %}
         {% endblock %}
     </head>
 
@@ -34,8 +41,6 @@
 
         {% block content %}{% endblock %}
 
-        <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-        {% block extra_js %}
-        {% endblock %}
+        {% include 'includes/footer.html' %}
     </body>
 </html>
