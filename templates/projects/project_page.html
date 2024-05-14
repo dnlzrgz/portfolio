@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}project{% endblock %}
+
+{% block content %}
+  <h1>{{ page.title }}</h1>
+  {{ page.description|richtext }}
+
+  {% if page.repository_url %}
+    <a href="{{page.repository_url}}">Repository</a>
+  {% endif %}
+
+
+  {% if page.page_url %}
+    <a href="{{page.page_url}}">Website</a>
+  {% endif %}
+
+  {{ page.body|richtext }}
+
+  <p><a href="{{ page.get_parent.url }}">Return to projects</a></p>
+
+  {% with tags=page.tags.all %}
+    {% if tags %}
+      <h3>Tags</h3>
+      {% for tag in tags %}
+        <span>{{ tag }}</span>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+{% endblock %}

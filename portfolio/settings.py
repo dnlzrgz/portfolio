@@ -44,6 +44,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 INSTALLED_APPS = [
     "home",
     "blog",
+    "projects",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
