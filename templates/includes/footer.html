@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+
+<footer>
+  {% with settings=settings.base.FooterSettings %}
+    <p>{{ settings.copy }}</p>
+
+    <ul>
+      {% for block in settings.links %}
+        <li>
+          <a href="{{ block.value.url }}">{{ block.value.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endwith %}
+</footer>

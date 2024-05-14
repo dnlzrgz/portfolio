@@ -5,11 +5,11 @@
 {% block body_class %}post{% endblock %}
 
 {% block content %}
-  <main class="main">
+  <main>
     <h1>{{ page.title }}</h1>
-    <p class="meta">{{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}</p>
+    <p>{{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}</p>
 
-    <div class="intro">{{ page.tldr|richtext }}</div>
+    <div>{{ page.tldr|richtext }}</div>
 
     {{ page.body|richtext }}
 
