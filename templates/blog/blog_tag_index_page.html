@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block body_class %}tags{% endblock %}
+
+{% block content %}
+    <main class="main">
+        {% if request.GET.tag %}
+            <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+        {% endif %}
+
+        {% for post in posts %}
+            <a href="{% pageurl post %}">
+                {{ post.title }}
+            </a>
+            <br />
+        {% empty %}
+            No pages found with that tag.
+        {% endfor %}
+    </main>
+{% endblock %}

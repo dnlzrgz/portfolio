@@ -4,8 +4,8 @@ RUN useradd wagtail
 
 EXPOSE 8000
 
-ENV PYTHONUNBUFFERED=1
-ENV PORT=8000
+ENV PYTHONUNBUFFERED 1
+ENV PORT 8000
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
   build-essential \

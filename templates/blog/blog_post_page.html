@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}post{% endblock %}
+
+{% block content %}
+  <main class="main">
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}</p>
+
+    <div class="intro">{{ page.tldr|richtext }}</div>
+
+    {{ page.body|richtext }}
+
+    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
+
+    {% with tags=page.tags.all %}
+      {% if tags %}
+        <h3>Tags</h3>
+        {% for tag in tags %}
+          <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </main>
+{% endblock %}

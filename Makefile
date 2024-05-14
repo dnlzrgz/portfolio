@@ -5,7 +5,15 @@ clean:
 	find . -type d -name "__pycache__" -delete
 	@echo "✨ Clean up complete!"
 
-# Lint using Ruff
+# Format
+format:
+	@echo "🔍 Formatting..."
+	ruff check . --fix
+	djhtml .
+	@echo "✨ Format complete!"
+
+
+# Run linters using pre-commit
 lint:
 	@echo "🔍 Linting..."
 	pre-commit run --all-files
