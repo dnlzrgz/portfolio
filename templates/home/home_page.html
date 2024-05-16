@@ -1,8 +1,146 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static wagtailcore_tags %}
 
-{% block body_class %}home{% endblock %}
+{% block body_class %}body--home{% endblock %}
 
 {% block content %}
+  <main class="main">
+  {# Hero section #}
+    <section class="section section--hero">
+      {% if page.hero_overtitle %}
+        <p class="section__overtitle">{{ page.hero_overtitle }}</p>
+      {% endif %}
 
+      <h1 class="section__title section__title">
+        {{ page.hero_title }}
+      </h1>
+
+      {% if page.hero_subtitle %}
+        <p class="section__subtitle">{{ page.hero_subtitle }}</p>
+      {% endif %}
+    </section>
+
+  {# Projects showcase section #}
+    {% if page.featured_projects %}
+      <section class="section section--projects">
+        {% if page.projects_overtitle %}
+          <p class="section__overtitle">{{ page.projects_overtitle }}</p>
+        {% endif %}
+
+        <h2 class="section__title">
+          {{ page.projects_title }}
+        </h2>
+
+        {% if page.projects_content %}
+          <div class="section__content">
+            {{ page.projects_content|richtext }}
+          </div>
+        {% endif %}
+
+
+        <ul class="section__list">
+          {% for block in page.featured_projects %}
+            <li class="list__item">
+              <time class="list__item__date">
+                {{ block.value.date|date:'Y' }}
+              </time>
+
+              <h3 class="list__item__title">
+                {{ block.value.title }}
+              </h3>
+
+              <div class="list__item__content">
+                {{ block.value.description|richtext }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <a href="{% slugurl 'work' %}" class="link link--internal">
+          See more
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
+            <path d="M5 12h14M12 5l7 7-7 7">
+            </path>
+          </svg>
+        </a>
+      </section>
+
+    {% endif %}
+
+  {# Blog section #}
+    {% if page.featured_posts %}
+      <hr/>
+
+      <section class="section section--blog">
+        {% if page.blog_overtitle %}
+          <p class="section__overtitle">{{ page.blog_overtitle }}</p>
+        {% endif %}
+
+        <h2 class="section__title">
+          {{ page.blog_title }}
+        </h2>
+
+        {% if page.blog_content %}
+          <div class="section__content">
+            {{ page.blog_content|richtext }}
+          </div>
+        {% endif %}
+
+        <ul class="section__list">
+          {% for block in page.featured_posts %}
+            <li class="list__item">
+              <h3 class="list__item__title">
+                {{ block.value.title }}
+              </h3>
+
+              <div class="list__item__content">
+                {{ block.value.tldr|richtext }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <a href="{% slugurl 'blog' %}" class="link link--internal">
+          See more
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
+            <path d="M5 12h14M12 5l7 7-7 7">
+            </path>
+          </svg>
+        </a>
+      </section>
+
+    {% endif %}
+
+  {# Contact section #}
+    {% if page.contact_email %}
+      <hr/>
+
+      <section class="section section--contact">
+        {% if page.contact_overtitle %}
+          <p class="section__overtitle">{{ page.contact_overtitle }}</p>
+        {% endif %}
+
+        <h2 class="section__title">
+          {{ page.contact_title }}
+        </h2>
+
+        {% if page.contact_content %}
+          <div class="section__content">
+            {{ page.contact_content|richtext }}
+          </div>
+        {% endif %}
+
+        <a href="mailto:{{ page.contact_email }}" class="link link--email">
+          Contact Me
+
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+            </path>
+            <path d="M22 6l-10 7L2 6">
+            </path>
+          </svg>
+        </a>
+      </section>
+    {% endif %}
+  </main>
 {% endblock content %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
@@ -28,6 +29,7 @@ class ProjectPageTag(TaggedItemBase):
 
 class ProjectPage(Page):
     description = RichTextField(features=[], blank=True)
+    date = models.DateField(default=timezone.now)
     repository_url = models.URLField(blank=True)
     page_url = models.URLField(blank=True)
     tags = ClusterTaggableManager(
@@ -46,6 +48,7 @@ class ProjectPage(Page):
         MultiFieldPanel(
             [
                 FieldPanel("description"),
+                FieldPanel("date"),
                 FieldPanel("repository_url"),
                 FieldPanel("page_url"),
                 FieldPanel("tags"),

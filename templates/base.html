@@ -6,7 +6,11 @@
         <meta charset="utf-8" />
         <title>
             {% block title %}
-                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+                {% if page.seo_title %}
+                    {{ page.seo_title }}
+                {% else %}
+                    {{ page.title }}
+                {% endif %}
             {% endblock %}
             {% block title_suffix %}
                 {% wagtail_site as current_site %}
@@ -24,7 +28,7 @@
         {% endif %}
 
         {# CSS #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
         {% block extra_css %}
         {% endblock %}
@@ -36,7 +40,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="body {% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}

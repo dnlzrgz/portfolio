@@ -1,13 +1,20 @@
 {% load wagtailcore_tags %}
 
-<footer>
+<footer class="footer">
   {% with settings=settings.base.FooterSettings %}
-    <p>{{ settings.copy }}</p>
+    <p class="footer__copy">
+      {{ settings.copy }}
+    </p>
 
-    <ul>
+    <ul class="footer__links">
       {% for block in settings.links %}
         <li>
-          <a href="{{ block.value.url }}">{{ block.value.title }}</a>
+          <a href="{{ block.value.url }}" class="link link--social">
+            {{ block.value.title }}
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
+              <path d="M7 17L17 7M7 7h10v10"></path>
+            </svg>
+          </a>
         </li>
       {% endfor %}
     </ul>
