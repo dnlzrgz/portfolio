@@ -1,3 +1,10 @@
+# Misc
+Makefile
+README.md
+dev.yaml
+prod.yaml
+pyproject.toml
+
 # Django project
 /media/
 *.sqlite3
