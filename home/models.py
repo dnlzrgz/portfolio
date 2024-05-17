@@ -39,6 +39,11 @@ class HomePage(Page):
         blank=True,
     )
 
+    # Biography
+    bio_overtitle = models.CharField(max_length=255, blank=True)
+    bio_title = models.CharField(max_length=255, blank=True)
+    bio_content = RichTextField(features=[], blank=True)
+
     # Contact
     contact_overtitle = models.CharField(max_length=255, blank=True)
     contact_title = models.CharField(max_length=255, blank=True)
@@ -71,6 +76,14 @@ class HomePage(Page):
                 FieldPanel("featured_posts"),
             ],
             heading="Blog",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("bio_overtitle"),
+                FieldPanel("bio_title"),
+                FieldPanel("bio_content"),
+            ],
+            heading="Biography",
         ),
         MultiFieldPanel(
             [
