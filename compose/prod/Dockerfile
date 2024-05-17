@@ -2,11 +2,11 @@ FROM python:3.12.3-slim-bookworm
 
 RUN useradd wagtail
 
-EXPOSE 8000
-
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PORT 8000
+
+EXPOSE ${PORT}
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
   build-essential \
@@ -24,6 +24,7 @@ WORKDIR /app
 RUN chown wagtail:wagtail /app
 
 COPY --chown=wagtail:wagtail . .
+
 RUN chmod +x ./entrypoint.sh
 
 USER wagtail

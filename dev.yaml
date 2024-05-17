@@ -15,7 +15,6 @@ services:
       - .:/app
     depends_on:
       - db
-      - cache
 
   db:
     image: postgres:16.2-alpine3.19
@@ -27,9 +26,3 @@ services:
     volumes:
       - portfolio_dev_postgres_data:/var/lib/postgresql/data
       - portfolio_dev_postgres_data_backups:/backups
-
-  cache:
-    image: memcached:1.6.27-alpine3.19
-    container_name: portfolio_dev_memcached
-    depends_on:
-      - db
