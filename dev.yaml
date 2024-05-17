@@ -6,7 +6,7 @@ services:
   django:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./compose/dev/Dockerfile
     image: portfolio_dev
     container_name: portfolio_dev_wagtail
     ports:
@@ -14,10 +14,10 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - postgres
-      - memcached
+      - db
+      - cache
 
-  postgres:
+  db:
     image: postgres:16.2-alpine3.19
     container_name: portfolio_dev_postgres
     environment:
@@ -28,8 +28,8 @@ services:
       - portfolio_dev_postgres_data:/var/lib/postgresql/data
       - portfolio_dev_postgres_data_backups:/backups
 
-  memcached:
+  cache:
     image: memcached:1.6.27-alpine3.19
     container_name: portfolio_dev_memcached
     depends_on:
-      - postgres
+      - db

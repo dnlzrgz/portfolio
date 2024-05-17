@@ -12,7 +12,6 @@ format:
 	djhtml .
 	@echo "✨ Format complete!"
 
-
 # Run linters using pre-commit
 lint:
 	@echo "🔍 Linting..."
@@ -69,6 +68,29 @@ dev-restart:
 	@make dev-stop
 	@make dev-start
 
+# Start production Docker compose
+prod-start:
+	@echo "🚀 Starting production Docker compose..."
+	docker compose -f ./prod.yaml --env-file ./.env.prod up -d --build
+	@echo "✨ Production Docker compose started!"
+
+# Stop production Docker compose
+prod-stop:
+	@echo "🛑 Stopping production Docker compose..."
+	docker compose -f prod.yaml down
+	@echo "✨ Production Docker compose stopped!"
+
+# Watch production Docker compose logs
+prod-logs:
+	@echo "👀 Watching containers logs..."
+	docker compose -f prod.yaml logs -f
+	@echo "✨ Watching containers logs finished!"
+
+# Remove and restart production Docker compose
+prod-restart:
+	@make prod-stop
+	@make prod-start
+
 # Setup project
 setup:
 	poetry install
@@ -80,3 +102,8 @@ setup:
 dev:
 	@make dev-restart
 	@make dev-logs
+
+# Start production environment
+prod:
+	@make prod-restart
+	@make prod-logs
