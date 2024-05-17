@@ -1,0 +1,33 @@
+volumes:
+  portfolio_prod_postgres_data: {}
+  portfolio_prod_postgres_data_backups: {}
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/prod/Dockerfile
+    image: portfolio_prod
+    container_name: portfolio_prod_wagtail
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - cache
+
+  db:
+    image: postgres:16.2-alpine3.19
+    container_name: portfolio_prod_postgres
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+    volumes:
+      - portfolio_prod_postgres_data:/var/lib/postgresql/data
+      - portfolio_prod_postgres_data_backups:/backups
+
+  cache:
+    image: memcached:1.6.27-alpine3.19
+    container_name: portfolio_prod_memcached
+    depends_on:
+      - db
