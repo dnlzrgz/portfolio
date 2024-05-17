@@ -48,7 +48,7 @@ collect:
 # Start development Docker compose
 dev-start:
 	@echo "🚀 Starting development Docker compose..."
-	docker compose -f ./dev.yaml --env-file ./.env up -d --build
+	docker compose -f ./dev.yaml -d --build
 	@echo "✨ Development Docker compose started!"
 
 # Stop development Docker compose
@@ -71,7 +71,7 @@ dev-restart:
 # Start production Docker compose
 prod-start:
 	@echo "🚀 Starting production Docker compose..."
-	docker compose -f ./prod.yaml --env-file ./.env.prod up -d --build
+	docker compose -f ./prod.yaml up -d --build
 	@echo "✨ Production Docker compose started!"
 
 # Stop production Docker compose
