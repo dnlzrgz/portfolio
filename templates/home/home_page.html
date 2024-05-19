@@ -6,21 +6,25 @@
 {% block content %}
   {# Hero section #}
   <header class="header header--home">
-    {% if page.hero_overtitle %}
-      <p class="header__overtitle">
-        {{ page.hero_overtitle }}
-      </p>
-    {% endif %}
+    {% include 'includes/nav.html' %}
 
-    <h1 class="header__title">
-      {{ page.hero_title }}
-    </h1>
+    <div class="hero">
+      {% if page.hero_overtitle %}
+        <p class="hero__overtitle">
+          {{ page.hero_overtitle }}
+        </p>
+      {% endif %}
 
-    {% if page.hero_subtitle %}
-      <p class="header__subtitle">
-        {{ page.hero_subtitle }}
-      </p>
-    {% endif %}
+      <h1 class="hero__title">
+        {{ page.hero_title }}
+      </h1>
+
+      {% if page.hero_subtitle %}
+        <p class="hero__subtitle">
+          {{ page.hero_subtitle }}
+        </p>
+      {% endif %}
+    </div>
   </header>
 
   <main class="main">
@@ -28,7 +32,9 @@
     {% if page.featured_projects %}
       <section class="section section--projects">
         {% if page.projects_overtitle %}
-          <p class="section__overtitle">{{ page.projects_overtitle }}</p>
+          <p class="section__overtitle">
+            {{ page.projects_overtitle }}
+          </p>
         {% endif %}
 
         <h2 class="section__title">
@@ -42,20 +48,29 @@
         {% endif %}
 
 
-        <ul class="section__list">
+        <ul class="section__list list">
           {% for block in page.featured_projects %}
             <li class="list__item">
-              <time class="list__item__date">
-                {{ block.value.date|date:'Y' }}
-              </time>
 
-              <h3 class="list__item__title">
-                {{ block.value.title }}
+              <h3>
+                <a href="{{ block.value.url }}" class="list__item__title link link--internal">
+                  {{ block.value.title }}
+                </a>
+
+                <time class="list__item__date">
+                  ({{ block.value.date|date:'Y' }})
+                </time>
               </h3>
 
               <div class="list__item__content">
                 {{ block.value.description|richtext }}
               </div>
+
+              <ul class="list__item__tags list">
+                {% for tag in block.value.tags.all %}
+                  <li>#{{ tag }}</li>
+                {% endfor %}
+              </ul>
             </li>
           {% endfor %}
         </ul>
@@ -90,16 +105,25 @@
           </div>
         {% endif %}
 
-        <ul class="section__list">
+        <ul class="section__list list">
           {% for block in page.featured_posts %}
             <li class="list__item">
-              <h3 class="list__item__title">
-                {{ block.value.title }}
+              <h3>
+                <a href="{{ block.value.url }}" class="list__item__title link link--internal">
+                  {{ block.value.title }}
+                </a>
               </h3>
 
               <div class="list__item__content">
                 {{ block.value.tldr|richtext }}
               </div>
+
+              <ul class="list__item__tags list">
+                {% for tag in block.value.tags.all %}
+                  <li>#{{ tag }}</li>
+                {% endfor %}
+              </ul>
+
             </li>
           {% endfor %}
         </ul>
