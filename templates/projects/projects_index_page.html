@@ -2,18 +2,30 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}projects{% endblock %}
+{% block body_class %}body--projects{% endblock %}
 
 {% block content %}
-  <h1>{{ page.title }}</h1>
+  <header class="header header--projects">
+    <h1 class="header__title">
+      {{ page.title }}
+    </h1>
+  </header>
 
-  {% for project in projects %}
-    {% with project=project.specific %}
-      <h2>
-        <a href="{% pageurl project %}">{{ project.title }}</a>
-      </h2>
-      {{ project.description|richtext }}
-    {% endwith %}
-  {% endfor %}
+  <main class="main main--projects">
+    {% for project in projects %}
+      {% with project=project.specific %}
+        <article class="article article--project">
+          <header class="article__header">
+            <h2 class="article__header__title">
+              {{ project.title }}
+            </h2>
+          </header>
+          <main class="article__content">
+            {{ project.description|richtext }}
+          </main>
+      {% endwith %}
+      </article>
+    {% endfor %}
+  </main>
 
 {% endblock %}

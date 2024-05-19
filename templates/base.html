@@ -29,8 +29,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta property="og:url" content="{{ page.full_url }}">
-        <meta property="og:type" content="website">
         <meta property="og:locale" content="en_US">
+
+        {% block og %}
+            <meta property="og:type" content="website">
+        {% endblock og %}
 
         {# Robots #}
         <meta name="robots" content="index,follow">

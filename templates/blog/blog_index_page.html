@@ -2,20 +2,38 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}blog{% endblock %}
+{% block body_class %}body--blog{% endblock %}
 
 {% block content %}
-  <main>
-    <h1>{{ page.title }}</h1>
+  <header class="header header--blog">
+    <h1 class="header__title">
+      {{ page.title }}
+    </h1>
+  </header>
+  <main class="main main--posts">
     {% for post in posts %}
       {% with post=post.specific %}
-        <p>{{ post.page_published }}</p>
-        <h2>
-          <a href="{% pageurl post %}">{{ post.title }}</a>
-        </h2>
-        {{ post.tldr|richtext }}
-
+        <article class="article article--post">
+          <header class="article__header">
+            <time class="article__header__date">
+              {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
+            </time>
+            <h2 class="article__header__title">
+              {{ post.title }}
+            </h2>
+          </header>
+          <main class="article__content">
+            {{ post.tldr|richtext }}
+          </main>
+          <footer class="article__foter">
+            {% for tag in post.tags.all %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+                {{ tag }}
+              </a>
+            {% endfor %}
+          </footer>
       {% endwith %}
+      </article>
     {% endfor %}
   </main>
 {% endblock %}

@@ -27,7 +27,7 @@ services:
       - portfolio_prod_postgres_data_backups:/backups
 
   cache:
-    image: memcached:1.6.27-alpine3.19
-    container_name: portfolio_prod_memcached
+    image: redis:7.2.4-alpine3.19
+    container_name: portfolio_prod_redis
     depends_on:
       - db

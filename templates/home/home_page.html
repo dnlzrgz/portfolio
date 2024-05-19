@@ -4,22 +4,26 @@
 {% block body_class %}body--home{% endblock %}
 
 {% block content %}
-  <main class="main">
   {# Hero section #}
-    <section class="section section--hero">
-      {% if page.hero_overtitle %}
-        <p class="section__overtitle">{{ page.hero_overtitle }}</p>
-      {% endif %}
+  <header class="header header--home">
+    {% if page.hero_overtitle %}
+      <p class="header__overtitle">
+        {{ page.hero_overtitle }}
+      </p>
+    {% endif %}
 
-      <h1 class="section__title section__title">
-        {{ page.hero_title }}
-      </h1>
+    <h1 class="header__title">
+      {{ page.hero_title }}
+    </h1>
 
-      {% if page.hero_subtitle %}
-        <p class="section__subtitle">{{ page.hero_subtitle }}</p>
-      {% endif %}
-    </section>
+    {% if page.hero_subtitle %}
+      <p class="header__subtitle">
+        {{ page.hero_subtitle }}
+      </p>
+    {% endif %}
+  </header>
 
+  <main class="main">
   {# Projects showcase section #}
     {% if page.featured_projects %}
       <section class="section section--projects">
@@ -69,7 +73,7 @@
 
   {# Blog section #}
     {% if page.featured_posts %}
-      <hr/>
+      <hr class="divider"/>
 
       <section class="section section--blog">
         {% if page.blog_overtitle %}
@@ -113,7 +117,7 @@
 
     {# Biography section #}
     {% if page.bio_content %}
-      <hr/>
+      <hr class="divider"/>
 
       <section class="section section--bio">
         {% if page.bio_overtitle %}
@@ -136,7 +140,7 @@
 
   {# Contact section #}
     {% if page.contact_email %}
-      <hr/>
+      <hr class="divider"/>
 
       <section class="section section--contact">
         {% if page.contact_overtitle %}

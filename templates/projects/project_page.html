@@ -2,32 +2,53 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}project{% endblock %}
+{% block og %}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
+  <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
+  {% if page.tags.all %}
+    {% for tag in page.tags.all %}
+      <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+  {% endif %}
+{% endblock og %}
+
+
+{% block body_class %}body--project{% endblock %}
 
 {% block content %}
-  <h1>{{ page.title }}</h1>
-  {{ page.description|richtext }}
+  <header class="header header__project">
+    <h1 class="header__title">
+      {{ page.title }}
+    </h1>
+    <div class="header__description">
+      {{ page.description|richtext }}
+    </div>
 
-  {% if page.repository_url %}
-    <a href="{{page.repository_url}}">Repository</a>
-  {% endif %}
-
-
-  {% if page.page_url %}
-    <a href="{{page.page_url}}">Website</a>
-  {% endif %}
-
-  {{ page.body|richtext }}
-
-  <p><a href="{{ page.get_parent.url }}">Return to projects</a></p>
-
-  {% with tags=page.tags.all %}
-    {% if tags %}
-      <h3>Tags</h3>
-      {% for tag in tags %}
-        <span>{{ tag }}</span>
-      {% endfor %}
+    {% if page.repository_url %}
+      <a href="{{page.repository_url}}" class="link link--external link--repository">
+        Repository
+      </a>
     {% endif %}
-  {% endwith %}
 
+    {% if page.page_url %}
+      <a href="{{page.page_url}}" class="link link--external link--website">
+        Website
+      </a>
+    {% endif %}
+
+    <div class="header__tags">
+      {% with tags=page.tags.all %}
+        {% if tags %}
+          {% for tag in tags %}
+            <span>{{ tag }}</span>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+    </header
+
+    <main class="main main--project">
+      {{ page.body|richtext }}
+    </main>
 {% endblock %}

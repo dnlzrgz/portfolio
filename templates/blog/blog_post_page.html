@@ -2,26 +2,47 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}post{% endblock %}
+{% block og %}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
+  <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
+  {% if page.tags.all %}
+    {% for tag in page.tags.all %}
+      <meta property="article:tag" content="{{ tag }}">
+    {% endfor %}
+  {% endif %}
+{% endblock og %}
+
+{% block body_class %}body--post{% endblock %}
 
 {% block content %}
-  <main>
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}</p>
+  <header class="header header--post">
+    <h1 class="header__title">
+      {{ page.title }}
+    </h1>
 
-    <div>{{ page.tldr|richtext }}</div>
+    <p class="heder__date">
+      {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
+    </p>
 
+    <div class="header__tldr">
+      {{ page.tldr|richtext }}
+    </div>
+  </header>
+
+  <main class="main main--post">
     {{ page.body|richtext }}
+  </main>
 
-    <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
-
+  <footer>
     {% with tags=page.tags.all %}
       {% if tags %}
-        <h3>Tags</h3>
         {% for tag in tags %}
-          <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>
+          <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+            {{ tag }}
+          </a>
         {% endfor %}
       {% endif %}
     {% endwith %}
-  </main>
+  </footer>
 {% endblock %}
