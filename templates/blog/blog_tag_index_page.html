@@ -4,22 +4,46 @@
 {% block body_class %}body--tags{% endblock %}
 
 {% block content %}
+  <header class="header header--tags">
+    {% include 'includes/nav.html' %}
     {% if request.GET.tag %}
-        <header class="header header--tags">
-            <h1 class="header__title">
-                Showing posts tagged with "{{ request.GET.tag }}"
-            </h1>
-        </header>
+      <div class="hero hero--blog">
+        <h1 class="hero__title">
+          Posts tagged with #{{ request.GET.tag }}
+        </h1>
+      </div>
     {% endif %}
+  </header>
 
-    <main>
-        {% for post in posts %}
-            <a href="{% pageurl post %}">
+  <main class="main main--posts">
+    {% for post in posts %}
+      {% with post=post.specific %}
+        <article class="article article--post">
+          <header class="article__header">
+            <time class="article__header__date">
+              {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
+            </time>
+
+            <h2 class="article__header__title">
+              <a href="{{ post.url }}" class="link link--internal">
                 {{ post.title }}
-            </a>
-            <br />
-        {% empty %}
-            No pages found with that tag.
-        {% endfor %}
-    </main>
+              </a>
+            </h2>
+          </header>
+
+          <main class="article__content">
+            {{ post.tldr|richtext }}
+          </main>
+
+          <footer class="article__footer">
+            {% for tag in post.tags.all %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+                #{{ tag }}
+              </a>
+            {% endfor %}
+          </footer>
+        </article>
+      {% endwith %}
+    {% endfor %}
+  </main>
 {% endblock %}
