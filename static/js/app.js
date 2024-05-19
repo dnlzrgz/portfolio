@@ -1,6 +1,6 @@
 const root = document.documentElement;
 const toggle = document.getElementById("toggle");
-const footer = document.querySelector("footer");
+const footer = document.querySelector(".footer");
 
 const updateTheme = (isDark) => {
   if (isDark) {

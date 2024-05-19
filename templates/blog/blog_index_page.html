@@ -6,10 +6,15 @@
 
 {% block content %}
   <header class="header header--blog">
-    <h1 class="header__title">
-      {{ page.title }}
-    </h1>
+    {% include 'includes/nav.html' %}
+
+    <div class="hero hero--blog">
+      <h1 class="hero__title">
+        {{ page.title }}
+      </h1>
+    </div>
   </header>
+
   <main class="main main--posts">
     {% for post in posts %}
       {% with post=post.specific %}
@@ -18,17 +23,22 @@
             <time class="article__header__date">
               {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
             </time>
+
             <h2 class="article__header__title">
-              {{ post.title }}
+              <a href="{{ post.url }}" class="link link--internal">
+                {{ post.title }}
+              </a>
             </h2>
           </header>
+
           <main class="article__content">
             {{ post.tldr|richtext }}
           </main>
-          <footer class="article__foter">
+
+          <footer class="article__footer">
             {% for tag in post.tags.all %}
               <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-                {{ tag }}
+                #{{ tag }}
               </a>
             {% endfor %}
           </footer>

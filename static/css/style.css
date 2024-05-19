@@ -195,6 +195,8 @@ a {
 
 /*.header--home {}*/
 
+/*.header--blog {}*/
+
 /*.header--projects {}*/
 
 .nav {
@@ -217,10 +219,13 @@ a {
 }
 
 .hero {
-  display: grid;
-  grid-template-rows: repeat(3, auto);
   padding: calc(var(--space-base) * 32) calc(var(--space-base) * 16);
   padding-top: calc(var(--space-base) * 56);
+}
+
+.hero--home {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
   row-gap: calc(var(--space-base) * 16);
 }
 
@@ -248,20 +253,40 @@ a {
 
 /*.article__header {}*/
 
-/*.article__header__date {}*/
+.article__header__date {
+  color: var(--gray);
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  margin-bottom: calc(var(--space-base) * 2);
+}
 
 .article__header__title {
+  max-width: 55ch;
+}
+
+.article__header__title > .link {
   font-size: var(--text-3xl);
   font-weight: var(--font-ultraligth);
   line-height: calc(var(--text-3xl) * var(--leading-snug));
-  max-width: 55ch;
 }
 
 .article__content > * {
   font-size: var(--text-xl);
+  margin-bottom: calc(var(--space-base) * 4);
   max-width: 55ch;
-  margin-top: calc(var(--space-base) * 4);
-  margin-bottom: calc(var(--space-base) * 8);
+}
+
+.article__footer {
+  margin-top: calc(var(--space-base) * 2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space-base) * 4);
+  max-width: 65ch;
+}
+
+.article__footer > .link {
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
 }
 
 .section {
@@ -271,6 +296,7 @@ a {
   padding: calc(var(--space-base) * 32) calc(var(--space-base) * 16);
 }
 
+.article:last-of-type,
 .section:last-of-type {
   padding-bottom: calc(var(--space-base) * 64);
 }
@@ -297,12 +323,6 @@ a {
   font-size: var(--text-xl);
   margin-bottom: calc(var(--space-base) * 4);
   max-width: 55ch;
-}
-
-.section__list {
-  list-style: none;
-  margin-bottom: calc(var(--space-base) * 32);
-  padding-left: 0;
 }
 
 .list__item {
@@ -355,7 +375,9 @@ a {
   border-top: var(--border) solid var(--foreground);
 }
 
-/* .footer_copy {} */
+.footer_copy {
+  max-width: 65ch;
+}
 
 .footer__links {
   display: flex;
@@ -450,32 +472,41 @@ a {
  **/
 @media screen and (max-width: 1024px) {
   .header,
+  .article,
   .section {
     max-width: var(--w-100);
   }
 
-  .header__title {
+  .hero__title {
     font-size: var(--text-6xl);
     line-height: calc(var(--text-6xl) * var(--leading-tight));
   }
 }
 
 @media screen and (max-width: 768px) {
-  .header__title {
+  .hero__title {
     font-size: var(--text-5xl);
     line-height: calc(var(--text-5xl) * var(--leading-tight));
   }
 }
 
 @media screen and (max-width: 640px) {
-  .header,
+  .hero,
   .section {
     padding: calc(var(--space-base) * 32) calc(var(--space-base) * 8);
   }
 
-  .header__title {
-    font-size: var(--text-3xl);
-    line-height: calc(var(--text-3xl) * var(--leading-tight));
+  .article {
+    padding: calc(var(--space-base) * 16) calc(var(--space-base) * 8);
+  }
+
+  .nav {
+    padding: calc(var(--space-base) * 8) calc(var(--space-base) * 8);
+  }
+
+  .hero__title {
+    font-size: var(--text-4xl);
+    line-height: calc(var(--text-4xl) * var(--leading-tight));
   }
 
   .footer {
