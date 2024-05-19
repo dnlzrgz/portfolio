@@ -48,7 +48,7 @@ collect:
 # Start development Docker compose
 dev-start:
 	@echo "🚀 Starting development Docker compose..."
-	docker compose -f ./dev.yaml -d --build
+	docker compose -f ./dev.yaml up -d --build
 	@echo "✨ Development Docker compose started!"
 
 # Stop development Docker compose

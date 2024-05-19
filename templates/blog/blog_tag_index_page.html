@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}tags{% endblock %}
+{% block body_class %}body--tags{% endblock %}
 
 {% block content %}
-    <main>
-        {% if request.GET.tag %}
-            <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
-        {% endif %}
+    {% if request.GET.tag %}
+        <header class="header header--tags">
+            <h1 class="header__title">
+                Showing posts tagged with "{{ request.GET.tag }}"
+            </h1>
+        </header>
+    {% endif %}
 
+    <main>
         {% for post in posts %}
             <a href="{% pageurl post %}">
                 {{ post.title }}
