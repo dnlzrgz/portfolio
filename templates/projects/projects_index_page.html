@@ -6,9 +6,12 @@
 
 {% block content %}
   <header class="header header--projects">
-    <h1 class="header__title">
-      {{ page.title }}
-    </h1>
+    {% include 'includes/nav.html' %}
+    <div class="hero hero--projects">
+      <h1 class="hero__title">
+        {{ page.title }}
+      </h1>
+    </div>
   </header>
 
   <main class="main main--projects">
@@ -16,10 +19,15 @@
       {% with project=project.specific %}
         <article class="article article--project">
           <header class="article__header">
+            <time class="article__header__date">
+              {{ project.date|date:'Y' }}
+            </time>
+
             <h2 class="article__header__title">
               {{ project.title }}
             </h2>
           </header>
+
           <main class="article__content">
             {{ project.description|richtext }}
           </main>
