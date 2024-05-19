@@ -124,6 +124,9 @@ html {
   font-family: "Geist", var(--fallback-sans);
   font-size: var(--text-base);
   scroll-behavior: smooth;
+  transition:
+    background var(--transition-duration) var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing);
 }
 
 body {

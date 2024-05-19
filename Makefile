@@ -39,6 +39,14 @@ test:
 	python manage.py test
 	@echo "✨ All tests complete!"
 
+# Download v1.9.12 of htmx
+download-htmx:
+	@echo "📥 Downloading htmx script..."
+	curl -sL https://unpkg.com/htmx.org@1.9.12/dist/htmx.js -o static/js/htmx.js
+	curl -sL https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js -o static/js/htmx.min.js
+	curl -sL https://unpkg.com/htmx.org/dist/ext/debug.js -o static/js/debug.js
+	@echo "✨ htmx script downloaded and saved!"
+
 # Collect static files
 collect:
 	@echo "📦 Collecting static files..."
@@ -93,6 +101,7 @@ prod-restart:
 
 # Setup project
 setup:
+	@make download-htmx
 	poetry install
 	pre-commit install
 	pre-commit run --all-files

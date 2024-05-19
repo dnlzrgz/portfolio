@@ -49,17 +49,33 @@
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
-        {# JS #}
-        <script src="{% static 'js/app.js' %}" defer></script>
-
         {# CSS #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-        {% block extra_css %}
-        {% endblock %}
+        {# JS #}
+        {% if debug %}
+            <script src="{% static 'js/htmx.js' %}" defer></script>
+            <script src="{% static 'js/debug.js' %}" defer></script>
+
+            <script>
+                if (typeof window.htmx !== "undefined") {
+                    htmx.on("htmx:afterSettle", function(detail) {
+                        if (
+                            typeof window.djdt !== "undefined"
+                            && detail.target instanceof HTMLBodyElement
+                        ) {
+                            djdt.show_toolbar();
+                        }
+                    });
+                }
+            </script>
+        {% else %}
+            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+        {% endif %}
+        <script src="{% static 'js/app.js' %}" defer></script>
     </head>
 
-    <body class="body {% block body_class %}{% endblock %}">
+    <body class="body {% block body_class %}{% endblock %}" hx-boost="true">
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
