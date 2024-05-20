@@ -246,7 +246,7 @@ STORAGES = {
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "portfolio"
+WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", "portfolio")
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html

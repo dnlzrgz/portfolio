@@ -28,5 +28,7 @@ else:
     print(f"Admin user {username} already exists.")
 EOF
 
-# Start the Django application
-gunicorn portfolio.wsgi:application --bind 0.0.0.0:$PORT --log-file "-"
+# Start Django
+WORKERS=${WORKERS:-17}
+THREADS=${THREADS:-2}
+gunicorn portfolio.wsgi:application --bind 0.0.0.0:$PORT --workers $WORKERS --threads $THREADS --log-file "-"
