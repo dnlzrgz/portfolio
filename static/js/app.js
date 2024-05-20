@@ -6,12 +6,14 @@ const updateTheme = (isDark) => {
     root.style.setProperty("--background", "#0a0a0a");
     root.style.setProperty("--foreground", "#fafafa");
     root.style.setProperty("--gray", "#ebebeb");
+    root.style.setProperty("--blue", "#3cbbb1");
 
     footer?.classList.add("footer--dark");
   } else {
-    root.style.setProperty("--background", "#ffffff");
-    root.style.setProperty("--foreground", "#000000");
+    root.style.setProperty("--background", "#fafafa");
+    root.style.setProperty("--foreground", "#0a0a0a");
     root.style.setProperty("--gray", "#474747");
+    root.style.setProperty("--blue", "#1481ba");
 
     footer?.classList.remove("footer--dark");
   }
