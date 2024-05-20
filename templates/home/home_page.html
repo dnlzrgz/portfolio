@@ -18,12 +18,6 @@
       <h1 class="hero__title">
         {{ page.hero_title }}
       </h1>
-
-      {% if page.hero_subtitle %}
-        <p class="hero__subtitle">
-          {{ page.hero_subtitle }}
-        </p>
-      {% endif %}
     </div>
   </header>
 
@@ -31,12 +25,6 @@
   {# Projects showcase section #}
     {% if page.featured_projects %}
       <section class="section section--projects">
-        {% if page.projects_overtitle %}
-          <p class="section__overtitle">
-            {{ page.projects_overtitle }}
-          </p>
-        {% endif %}
-
         <h2 class="section__title">
           {{ page.projects_title }}
         </h2>
@@ -83,10 +71,6 @@
       <hr class="divider"/>
 
       <section class="section section--blog">
-        {% if page.blog_overtitle %}
-          <p class="section__overtitle">{{ page.blog_overtitle }}</p>
-        {% endif %}
-
         <h2 class="section__title">
           {{ page.blog_title }}
         </h2>
@@ -128,10 +112,6 @@
       <hr class="divider"/>
 
       <section class="section section--bio">
-        {% if page.bio_overtitle %}
-          <p class="section__overtitle">{{ page.bio_overtitle }}</p>
-        {% endif %}
-
         <h2 class="section__title">
           {{ page.bio_title }}
         </h2>
@@ -166,8 +146,7 @@
         {% endif %}
 
         <a href="mailto:{{ page.contact_email }}" class="link link--email">
-          Contact Me
-
+          Send me an E-mail
           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
             </path>

@@ -17,32 +17,37 @@
 
 {% block content %}
   <header class="header header--post">
-    <h1 class="header__title">
-      {{ page.title }}
-    </h1>
+    {% include 'includes/nav.html' %}
 
-    <p class="heder__date">
-      {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
-    </p>
+    <div class="hero hero--post">
+      <p class="hero__date">
+        {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
+      </p>
 
-    <div class="header__tldr">
-      {{ page.tldr|richtext }}
+      <h1 class="hero__title">
+        {{ page.title }}
+      </h1>
+
+
+      <div class="hero__tldr">
+        {{ page.tldr|richtext }}
+      </div>
+
+      <div class="hero__tags">
+        {% with tags=page.tags.all %}
+          {% if tags %}
+            {% for tag in tags %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+                #{{ tag }}
+              </a>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
     </div>
   </header>
 
-  <main class="main main--post">
+  <main class="main post">
     {{ page.body|richtext }}
   </main>
-
-  <footer>
-    {% with tags=page.tags.all %}
-      {% if tags %}
-        {% for tag in tags %}
-          <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-            {{ tag }}
-          </a>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-  </footer>
 {% endblock %}
