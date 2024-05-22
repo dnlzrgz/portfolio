@@ -6,7 +6,7 @@
   --white: #fafafa;
   --black: #0a0a0a;
   --gray: #474747;
-  --blue: #1481ba; /* Dark theme: #3CBBB1 */
+  --blue: #1481ba; /* Dark variant: #3CBBB1 */
   --background: var(--white);
   --foreground: var(--black);
 
@@ -34,14 +34,6 @@
   --font-semibold: 600;
   --font-bold: 700;
   --font-black: 900;
-
-  /* Letter spacing */
-  --tracking-tighter: -0.05rem;
-  --tracking-tigh: -0.02rem;
-  --tracking-normal: 0rem;
-  --tracking-loose: 0.025rem;
-  --tracking-looser: 0.05rem;
-  --tracking-loosest: 0.1rem;
 
   /* Line height */
   --leading-none: 1;
@@ -85,7 +77,6 @@
   --h-50: 50%;
   --h-66: 66%;
   --h-75: 75%;
-  --h-75vh: 75vh;
   --h-100: 100%;
   --h-full: 100vh;
 
@@ -142,7 +133,6 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   line-height: var(--leading-normal);
-  min-height: var(--h-full);
 }
 
 img,
@@ -237,7 +227,7 @@ a {
   text-align: center;
 }
 
-.hero--post > .hero__title {
+.hero--post .hero__title {
   margin: 0 auto;
   margin-bottom: var(--space-xs);
   font-size: var(--text-4xl);
