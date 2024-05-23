@@ -95,6 +95,13 @@ if DEBUG:
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
+else:
+    common_middleware_index = MIDDLEWARE.index(
+        "django.middleware.common.CommonMiddleware"
+    )
+    MIDDLEWARE.insert(
+        common_middleware_index + 1, "django.middleware.http.ConditionalGetMiddleware"
+    )
 
 ROOT_URLCONF = "portfolio.urls"
 
@@ -277,6 +284,52 @@ WAGTAILDOCS_EXTENSIONS = [
     "xlsx",
     "zip",
 ]
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "default": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "link",
+            ],
+        },
+    },
+    "minimal": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "link",
+            ],
+        },
+    },
+    "full": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "h2",
+                "h3",
+                "h4",
+                "bold",
+                "italic",
+                "ol",
+                "ul",
+                "link",
+                "hr",
+                "image",
+                "embed",
+                "code",
+                "document-link",
+                "blockquote",
+            ],
+        },
+    },
+}
+
+WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
 
 # CSRF
 CSRF_TRUSTED_ORIGINS = env.list(
