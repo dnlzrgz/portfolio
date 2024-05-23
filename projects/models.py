@@ -28,7 +28,7 @@ class ProjectPageTag(TaggedItemBase):
 
 
 class ProjectPage(Page):
-    description = RichTextField(features=[], blank=True)
+    description = RichTextField(editor="minimal", blank=True)
     date = models.DateField(default=timezone.now)
     repository_url = models.URLField(blank=True)
     page_url = models.URLField(blank=True)
@@ -37,7 +37,7 @@ class ProjectPage(Page):
         blank=True,
     )
 
-    body = RichTextField(blank=True)
+    body = RichTextField(editor="full", blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField("description"),

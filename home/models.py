@@ -14,12 +14,14 @@ class HomePage(Page):
     # Project showcase section
     projects_overtitle = models.CharField(max_length=255, blank=True)
     projects_title = models.CharField(max_length=255, blank=True)
-    projects_content = RichTextField(features=[], blank=True)
+    projects_content = RichTextField(editor="minimal", blank=True)
     featured_projects = StreamField(
         [
             (
                 "project",
-                blocks.PageChooserBlock(target_model="projects.ProjectPage"),
+                blocks.PageChooserBlock(
+                    target_model="projects.ProjectPage",
+                ),
             ),
         ],
         blank=True,
@@ -28,7 +30,7 @@ class HomePage(Page):
     # Blog posts
     blog_overtitle = models.CharField(max_length=255, blank=True)
     blog_title = models.CharField(max_length=255, blank=True)
-    blog_content = RichTextField(features=[], blank=True)
+    blog_content = RichTextField(editor="minimal", blank=True)
     featured_posts = StreamField(
         [
             (
@@ -42,12 +44,12 @@ class HomePage(Page):
     # Biography
     bio_overtitle = models.CharField(max_length=255, blank=True)
     bio_title = models.CharField(max_length=255, blank=True)
-    bio_content = RichTextField(features=[], blank=True)
+    bio_content = RichTextField(editor="minimal", blank=True)
 
     # Contact
     contact_overtitle = models.CharField(max_length=255, blank=True)
     contact_title = models.CharField(max_length=255, blank=True)
-    contact_content = RichTextField(features=[], blank=True)
+    contact_content = RichTextField(editor="minimal", blank=True)
     contact_email = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [

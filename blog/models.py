@@ -27,13 +27,13 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogPostPage(Page):
-    tldr = RichTextField(features=[], blank=True)
+    tldr = RichTextField(blank=True)
     tags = ClusterTaggableManager(
         through=BlogPageTag,
         blank=True,
     )
 
-    body = RichTextField(blank=True)
+    body = RichTextField(blank=True, editor="full")
 
     search_fields = Page.search_fields + [
         index.SearchField("tldr"),
