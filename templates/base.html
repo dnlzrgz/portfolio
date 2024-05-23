@@ -52,6 +52,9 @@
         {# CSS #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+        {% block extra_css %}
+        {% endblock extra_css %}
+
         {# JS #}
         {% if debug %}
             <script src="{% static 'js/htmx.js' %}" defer></script>
@@ -74,6 +77,9 @@
         {% endif %}
 
         <script src="{% static 'js/app.js' %}" defer></script>
+
+        {% block extra_js %}
+        {% endblock extra_js %}
     </head>
 
     <body class="body {% block body_class %}{% endblock %}" hx-boost="true">

@@ -38,25 +38,26 @@
 
         <ul class="section__list list">
           {% for block in page.featured_projects %}
-            <li class="list__item">
-
-              <h3>
-                <a href="{{ block.value.url }}" class="list__item__title link link--internal">
+            <li class="item">
+              <h3 class="item__title">
+                <a href="{{ block.value.url }}" class="link link--internal">
                   {{ block.value.title }}
                 </a>
 
-                <time class="list__item__date">
+                <time class="item__date">
                   ({{ block.value.date|date:'Y' }})
                 </time>
               </h3>
 
-              <div class="list__item__content">
+              <div class="item__content">
                 {{ block.value.description|richtext }}
               </div>
 
-              <ul class="list__item__tags list">
+              <ul class="item__tags list">
                 {% for tag in block.value.tags.all %}
-                  <li>#{{ tag }}</li>
+                  <li class="item__tags__tag">
+                    #{{ tag }}
+                  </li>
                 {% endfor %}
               </ul>
             </li>
@@ -83,23 +84,24 @@
 
         <ul class="section__list list">
           {% for block in page.featured_posts %}
-            <li class="list__item">
-              <h3>
+            <li class="item">
+              <h3 class="item__title">
                 <a href="{{ block.value.url }}" class="list__item__title link link--internal">
                   {{ block.value.title }}
                 </a>
               </h3>
 
-              <div class="list__item__content">
+              <div class="item__content">
                 {{ block.value.tldr|richtext }}
               </div>
 
-              <ul class="list__item__tags list">
+              <ul class="item__tags list">
                 {% for tag in block.value.tags.all %}
-                  <li>#{{ tag }}</li>
+                  <li class="item__tags__tag">
+                    #{{ tag }}
+                  </li>
                 {% endfor %}
               </ul>
-
             </li>
           {% endfor %}
         </ul>
@@ -131,10 +133,6 @@
       <hr class="divider"/>
 
       <section class="section section--contact">
-        {% if page.contact_overtitle %}
-          <p class="section__overtitle">{{ page.contact_overtitle }}</p>
-        {% endif %}
-
         <h2 class="section__title">
           {{ page.contact_title }}
         </h2>
