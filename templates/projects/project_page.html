@@ -18,37 +18,54 @@
 
 {% block content %}
   <header class="header header__project">
-    <h1 class="header__title">
-      {{ page.title }}
-    </h1>
-    <div class="header__description">
-      {{ page.description|richtext }}
-    </div>
+    {% include 'includes/nav.html' %}
 
-    {% if page.repository_url %}
-      <a href="{{page.repository_url}}" class="link link--external link--repository">
-        Repository
-      </a>
-    {% endif %}
+    <div class="hero hero--project">
+      <div class="hero__links">
+        {% if page.repository_url %}
+          <a href="{{page.repository_url}}" class="link link--external link--repository">
+            GitHub
 
-    {% if page.page_url %}
-      <a href="{{page.page_url}}" class="link link--external link--website">
-        Website
-      </a>
-    {% endif %}
-
-    <div class="header__tags">
-      {% with tags=page.tags.all %}
-        {% if tags %}
-          {% for tag in tags %}
-            <span>{{ tag }}</span>
-          {% endfor %}
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
+              <path d="M7 17L17 7M7 7h10v10"></path>
+            </svg>
+          </a>
         {% endif %}
-      {% endwith %}
-    </div>
-    </header
 
-    <main class="main main--project">
-      {{ page.body|richtext }}
-    </main>
+        {% if page.page_url %}
+          <a href="{{page.page_url}}" class="link link--external link--website">
+            Website
+
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
+              <path d="M7 17L17 7M7 7h10v10"></path>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+
+      <h1 class="hero__title">
+        {{ page.title }}
+      </h1>
+
+      <div class="hero__description">
+        {{ page.description|richtext }}
+      </div>
+
+
+      <div class="hero__tags">
+        {% with tags=page.tags.all %}
+          {% if tags %}
+            {% for tag in tags %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+                #{{ tag }}
+              </a>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      </header
+
+      <main class="main project">
+        {{ page.body|richtext }}
+      </main>
 {% endblock %}
