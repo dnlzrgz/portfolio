@@ -6,6 +6,10 @@ set -e
 echo "Running database migrations..."
 python manage.py migrate
 
+if [ "${USE_DATABASE_AS_CACHE}" = "True" ]; then
+	python manage.py createcachetable
+fi
+
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
