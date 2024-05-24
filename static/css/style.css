@@ -322,6 +322,7 @@ h4 {
 
 .item__tags {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-sm);
 }
 

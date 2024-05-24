@@ -177,6 +177,14 @@ elif env.bool("USE_MEMCACHE", False):
             "LOCATION": env.str("MEMCACHE_LOCATION", ""),
         }
     }
+elif env.bool("USE_DATABASE_AS_CACHE", False):
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+            "LOCATION": "cache_table",
+        }
+    }
+
 else:
     if DEBUG:
         CACHES = {
