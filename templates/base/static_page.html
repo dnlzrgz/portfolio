@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags %}
+
+{% block og %}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
+  <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
+{% endblock og %}
+
+{% block body_class %}body--static{% endblock %}
+
+{% block content %}
+  <header class="header header--project">
+    {% include 'includes/nav.html' %}
+
+    <div class="hero hero--project">
+      <h1 class="hero__title">
+        {{ page.title }}
+      </h1>
+    </div>
+  </header>
+
+  <main class="main project">
+    {{ page.body|richtext }}
+  </main>
+{% endblock %}
