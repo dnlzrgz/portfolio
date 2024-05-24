@@ -186,7 +186,9 @@ h4 {
 
 .nav__controls {
   display: flex;
-  justify-content: center;
+  margin-left: var(--space-md);
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .nav__list {
@@ -263,6 +265,29 @@ h4 {
   justify-content: center;
 }
 
+/* Main */
+.main--error {
+  display: grid;
+  grid-auto-flow: row;
+  height: 100vh;
+  place-content: center;
+
+  h1,
+  h2 {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: var(--text-9xl);
+    font-weight: var(--font-ultralight);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-medium);
+  }
+}
+
 /* Home page sections*/
 .section {
   padding: var(--space-xl) var(--space-lg);
@@ -321,6 +346,7 @@ h4 {
 }
 
 .item__tags {
+  color: var(--gray);
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
@@ -581,12 +607,6 @@ h4 {
   .project,
   .post {
     padding: var(--space-md) var(--space-md);
-  }
-
-  .nav__controls {
-    margin-left: var(--space-md);
-    align-items: center;
-    justify-content: flex-start;
   }
 
   .nav__list,
