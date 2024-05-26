@@ -16,6 +16,9 @@ psycopg = {extras = ["binary"], version = "^3.1.19"}
 pymemcache = "^4.0.0"
 redis = {extras = ["hiredis"], version = "^5.0.4"}
 whitenoise = {extras = ["brotli"], version = "^6.6.0"}
+wagtail-markdown = "^0.12.1"
+django-compressor = "^4.4"
+brotli = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"

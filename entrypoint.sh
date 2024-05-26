@@ -10,9 +10,12 @@ if [ "${USE_DATABASE_AS_CACHE}" = "True" ]; then
 	python manage.py createcachetable
 fi
 
-# Collect static files
+# Collect static files and compress CSS files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
+
+echo "Compressing CSS files..."
+python manage.py compress
 
 # Create an admin user if it does not exist
 echo "Creating admin user..."
