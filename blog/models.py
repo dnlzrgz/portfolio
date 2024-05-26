@@ -6,6 +6,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.search import index
+from wagtailmarkdown.fields import MarkdownField
 
 
 class BlogIndexPage(Page):
@@ -33,7 +34,8 @@ class BlogPostPage(Page):
         blank=True,
     )
 
-    body = RichTextField(blank=True, editor="full")
+    # body = RichTextField(blank=True, editor="full")
+    body = MarkdownField()
 
     search_fields = Page.search_fields + [
         index.SearchField("tldr"),

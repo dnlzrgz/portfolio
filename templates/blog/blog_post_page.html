@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailmarkdown %}
 
 {% block og %}
   <meta property="og:type" content="article">
@@ -48,6 +48,6 @@
   </header>
 
   <main class="main post">
-    {{ page.body|richtext }}
+    {{ page.body|markdown }}
   </main>
 {% endblock %}
