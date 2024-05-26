@@ -256,6 +256,7 @@ MEDIA_URL = "/media/"
 # https://django-compressor.readthedocs.io/en/latest/settings.html
 
 COMPRESS_OFFLINE = env.bool("COMPRESS_OFFLINE", True)
+COMPRESS_STORAGE = "compressor.storage.BrotliCompressorFileStorage"
 
 
 # Default storage settings, with the staticfiles storage updated.
