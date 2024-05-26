@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portfolio"
-version = "0.0.1"
+version = "0.1.0"
 description = "My personal portfolio."
 authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
 license = "MIT"
