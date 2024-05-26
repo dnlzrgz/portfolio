@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static compress wagtailcore_tags wagtailuserbar %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +50,9 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% compress css %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
+        {% endcompress %}
 
         {% block extra_css %}
         {% endblock extra_css %}
@@ -59,6 +61,7 @@
         {% if debug %}
             <script src="{% static 'js/htmx.js' %}" defer></script>
             <script src="{% static 'js/debug.js' %}" defer></script>
+            <script src="{% static 'js/app.js' %}" defer></script>
 
             <script>
                 if (typeof window.htmx !== "undefined") {
@@ -73,10 +76,11 @@
                 }
             </script>
         {% else %}
-            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+            {% compress js %}
+                <script src="{% static 'js/htmx.min.js' %}" defer></script>
+                <script src="{% static 'js/app.js' %}" defer></script>
+            {% endcompress %}
         {% endif %}
-
-        <script src="{% static 'js/app.js' %}" defer></script>
 
         {% block extra_js %}
         {% endblock extra_js %}
