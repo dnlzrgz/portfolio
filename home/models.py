@@ -50,7 +50,7 @@ class HomePage(Page):
     contact_overtitle = models.CharField(max_length=255, blank=True)
     contact_title = models.CharField(max_length=255, blank=True)
     contact_content = RichTextField(editor="minimal", blank=True)
-    contact_email = models.URLField(blank=True)
+    contact_email = models.EmailField(blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
