@@ -181,6 +181,7 @@ code {
 
 pre:has(> code) {
   margin-bottom: var(--space-md);
+  overflow-x: auto;
   padding: var(--space-md);
 }
 
