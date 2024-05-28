@@ -30,6 +30,7 @@
 
         <meta property="og:url" content="{{ page.full_url }}">
         <meta property="og:locale" content="en_US">
+        <link rel="canonical" href="{{ page.full_url }}">
 
         {% block og %}
             <meta property="og:type" content="website">
@@ -55,9 +56,6 @@
             <link rel="stylesheet" type="text/css" href="{% static 'css/pygments.css' %}" charset="utf-8">
         {% endcompress %}
 
-        {% block extra_css %}
-        {% endblock extra_css %}
-
         {# JS #}
         {% if debug %}
             <script src="{% static 'js/htmx.js' %}" defer></script>
@@ -82,9 +80,6 @@
                 <script src="{% static 'js/app.js' %}" defer></script>
             {% endcompress %}
         {% endif %}
-
-        {% block extra_js %}
-        {% endblock extra_js %}
     </head>
 
     <body class="body {% block body_class %}{% endblock %}" hx-boost="true">
