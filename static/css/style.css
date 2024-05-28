@@ -185,6 +185,25 @@ pre:has(> code) {
   padding: var(--space-md);
 }
 
+blockquote {
+  color: var(--gray);
+  font-size: var(--text-xl);
+  font-style: italic;
+  font-weight: var(--font-normal);
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+blockquote::before {
+  background-color: var(--gray);
+  content: "";
+  height: var(--h-100);
+  left: 0;
+  position: absolute;
+  width: var(--space-base);
+}
+
 /**
  * Styles
  **/
