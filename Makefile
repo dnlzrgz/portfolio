@@ -39,12 +39,13 @@ test:
 	python manage.py test
 	@echo "✨ All tests complete!"
 
-# Download v1.9.12 of htmx
+# Download v1.9.12 of htmx and plugins
 download-htmx:
 	@echo "📥 Downloading htmx script..."
 	curl -sL https://unpkg.com/htmx.org@1.9.12/dist/htmx.js -o static/js/htmx.js
 	curl -sL https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js -o static/js/htmx.min.js
 	curl -sL https://unpkg.com/htmx.org/dist/ext/debug.js -o static/js/debug.js
+	curl -sL https://unpkg.com/htmx.org@1.9.12/dist/ext/head-support.js -o static/js/head-support.js
 	@echo "✨ htmx script downloaded and saved!"
 
 # Collect static files

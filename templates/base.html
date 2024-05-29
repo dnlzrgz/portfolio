@@ -51,15 +51,16 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        {% compress css %}
-            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="{% static 'css/pygments.css' %}" charset="utf-8">
-        {% endcompress %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
+
+        {% block extra_css %}
+        {% endblock extra_css %}
 
         {# JS #}
         {% if debug %}
             <script src="{% static 'js/htmx.js' %}" defer></script>
             <script src="{% static 'js/debug.js' %}" defer></script>
+            <script src="{% static 'js/head-support.js' %}" defer></script>
             <script src="{% static 'js/app.js' %}" defer></script>
 
             <script>
@@ -77,12 +78,13 @@
         {% else %}
             {% compress js %}
                 <script src="{% static 'js/htmx.min.js' %}" defer></script>
+                <script src="{% static 'js/head-support.js' %}" defer></script>
                 <script src="{% static 'js/app.js' %}" defer></script>
             {% endcompress %}
         {% endif %}
     </head>
 
-    <body class="body {% block body_class %}{% endblock %}" hx-boost="true">
+    <body class="body {% block body_class %}{% endblock %}" hx-boost="true" hx-push-urls="true" hx-ext="head-support">
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
