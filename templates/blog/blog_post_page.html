@@ -13,6 +13,10 @@
   {% endif %}
 {% endblock og %}
 
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/pygments.css' %}" charset="utf-8">
+{% endblock extra_css %}
+
 {% block body_class %}body--post{% endblock %}
 
 {% block content %}
