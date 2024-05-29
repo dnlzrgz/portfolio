@@ -351,8 +351,23 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 
 WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
 
+
 # CSRF
+# https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-trusted-origins
+
 CSRF_TRUSTED_ORIGINS = env.list(
     "CSRF_TRUSTED_ORIGINS",
     [],
 )
+
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", False)
+
+
+# HTTP Strict Transport Security (HSTS)
+# https://docs.djangoproject.com/en/5.0/ref/settings/#secure-hsts-preload
+
+SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", 0)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", False)
+SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", False)
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", False)
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
