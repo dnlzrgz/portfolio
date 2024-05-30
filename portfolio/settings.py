@@ -169,8 +169,11 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = env.bool(
 if env.bool("USE_REDIS", False):
     CACHES = {
         "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "BACKEND": "django_redis.cache.RedisCache",
             "LOCATION": env.str("REDIS_LOCATION", ""),
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
         }
     }
 elif env.bool("USE_MEMCACHE", False):
