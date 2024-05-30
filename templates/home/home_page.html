@@ -1,158 +1,164 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtail_cache %}
 
 {% block body_class %}body--home{% endblock %}
 
 {% block content %}
-  {# Hero section #}
-  <header class="header header--home">
-    {% include 'includes/nav.html' %}
+  {% with cache_time=500 %}
+    {# Hero section #}
+    {% wagtailpagecache cache_time "header" %}
+      <header class="header header--home">
+        {% include 'includes/nav.html' %}
 
-    <div class="hero hero--home">
-      {% if page.hero_overtitle %}
-        <p class="hero__overtitle">
-          {{ page.hero_overtitle }}
-        </p>
-      {% endif %}
+        <div class="hero hero--home">
+          {% if page.hero_overtitle %}
+            <p class="hero__overtitle">
+              {{ page.hero_overtitle }}
+            </p>
+          {% endif %}
 
-      <h1 class="hero__title">
-        {{ page.hero_title }}
-      </h1>
-    </div>
-  </header>
+          <h1 class="hero__title">
+            {{ page.hero_title }}
+          </h1>
+        </div>
+      </header>
+    {% endwagtailpagecache %}
 
-  <main class="main">
-  {# Projects showcase section #}
-    {% if page.featured_projects %}
-      <section class="section section--projects">
-        <h2 class="section__title">
-          {{ page.projects_title }}
-        </h2>
+    {% wagtailpagecache cache_time "main" %}
+      <main class="main">
+        {# Projects showcase section #}
+        {% if page.featured_projects %}
+          <section class="section section--projects">
+            <h2 class="section__title">
+              {{ page.projects_title }}
+            </h2>
 
-        {% if page.projects_content %}
-          <div class="section__content">
-            {{ page.projects_content|richtext }}
-          </div>
+            {% if page.projects_content %}
+              <div class="section__content">
+                {{ page.projects_content|richtext }}
+              </div>
+            {% endif %}
+
+
+            <ul class="section__list list">
+              {% for block in page.featured_projects %}
+                <li class="item">
+                  <h3 class="item__title">
+                    <a href="{{ block.value.url }}" class="link link--internal">
+                      {{ block.value.title }}
+                    </a>
+
+                    <time class="item__date">
+                      ({{ block.value.date|date:'Y' }})
+                    </time>
+                  </h3>
+
+                  <div class="item__content">
+                    {{ block.value.description|richtext }}
+                  </div>
+
+                  <ul class="item__tags list">
+                    {% for tag in block.value.tags.all %}
+                      <li class="item__tags__tag">
+                        #{{ tag }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endfor %}
+            </ul>
+          </section>
+
         {% endif %}
 
+      {# Blog section #}
+        {% if page.featured_posts %}
+          <hr class="divider"/>
 
-        <ul class="section__list list">
-          {% for block in page.featured_projects %}
-            <li class="item">
-              <h3 class="item__title">
-                <a href="{{ block.value.url }}" class="link link--internal">
-                  {{ block.value.title }}
-                </a>
+          <section class="section section--blog">
+            <h2 class="section__title">
+              {{ page.blog_title }}
+            </h2>
 
-                <time class="item__date">
-                  ({{ block.value.date|date:'Y' }})
-                </time>
-              </h3>
-
-              <div class="item__content">
-                {{ block.value.description|richtext }}
+            {% if page.blog_content %}
+              <div class="section__content">
+                {{ page.blog_content|richtext }}
               </div>
+            {% endif %}
 
-              <ul class="item__tags list">
-                {% for tag in block.value.tags.all %}
-                  <li class="item__tags__tag">
-                    #{{ tag }}
-                  </li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
+            <ul class="section__list list">
+              {% for block in page.featured_posts %}
+                <li class="item">
+                  <h3 class="item__title">
+                    <a href="{{ block.value.url }}" class="list__item__title link link--internal">
+                      {{ block.value.title }}
+                    </a>
+                  </h3>
 
-    {% endif %}
+                  <div class="item__content">
+                    {{ block.value.tldr|richtext }}
+                  </div>
 
-  {# Blog section #}
-    {% if page.featured_posts %}
-      <hr class="divider"/>
+                  <ul class="item__tags list">
+                    {% for tag in block.value.tags.all %}
+                      <li class="item__tags__tag">
+                        #{{ tag }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endfor %}
+            </ul>
+          </section>
 
-      <section class="section section--blog">
-        <h2 class="section__title">
-          {{ page.blog_title }}
-        </h2>
-
-        {% if page.blog_content %}
-          <div class="section__content">
-            {{ page.blog_content|richtext }}
-          </div>
         {% endif %}
 
-        <ul class="section__list list">
-          {% for block in page.featured_posts %}
-            <li class="item">
-              <h3 class="item__title">
-                <a href="{{ block.value.url }}" class="list__item__title link link--internal">
-                  {{ block.value.title }}
-                </a>
-              </h3>
-
-              <div class="item__content">
-                {{ block.value.tldr|richtext }}
-              </div>
-
-              <ul class="item__tags list">
-                {% for tag in block.value.tags.all %}
-                  <li class="item__tags__tag">
-                    #{{ tag }}
-                  </li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
-
-    {% endif %}
-
-    {# Biography section #}
-    {% if page.bio_content %}
-      <hr class="divider"/>
-
-      <section class="section section--bio">
-        <h2 class="section__title">
-          {{ page.bio_title }}
-        </h2>
-
+        {# Biography section #}
         {% if page.bio_content %}
-          <div class="section__content">
-            {{ page.bio_content|richtext }}
-          </div>
-        {% endif %}
-      </section>
+          <hr class="divider"/>
 
-    {% endif %}
+          <section class="section section--bio">
+            <h2 class="section__title">
+              {{ page.bio_title }}
+            </h2>
 
+            {% if page.bio_content %}
+              <div class="section__content">
+                {{ page.bio_content|richtext }}
+              </div>
+            {% endif %}
+          </section>
 
-  {# Contact section #}
-    {% if page.contact_email %}
-      <hr class="divider"/>
-
-      <section class="section section--contact">
-        <h2 class="section__title">
-          {{ page.contact_title }}
-        </h2>
-
-        {% if page.contact_content %}
-          <div class="section__content">
-            {{ page.contact_content|richtext }}
-          </div>
         {% endif %}
 
-        <a href="mailto:{{ page.contact_email }}" class="link link--email">
-          Send me an E-mail
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-            </path>
-            <path d="M22 6l-10 7L2 6">
-            </path>
-          </svg>
-        </a>
-      </section>
-    {% endif %}
-  </main>
+
+        {# Contact section #}
+        {% if page.contact_email %}
+          <hr class="divider"/>
+
+          <section class="section section--contact">
+            <h2 class="section__title">
+              {{ page.contact_title }}
+            </h2>
+
+            {% if page.contact_content %}
+              <div class="section__content">
+                {{ page.contact_content|richtext }}
+              </div>
+            {% endif %}
+
+            <a href="mailto:{{ page.contact_email }}" class="link link--email">
+              Send me an E-mail
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24" style="color: currentcolor;">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                </path>
+                <path d="M22 6l-10 7L2 6">
+                </path>
+              </svg>
+            </a>
+          </section>
+        {% endif %}
+      </main>
+    {% endwagtailpagecache %}
+  {% endwith %}
 {% endblock content %}

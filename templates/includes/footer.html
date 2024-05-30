@@ -1,22 +1,24 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtail_cache %}
 
-<footer class="footer">
-  {% with settings=settings.base.FooterSettings %}
-    <p class="footer__copy">
-      {{ settings.copy }}
-    </p>
+{% wagtailpagecache 500 "footer" %}
+  <footer class="footer">
+    {% with settings=settings.base.FooterSettings %}
+      <p class="footer__copy">
+        {{ settings.copy }}
+      </p>
 
-    <ul class="footer__links list">
-      {% for block in settings.links %}
-        <li>
-          <a {% if block.value.title == 'Mastodon' %}rel="me"{% endif %} href="{{ block.value.url }}" class="link link--social" hx-boost="false">
-            {{ block.value.title }}
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
-              <path d="M7 17L17 7M7 7h10v10"></path>
-            </svg>
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endwith %}
-</footer>
+      <ul class="footer__links list">
+        {% for block in settings.links %}
+          <li>
+            <a {% if block.value.title == 'Mastodon' %}rel="me"{% endif %} href="{{ block.value.url }}" class="link link--social" hx-boost="false">
+              {{ block.value.title }}
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
+                <path d="M7 17L17 7M7 7h10v10"></path>
+              </svg>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endwith %}
+  </footer>
+{% endwagtailpagecache %}
