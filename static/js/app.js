@@ -1,46 +1,46 @@
 const root = document.documentElement;
-const footer = document.querySelector(".footer");
+
+const themes = {
+  dark: {
+    "--background": "#0a0a0a",
+    "--foreground": "#fafafa",
+    "--gray": "#ebebeb",
+    "--blue": "#3cbbb1",
+  },
+  light: {
+    "--background": "#fafafa",
+    "--foreground": "#0a0a0a",
+    "--gray": "#474747",
+    "--blue": "#1481ba",
+  },
+};
 
 const updateTheme = (isDark) => {
-  if (isDark) {
-    root.style.setProperty("--background", "#0a0a0a");
-    root.style.setProperty("--foreground", "#fafafa");
-    root.style.setProperty("--gray", "#ebebeb");
-    root.style.setProperty("--blue", "#3cbbb1");
-
-    footer?.classList.add("footer--dark");
-  } else {
-    root.style.setProperty("--background", "#fafafa");
-    root.style.setProperty("--foreground", "#0a0a0a");
-    root.style.setProperty("--gray", "#474747");
-    root.style.setProperty("--blue", "#1481ba");
-
-    footer?.classList.remove("footer--dark");
+  const theme = isDark ? themes.dark : themes.light;
+  for (const [key, value] of Object.entries(theme)) {
+    root.style.setProperty(key, value);
   }
 };
 
 const initializeThemeToggle = () => {
   const toggle = document.getElementById("toggle");
+  const savedTheme = localStorage.getItem("theme");
+  let isDark = false;
 
-  if (toggle) {
-    const savedTheme = localStorage.getItem("theme");
-    let isDark = false;
-
-    if (savedTheme) {
-      isDark = savedTheme === "dark";
-    } else {
-      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-
-    toggle.checked = isDark;
-    updateTheme(isDark);
-
-    toggle.addEventListener("change", (e) => {
-      const isChecked = e.target.checked;
-      updateTheme(isChecked);
-      localStorage.setItem("theme", isChecked ? "dark" : "light");
-    });
+  if (savedTheme) {
+    isDark = savedTheme === "dark";
+  } else {
+    isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
+
+  toggle.checked = isDark;
+  updateTheme(isDark);
+
+  toggle.addEventListener("change", (e) => {
+    const isChecked = e.target.checked;
+    updateTheme(isChecked);
+    localStorage.setItem("theme", isChecked ? "dark" : "light");
+  });
 };
 
 document.addEventListener("DOMContentLoaded", initializeThemeToggle);

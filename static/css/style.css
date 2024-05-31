@@ -208,6 +208,10 @@ blockquote::before {
  * Styles
  **/
 
+@view-transition {
+  navigation: auto;
+}
+
 /* Header */
 .main,
 .header {
@@ -478,15 +482,12 @@ blockquote::before {
 /* Footer */
 .footer {
   background: var(--black);
+  border-top: var(--border) solid var(--white);
   color: var(--white);
   display: grid;
   font-size: var(--text-lg);
   grid-template-columns: repeat(2, 1fr);
   padding: var(--space-lg) var(--space-xl);
-}
-
-.footer--dark {
-  border-top: var(--border) solid var(--foreground);
 }
 
 .footer__copy {
