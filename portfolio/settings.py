@@ -261,10 +261,12 @@ MEDIA_URL = "/media/"
 
 COMPRESS_OFFLINE = env.bool("COMPRESS_OFFLINE", True)
 COMPRESS_STORAGE = "compressor.storage.BrotliCompressorFileStorage"
+COMPRESS_CACHE_BACKEND = env.str("COMPRESS_CACHE_BACKEND", "default")
 
 
 # Default storage settings, with the staticfiles storage updated.
 # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
+
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -273,6 +275,8 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 0)
 
 
 # Wagtail settings
@@ -374,3 +378,28 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", Fals
 SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", False)
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", False)
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
+
+
+# Logging
+# https://docs.djangoproject.com/en/5.0/topics/logging/
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": env.str("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+    },
+}
