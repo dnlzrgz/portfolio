@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
+    "wagtail.contrib.frontend_cache",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -362,6 +363,16 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 }
 
 WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
+
+
+if env.bool("USE_CLOUDFARE_CACHE", False):
+    WAGTAILFRONTENDCACHE = {
+        "cloudflare": {
+            "BACKEND": "wagtail.contrib.frontend_cache.backends.CloudflareBackend",
+            "BEARER_TOKEN": env.str("CLOUDFARE_BEARER_TOKEN"),
+            "ZONEID": env.str("CLOUDFARE_ZONE_ID"),
+        },
+    }
 
 
 # CSRF
