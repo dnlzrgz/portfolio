@@ -17,8 +17,10 @@
 - 📝 Markdown support.
 - 🌱 SEO-friendly URLs, meta tags, and sitemap generation.
 - 🚀 Performance optimizations like lazy loading for images by default.
+- 💥 Support for front-end cache management.
 - 📦 Docker support for easier deployment and scalability.
-- ⚙️ Configurability via env variables for easy customization.
+- 🔒 Advanced security features, such as rate limiting and IP blacklisting.
+- ⚙️  Configurable via env variables.
 
 ## Toolbox
 

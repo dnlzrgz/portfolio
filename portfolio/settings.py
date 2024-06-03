@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     "taggit",
     "wagtailmarkdown",
     "compressor",
+    "axes",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -98,6 +99,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "axes.middleware.AxesMiddleware",
 ]
 
 if DEBUG:
@@ -210,6 +212,15 @@ else:
         }
 
 CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 0)
+
+
+# Authentication backends
+# https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#specifying-authentication-backends
+
+AUTHENTICATION_BACKENDS = (
+    "axes.backends.AxesStandaloneBackend",
+    "django.contrib.auth.backends.ModelBackend",
+)
 
 
 # Password validation
@@ -398,6 +409,20 @@ SECURE_PROXY_SSL_HEADER = env.bool("SECURE_PROXY_SSL_HEADER", False)
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
 
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", False)
+
+# Axes
+# https://django-axes.readthedocs.io/en/latest/4_configuration.html
+
+AXES_ENABLED = env.bool("AXES_ENABLED", True)
+AXES_FAILURE_LIMIT = env.int("AXES_FAILURE_LIMIT", 3)
+AXES_LOCK_OUT_AT_FAILURE = env.bool("AXES_LOCK_OUT_AT_FAILURE", True)
+AXES_COOLOFF_TIME = env.int("AXES_COOLOFF_TIME", 24)
+
+AXES_IPWARE_META_PRECEDENCE_ORDER = [
+    "HTTP_CF_CONNECTING_IP",
+    "HTTP_X_FORWARDED_FOR",
+    "REMOTE_ADDR",
+]
 
 
 # Logging
