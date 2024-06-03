@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portfolio"
-version = "0.1.4"
+version = "0.1.6"
 description = "My personal portfolio."
 authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
 license = "MIT"
@@ -21,6 +21,7 @@ django-compressor = "^4.4"
 brotli = "^1.1.0"
 pygments = "^2.18.0"
 django-redis = "^5.4.0"
+django-axes = {extras = ["ipware"], version = "^6.4.0"}
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"
