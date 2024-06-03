@@ -88,17 +88,19 @@ if DEBUG:
         "debug_toolbar",
     ]
 
+
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.middleware.gzip.GZipMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.gzip.GZipMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
 ]
 
@@ -106,15 +108,10 @@ if DEBUG:
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
-else:
-    common_middleware_index = MIDDLEWARE.index(
-        "django.middleware.common.CommonMiddleware"
-    )
-    MIDDLEWARE.insert(
-        common_middleware_index + 1, "django.middleware.http.ConditionalGetMiddleware"
-    )
 
 ROOT_URLCONF = "portfolio.urls"
+
+APPEND_SLASH = True
 
 TEMPLATES = [
     {
@@ -169,6 +166,11 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = env.bool(
     True,
 )
 
+DATABASES["default"]["CONN_MAX_AGE"] = env.int(
+    "DATABASE_CONN_MAX_AGE",
+    default=60,
+)
+
 
 # Cache
 # https://docs.djangoproject.com/en/5.0/topics/cache/
@@ -180,6 +182,7 @@ if env.bool("USE_REDIS", False):
             "LOCATION": env.str("REDIS_LOCATION", ""),
             "OPTIONS": {
                 "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "IGNORE_EXCEPTIONS": True,
             },
         }
     }
@@ -280,6 +283,13 @@ COMPRESS_OFFLINE = env.bool("COMPRESS_OFFLINE", True)
 COMPRESS_STORAGE = "compressor.storage.BrotliCompressorFileStorage"
 COMPRESS_CACHE_BACKEND = env.str("COMPRESS_CACHE_BACKEND", "default")
 
+COMPRESS_FILTERS = {
+    "css": [
+        "compressor.filters.css_default.CssAbsoluteFilter",
+        "compressor.filters.cssmin.rCSSMinFilter",
+    ],
+    "js": ["compressor.filters.jsmin.JSMinFilter"],
+}
 
 # Default storage settings, with the staticfiles storage updated.
 # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
@@ -404,7 +414,9 @@ SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", 0)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", False)
 SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", False)
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", False)
-SECURE_PROXY_SSL_HEADER = env.bool("SECURE_PROXY_SSL_HEADER", False)
+
+if env.bool("SECURE_PROXY_SSL_HEADER"):
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
 
@@ -431,20 +443,35 @@ AXES_IPWARE_META_PRECEDENCE_ORDER = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
         },
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
     },
+    "root": {"level": "INFO", "handlers": ["console"]},
     "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": env.str("DJANGO_LOG_LEVEL", "INFO"),
-            "propagate": False,
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+        "django.security.DisallowedHost": {
+            "level": "ERROR",
+            "handlers": ["console", "mail_admins"],
+            "propagate": True,
         },
     },
 }
