@@ -38,4 +38,6 @@ EOF
 # Start Django
 WORKERS=${WORKERS:-17}
 THREADS=${THREADS:-2}
-gunicorn portfolio.wsgi:application --bind 0.0.0.0:$PORT --workers $WORKERS --threads $THREADS --log-file "-"
+MAX_REQUESTS=${MAX_REQUESTS:-1000}
+MAX_REQUESTS_JITTER=${MAX_REQUESTS_JITTER:-50}
+gunicorn portfolio.wsgi:application --bind 0.0.0.0:${PORT} --workers ${WORKERS} --threads ${THREADS} --max-requests ${MAX_REQUESTS} --max-requests-jitter ${MAX_REQUESTS_JITTER} --preload --log-file "-"
