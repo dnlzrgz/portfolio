@@ -415,12 +415,13 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", Fals
 SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", False)
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", False)
 
-if env.bool("SECURE_PROXY_SSL_HEADER"):
+if env.bool("SECURE_PROXY_SSL_HEADER", False):
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
 
 SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", False)
+
 
 # Axes
 # https://django-axes.readthedocs.io/en/latest/4_configuration.html
