@@ -19,7 +19,6 @@ whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 wagtail-markdown = "^0.12.1"
 django-compressor = "^4.4"
 brotli = "^1.1.0"
-pygments = "^2.18.0"
 django-redis = "^5.4.0"
 django-axes = {extras = ["ipware"], version = "^6.4.0"}
 

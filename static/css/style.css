@@ -530,6 +530,10 @@ blockquote::before {
   transform: scaleX(1);
 }
 
+.link--internal {
+  position: inherit;
+}
+
 .link--social {
   color: var(--white);
 }
@@ -606,8 +610,7 @@ blockquote::before {
 }
 
 .icon {
-  height: var(--font-xl);
-  width: var(--font-xl);
+  font-size: inherit;
 }
 
 /**
