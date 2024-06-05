@@ -1,57 +1,77 @@
 {% extends "base.html" %}
 
-{% load static wagtailcore_tags wagtailmarkdown %}
+{% load static compress wagtailcore_tags wagtail_cache wagtailmarkdown %}
 
 {% block og %}
-  <meta property="og:type" content="article">
-  <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
-  <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
-  {% if page.tags.all %}
-    {% for tag in page.tags.all %}
-      <meta property="article:tag" content="{{ tag }}">
-    {% endfor %}
-  {% endif %}
+  {% wagtailpagecache 500 "post-header" %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ page.first_published_at|date:'c' }}">
+    <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
+    {% if page.tags.all %}
+      {% for tag in page.tags.all %}
+        <meta property="article:tag" content="{{ tag }}">
+      {% endfor %}
+    {% endif %}
+  {% endwagtailpagecache %}
 {% endblock og %}
 
 {% block extra_css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/pygments.css' %}" charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/highlight.css' %}" charset="utf-8">
 {% endblock extra_css %}
 
-{% block body_class %}body--post{% endblock %}
+{% block extra_js %}
+  {% compress js file extra %}
+    <script src="{% static 'js/highlight.js' %}" defer></script>
+    <script src="{% static 'js/python.highlight.js' %}" defer></script>
+    <script src="{% static 'js/django.highlight.js' %}" defer></script>
+    <script src="{% static 'js/bash.highlight.js' %}" defer></script>
+    <script src="{% static 'js/css.highlight.js' %}" defer></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event){
+        hljs.highlightAll();
+      });
+    </script>
+  {% endcompress %}
+{% endblock extra_js %}
+
+{% block body_class %}body--post{% endblock body_class %}
 
 {% block content %}
-  <header class="header header--post">
-    {% include 'includes/nav.html' %}
+  {% wagtailpagecache 500 "content" %}
+    <header class="header header--post">
+      {% include 'includes/nav.html' %}
 
-    <div class="hero hero--post">
-      <p class="hero__date">
-        {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
-      </p>
+      <div class="hero hero--post">
+        <p class="hero__date">
+          {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
+        </p>
 
-      <h1 class="hero__title">
-        {{ page.title }}
-      </h1>
+        <h1 class="hero__title">
+          {{ page.title }}
+        </h1>
 
 
-      <div class="hero__tldr">
-        {{ page.tldr|richtext }}
+        <div class="hero__tldr">
+          {{ page.tldr|richtext }}
+        </div>
+
+        <div class="hero__tags">
+          {% with tags=page.tags.all %}
+            {% if tags %}
+              {% for tag in tags %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
+                  #{{ tag }}
+                </a>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
       </div>
+    </header>
 
-      <div class="hero__tags">
-        {% with tags=page.tags.all %}
-          {% if tags %}
-            {% for tag in tags %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-                #{{ tag }}
-              </a>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-      </div>
-    </div>
-  </header>
-
-  <main class="main post">
-    {{ page.body|markdown }}
-  </main>
-{% endblock %}
+    <main class="main post">
+      {{ page.body|markdown }}
+    </main>
+  {% endwagtailpagecache %}
+{% endblock content %}
