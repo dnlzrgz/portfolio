@@ -1321,17 +1321,6 @@ files = [
 ]
 
 [[package]]
-name = "pymemcache"
-version = "4.0.0"
-description = "A comprehensive, fast, pure Python memcached client"
-optional = false
-python-versions = ">=3.7"
-files = [
-    {file = "pymemcache-4.0.0-py2.py3-none-any.whl", hash = "sha256:f507bc20e0dc8d562f8df9d872107a278df049fa496805c1431b926f3ddd0eab"},
-    {file = "pymemcache-4.0.0.tar.gz", hash = "sha256:27bf9bd1bbc1e20f83633208620d56de50f14185055e49504f4f5e94e94aff94"},
-]
-
-[[package]]
 name = "python-dotenv"
 version = "1.0.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -1841,4 +1830,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "35a24dc25da45db435a82d4fac9cb15480aa4eaa88e88323bc002a6fc0249a5f"
+content-hash = "9c17299107a2f2aa408900573985c60459ba5e5472c0bf2261ff5a1ce0a80bb4"
