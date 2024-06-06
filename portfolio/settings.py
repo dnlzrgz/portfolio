@@ -100,7 +100,6 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.gzip.GZipMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
 ]
 
@@ -284,6 +283,7 @@ COMPRESS_FILTERS = {
     "js": ["compressor.filters.jsmin.JSMinFilter"],
 }
 
+
 # Default storage settings, with the staticfiles storage updated.
 # See https://docs.djangoproject.com/en/5.0/ref/settings/#std-setting-STORAGES
 
@@ -302,6 +302,7 @@ WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 0)
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", "portfolio")
+
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
