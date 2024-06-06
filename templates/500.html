@@ -1,12 +1,36 @@
-{% extends "base.html" %}
+{% load static compress wagtailuserbar %}
 
-{% block title %}500{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>500</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index,follow">
 
-{% block body_class %}body--error{% endblock %}
+        {# Favicon #}
+        <link rel="apple-touch-icon" href="{% static 'assets/apple-touch-icon.png' %}" />
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
+        <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
-{% block content %}
-    <main class="main main--error">
-        <h1>500</h1>
-        <h2>Sorry, something bad happened.</h2>
-    </main>
-{% endblock %}
+        {# CSS #}
+        {% compress css file base %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
+        {% endcompress %}
+
+        {# JS #}
+        {% compress js file base %}
+            <script src="{% static 'js/htmx.min.js' %}" defer></script>
+            <script src="{% static 'js/head-support.js' %}" defer></script>
+            <script src="{% static 'js/app.js' %}" defer></script>
+        {% endcompress %}
+    </head>
+
+    <body class="body body--error" hx-boost="true" hx-push-urls="true" hx-ext="head-support">
+        {% wagtailuserbar %}
+
+        <main class="main main--error">
+            <h1>500</h1>
+        </body>
+    </html>
