@@ -6,7 +6,8 @@
   --white: #fafafa;
   --black: #0a0a0a;
   --gray: #474747;
-  --blue: #1481ba; /* Dark variant: #3CBBB1 */
+  --blue: #1481ba;
+  /* Dark variant: #3CBBB1 */
   --background: var(--white);
   --foreground: var(--black);
 
@@ -144,18 +145,10 @@ html {
 img,
 picture,
 video,
-canvas,
 svg {
   display: block;
   max-width: var(--w-100);
   width: var(--w-100);
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
 }
 
 p,
@@ -182,6 +175,9 @@ code {
 pre:has(> code) {
   margin-bottom: var(--space-md);
   overflow-x: auto;
+}
+
+pre>code {
   padding: var(--space-md);
 }
 
@@ -354,7 +350,7 @@ blockquote::before {
 }
 
 .section__content,
-.section__content > * {
+.section__content>* {
   color: var(--gray);
   font-size: var(--text-xl);
   max-width: var(--prose-xs);
@@ -380,7 +376,7 @@ blockquote::before {
 }
 
 .item__content,
-.item__content > * {
+.item__content>* {
   color: var(--gray);
   font-size: var(--text-lg);
   max-width: var(--prose-sm);
@@ -566,7 +562,7 @@ blockquote::before {
   width: 22px;
 }
 
-.toggle:checked + .toggle__label .toggle__indicator {
+.toggle:checked+.toggle__label .toggle__indicator {
   transform: translateX(24px);
 }
 
@@ -590,6 +586,7 @@ blockquote::before {
  * Media queries
  **/
 @media screen and (max-width: 1024px) {
+
   .header,
   .hero,
   .main {
@@ -613,6 +610,7 @@ blockquote::before {
 }
 
 @media screen and (max-width: 640px) {
+
   .hero,
   .section {
     padding: var(--space-xl) var(--space-md);
