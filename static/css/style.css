@@ -508,30 +508,11 @@ blockquote::before {
   align-items: center;
   color: var(--foreground);
   display: inline-flex;
-  position: relative;
   text-decoration: none;
 }
 
-.link::before {
-  background-color: var(--foreground);
-  bottom: 0;
-  content: "";
-  height: var(--space-base);
-  left: 0;
-  position: absolute;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform var(--transition-duration) var(--transition-timing);
-  width: var(--w-100);
-}
-
-.link:hover::before {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-.link--internal {
-  position: inherit;
+.link:hover {
+  text-decoration: underline;
 }
 
 .link--social {
@@ -540,14 +521,6 @@ blockquote::before {
 
 .link--tag {
   color: var(--gray);
-}
-
-.link--tag::before {
-  background-color: var(--gray);
-}
-
-.link--social::before {
-  background-color: var(--white);
 }
 
 .link--email {
