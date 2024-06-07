@@ -27,6 +27,7 @@
         {% endif %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="dark light">
 
         <meta property="og:url" content="{{ page.full_url }}">
         <meta property="og:locale" content="en_US">
@@ -62,12 +63,10 @@
         {% if debug %}
             <script src="{% static 'js/htmx.js' %}" defer></script>
             <script src="{% static 'js/head-support.js' %}" defer></script>
-            <script src="{% static 'js/app.js' %}" defer></script>
         {% else %}
             {% compress js file base %}
                 <script src="{% static 'js/htmx.min.js' %}" defer></script>
                 <script src="{% static 'js/head-support.js' %}" defer></script>
-                <script src="{% static 'js/app.js' %}" defer></script>
             {% endcompress %}
         {% endif %}
 
@@ -78,7 +77,8 @@
     <body class="body {% block body_class %}{% endblock %}" hx-boost="true" hx-push-urls="true" hx-ext="head-support">
         {% wagtailuserbar %}
 
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
 
         {% include 'includes/footer.html' %}
     </body>

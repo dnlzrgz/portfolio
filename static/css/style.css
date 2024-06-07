@@ -7,6 +7,7 @@
   --black: #0a0a0a;
   --gray: #474747;
   --blue: #1481ba;
+
   /* Dark variant: #3CBBB1 */
   --background: var(--white);
   --foreground: var(--black);
@@ -222,16 +223,10 @@ blockquote::before {
   padding: var(--space-lg);
 }
 
-.nav__controls {
-  display: flex;
-  margin-left: var(--space-md);
-  align-items: center;
-  justify-content: flex-start;
-}
-
 .nav__list {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-md);
+  justify-content: flex-end;
 }
 
 .hero {
@@ -585,6 +580,15 @@ blockquote::before {
 /**
  * Media queries
  **/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--black);
+    --foreground: var(--white);
+    --gray: #ebebeb;
+    --blue: #3cbbb1;
+  }
+}
+
 @media screen and (max-width: 1024px) {
 
   .header,
