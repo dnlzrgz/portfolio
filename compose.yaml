@@ -1,0 +1,50 @@
+volumes:
+  portfolio_staticfiles: {}
+  portfolio_postgres_data: {}
+  portfolio_postgres_data_backups: {}
+
+services:
+  web-prod:
+    build:
+      context: .
+      dockerfile: ./compose/prod/Dockerfile
+    image: portfolio_prod
+    container_name: portfolio_web
+    profiles: [production, local]
+    ports:
+      - "8000:8000"
+    volumes:
+      - portfolio_staticfiles:/app/staticfiles
+    depends_on:
+      - db
+      - cache
+
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./compose/dev/Dockerfile
+    image: portfolio_dev
+    container_name: portfolio_web
+    profiles: [development]
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.3-alpine3.20
+    container_name: portfolio_postgres
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+    volumes:
+      - portfolio_postgres_data:/var/lib/postgresql/data
+      - portfolio_postgres_data_backups:/backups
+
+  cache:
+    image: redis:7.2.5-alpine3.20
+    container_name: portfolio_redis
+    profiles: [production, local]
+    depends_on:
+      - db

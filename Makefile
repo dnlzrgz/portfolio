@@ -68,48 +68,38 @@ collect:
 # Start development Docker compose
 dev-start:
 	@echo "🚀 Starting development Docker compose..."
-	docker compose -f ./dev.yaml up -d --build
+	docker compose --profile development up
 	@echo "✨ Development Docker compose started!"
 
 # Stop development Docker compose
 dev-stop:
 	@echo "🛑 Stopping development Docker compose..."
-	docker compose -f dev.yaml down
+	docker compose --profile development down
 	@echo "✨ Local Docker compose stopped!"
 
 # Watch development Docker compose logs
 dev-logs:
 	@echo "👀 Watching containers logs..."
-	docker compose -f dev.yaml logs -f
+	docker compose --profile development logs -f
 	@echo "✨ Watching containers logs finished!"
-
-# Remove and restart development Docker compose
-dev-restart:
-	@make dev-stop
-	@make dev-start
 
 # Start production Docker compose
 prod-start:
 	@echo "🚀 Starting production Docker compose..."
-	docker compose -f ./prod.yaml up -d --build
+	docker compose --profile production up -d --build
 	@echo "✨ Production Docker compose started!"
 
 # Stop production Docker compose
 prod-stop:
 	@echo "🛑 Stopping production Docker compose..."
-	docker compose -f prod.yaml down
+	docker compose --profile production down
 	@echo "✨ Production Docker compose stopped!"
 
 # Watch production Docker compose logs
 prod-logs:
 	@echo "👀 Watching containers logs..."
-	docker compose -f prod.yaml logs -f
+	docker compose --profile production logs -f
 	@echo "✨ Watching containers logs finished!"
-
-# Remove and restart production Docker compose
-prod-restart:
-	@make prod-stop
-	@make prod-start
 
 # Setup project
 setup:
@@ -122,10 +112,12 @@ setup:
 
 # Start development environment
 dev:
-	@make dev-restart
+	@make dev-stop
+	@make dev-start
 	@make dev-logs
 
 # Start production environment
 prod:
-	@make prod-restart
+	@make prod-stop
+	@make prod-start
 	@make prod-logs
