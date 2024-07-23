@@ -6,9 +6,8 @@ set -e
 echo "Running database migrations..."
 python manage.py migrate
 
-if [ "${USE_DATABASE_AS_CACHE}" = "True" ]; then
-	python manage.py createcachetable
-fi
+echo "Creating database cache table just in case..."
+python manage.py createcachetable
 
 # Collect static files and compress CSS files
 echo "Collecting static files..."

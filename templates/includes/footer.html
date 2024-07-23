@@ -1,6 +1,6 @@
 {% load wagtailcore_tags wagtail_cache %}
 
-{% wagtailpagecache 500 "footer" %}
+{% wagtailpagecache 500 "footer" "global" %}
   <footer class="footer">
     {% with settings=settings.base.FooterSettings %}
       <p class="footer__copy">
