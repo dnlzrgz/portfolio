@@ -204,7 +204,7 @@ elif env.bool("USE_DATABASE_AS_CACHE", False):
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-            "LOCATION": "cache_table",
+            "LOCATION": env.str("DATABASE_CACHE_TABLE_LOCATION", "cache_table"),
         }
     }
 else:
