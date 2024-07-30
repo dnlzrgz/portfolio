@@ -21,8 +21,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/dev/Dockerfile
-    image: portfolio_dev
-    container_name: portfolio_web
+    container_name: portfolio_dev
     profiles: [development]
     ports:
       - "8000:8000"
@@ -40,9 +39,9 @@ services:
       - portfolio_postgres_data:/var/lib/postgresql/data
       - portfolio_postgres_data_backups:/backups
 
-  # cache:
-  #   image: redis:7.2.5-alpine3.20
-  #   container_name: portfolio_redis
-  #   profiles: [production]
-  #   depends_on:
-  #     - db
+  cache:
+    image: redis:7.4.0-alpine3.20
+    container_name: portfolio_redis
+    profiles: [redis]
+    depends_on:
+      - db
