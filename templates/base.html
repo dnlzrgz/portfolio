@@ -1,4 +1,4 @@
-{% load static compress wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,9 +52,7 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        {% compress css file base %}
-            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
-        {% endcompress %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
 
         {% block extra_css %}
         {% endblock extra_css %}

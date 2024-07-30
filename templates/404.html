@@ -1,4 +1,4 @@
-{% load static compress wagtailuserbar %}
+{% load static wagtailuserbar %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,15 +15,7 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        {% compress css file base %}
-            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
-        {% endcompress %}
-
-        {# JS #}
-        {% compress js file base %}
-            <script src="{% static 'js/htmx.min.js' %}" defer></script>
-            <script src="{% static 'js/head-support.js' %}" defer></script>
-        {% endcompress %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
     </head>
 
     <body class="body body--error">

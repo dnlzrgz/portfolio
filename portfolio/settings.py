@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
-    "compressor",
     "axes",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -271,7 +270,6 @@ SITE_ID = 1
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
 ]
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
@@ -281,21 +279,6 @@ STATIC_URL = "/static/"
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
-
-# Compressor
-# https://django-compressor.readthedocs.io/en/latest/settings.html
-
-COMPRESS_OFFLINE = env.bool("COMPRESS_OFFLINE", True)
-COMPRESS_STORAGE = "compressor.storage.BrotliCompressorFileStorage"
-COMPRESS_CACHE_BACKEND = env.str("COMPRESS_CACHE_BACKEND", "default")
-
-COMPRESS_FILTERS = {
-    "css": [
-        "compressor.filters.css_default.CssAbsoluteFilter",
-        "compressor.filters.cssmin.rCSSMinFilter",
-    ],
-    "js": ["compressor.filters.jsmin.JSMinFilter"],
-}
 
 
 # Default storage settings, with the staticfiles storage updated.

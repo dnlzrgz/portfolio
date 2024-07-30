@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portfolio"
-version = "0.2.3"
+version = "0.2.4"
 description = "My personal portfolio."
 authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
 license = "MIT"
@@ -15,7 +15,6 @@ gunicorn = "^22.0.0"
 psycopg = { extras = ["binary"], version = "^3.1.19" }
 redis = { extras = ["hiredis"], version = "^5.0.4" }
 whitenoise = { extras = ["brotli"], version = "^6.6.0" }
-django-compressor = "^4.4"
 brotli = "^1.1.0"
 django-redis = "^5.4.0"
 django-axes = { extras = ["ipware"], version = "^6.4.0" }

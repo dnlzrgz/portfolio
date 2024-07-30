@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static compress wagtailcore_tags wagtail_cache wagtailmarkdown %}
+{% load static wagtailcore_tags wagtail_cache wagtailmarkdown %}
 
 {% block og %}
   {% wagtailpagecache 500 "post-header" %}
@@ -20,19 +20,17 @@
 {% endblock extra_css %}
 
 {% block extra_js %}
-  {% compress js file extra %}
-    <script src="{% static 'js/highlight.js' %}" defer></script>
-    <script src="{% static 'js/python.highlight.js' %}" defer></script>
-    <script src="{% static 'js/django.highlight.js' %}" defer></script>
-    <script src="{% static 'js/bash.highlight.js' %}" defer></script>
-    <script src="{% static 'js/css.highlight.js' %}" defer></script>
+  <script src="{% static 'js/highlight.js' %}" defer></script>
+  <script src="{% static 'js/python.highlight.js' %}" defer></script>
+  <script src="{% static 'js/django.highlight.js' %}" defer></script>
+  <script src="{% static 'js/bash.highlight.js' %}" defer></script>
+  <script src="{% static 'js/css.highlight.js' %}" defer></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function(event){
-        hljs.highlightAll();
-      });
-    </script>
-  {% endcompress %}
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event){
+      hljs.highlightAll();
+    });
+  </script>
 {% endblock extra_js %}
 
 {% block body_class %}body--post{% endblock body_class %}
