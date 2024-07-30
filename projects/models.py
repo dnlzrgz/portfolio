@@ -51,7 +51,7 @@ class ProjectPage(Page):
         blank=True,
     )
 
-    body = RichTextField(editor="full", blank=True)
+    body = RichTextField(blank=True, editor="full")
 
     search_fields = Page.search_fields + [
         index.SearchField("description"),

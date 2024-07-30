@@ -11,7 +11,6 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.search import index
 from wagtail.signals import page_published
 from wagtail.contrib.frontend_cache.utils import PurgeBatch
-from wagtailmarkdown.fields import MarkdownField
 
 
 class BlogIndexPage(Page):
@@ -48,7 +47,7 @@ class BlogPostPage(Page):
         blank=True,
     )
 
-    body = MarkdownField()
+    body = RichTextField(blank=True, editor="full")
 
     search_fields = Page.search_fields + [
         index.SearchField("tldr"),
