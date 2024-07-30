@@ -39,14 +39,6 @@ test:
 	python manage.py test
 	@echo "✨ All tests complete!"
 
-# Download v2.0.0 of htmx and plugins
-download-htmx:
-	@echo "📥 Downloading htmx script..."
-	curl -sL https://unpkg.com/htmx.org@2.0.0/dist/htmx.js -o static/js/htmx.js
-	curl -sL https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js -o static/js/htmx.min.js
-	curl -sL https://unpkg.com/htmx-ext-head-support@2.0.0/head-support.js -o static/js/head-support.js
-	@echo "✨ htmx script downloaded and saved!"
-
 # Download highlight.js scripts and styles
 download-highlight:
 	@echo "📥 Downloading highlight.js scripts and css styles..."
@@ -103,7 +95,6 @@ prod-logs:
 
 # Setup project
 setup:
-	@make download-htmx
 	@make download-highlight
 	poetry install
 	pre-commit install
