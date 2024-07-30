@@ -13,9 +13,6 @@ python manage.py createcachetable
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
-echo "Compressing CSS files..."
-python manage.py compress
-
 # Create an admin user if it does not exist
 echo "Creating admin user..."
 python manage.py shell <<EOF
