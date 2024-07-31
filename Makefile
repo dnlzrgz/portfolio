@@ -39,18 +39,6 @@ test:
 	python manage.py test
 	@echo "✨ All tests complete!"
 
-# Download highlight.js scripts and styles
-download-highlight:
-	@echo "📥 Downloading highlight.js scripts and css styles..."
-	@mkdir -p static/styles static/js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark.min.css -o static/css/highlight.css
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js -o static/js/highlight.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js -o static/js/python.highlight.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js -o static/js/css.highlight.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/bash.min.js -o static/js/bash.highlight.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/django.min.js -o static/js/django.highlight.js
-	@echo "✨ highlight.js scripts and styles downloaded and saved!"
-
 # Collect static files
 collect:
 	@echo "📦 Collecting static files..."
@@ -95,7 +83,6 @@ prod-logs:
 
 # Setup project
 setup:
-	@make download-highlight
 	poetry install
 	pre-commit install
 	pre-commit run --all-files
