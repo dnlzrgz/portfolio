@@ -54,16 +54,14 @@
         {# CSS #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
 
-        {% block extra_css %}
-        {% endblock extra_css %}
-
         {# JS #}
-        {% block extra_js %}
-        {% endblock extra_js %}
+        <script src="{% static 'js/app.js' %}" defer></script>
     </head>
 
-    <body class="body {% block body_class %}{% endblock %}">
+    <body class="body">
         {% wagtailuserbar %}
+
+        {% include 'includes/nav.html' %}
 
         {% block content %}
         {% endblock %}
