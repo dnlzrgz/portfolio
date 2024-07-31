@@ -2,19 +2,18 @@
 
 {% get_site_root as site_root %}
 <nav class="nav">
-  <div class="nav__main">
-    <a href="{% pageurl site_root %}" class="link link--internal">
-      dnlzrgz
-    </a>
+  <a href="{% pageurl site_root %}" class="nav__home">
+    dnlzrgz
+  </a>
+
+  <div class="nav__switch">
+    <input type="checkbox" id="switch" class="switch" role="switch" />
+    <label for="switch"></label>
   </div>
 
-  <ul class="nav__list list">
-    {% for menuitem in site_root.get_children.live.in_menu %}
-      <li class="nav__list__item">
-        <a href="{% pageurl menuitem %}" class="link link--internal">
-          {{ menuitem.title }}
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+  <button class="nav__menu">
+    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" width="24" height="24" class="icon">
+      <path d="M3 12h18M3 6h18M3 18h18"></path>
+    </svg>
+  </button>
 </nav>
