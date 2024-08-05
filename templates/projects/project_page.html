@@ -14,12 +14,8 @@
 {% endblock og %}
 
 
-{% block body_class %}body--project{% endblock %}
-
 {% block content %}
   <header class="header header__project">
-    {% include 'includes/nav.html' %}
-
     <div class="hero hero--project">
       <div class="hero__links">
         {% if page.repository_url %}
