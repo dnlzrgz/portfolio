@@ -21,6 +21,13 @@ class StaticPage(Page):
 
 
 @register_setting
+class ContactEmailSettings(BaseGenericSetting):
+    email = models.EmailField(blank=True)
+
+    panels = [FieldPanel("email")]
+
+
+@register_setting
 class FooterSettings(BaseGenericSetting):
     copy = models.CharField(blank=True, max_length=255)
     links = StreamField(

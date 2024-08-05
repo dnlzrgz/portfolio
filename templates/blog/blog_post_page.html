@@ -15,8 +15,6 @@
 
 {% block content %}
   <header class="header header--post">
-    {% include 'includes/nav.html' %}
-
     <div class="hero hero--post">
       <p class="hero__date">
         {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
@@ -27,20 +25,8 @@
       </h1>
 
 
-      <div class="hero__tldr">
+      <div class="hero__summary">
         {{ page.tldr|richtext }}
-      </div>
-
-      <div class="hero__tags">
-        {% with tags=page.tags.all %}
-          {% if tags %}
-            {% for tag in tags %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-                #{{ tag }}
-              </a>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
       </div>
     </div>
   </header>

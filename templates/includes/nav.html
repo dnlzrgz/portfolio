@@ -37,4 +37,10 @@
       </a>
     {% endfor %}
   </nav>
+
+  <div class="menu__contact">
+    {% with settings=settings.base.ContactEmailSettings %}
+      <a href="mailto:{{ settings.email }}">{{settings.email}}</a>
+    {% endwith %}
+  </div>
 </aside>
