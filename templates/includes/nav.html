@@ -7,13 +7,34 @@
   </a>
 
   <div class="nav__switch">
-    <input type="checkbox" id="switch" class="switch" role="switch" />
+    <input type="checkbox" id="switch" class="switch" role="switch" data-js-switch-theme />
     <label for="switch"></label>
   </div>
 
-  <button class="nav__menu">
+  <button class="nav__menu" role="menu" data-js-menu-expand>
     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" width="24" height="24" class="icon">
       <path d="M3 12h18M3 6h18M3 18h18"></path>
     </svg>
   </button>
 </nav>
+
+<aside class="menu" role="menu" data-js-menu>
+  <div class="menu__controls">
+    <button class="menu__close" data-js-menu-collapse>
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24">
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="menu__nav" role="list">
+    <a href="/" class="nav__link {% if site_root.id == page.id %}selected{% endif %}" role="listitem">
+      {{ site_root.title }}
+    </a>
+    {% for menuitem in site_root.get_children.live.in_menu|slice:":3" %}
+      <a href="{% pageurl menuitem %}" class="nav__link {% if menuitem.id == page.id %}selected{% endif %}" role="listitem">
+        {{ menuitem.title }}
+      </a>
+    {% endfor %}
+  </nav>
+</aside>

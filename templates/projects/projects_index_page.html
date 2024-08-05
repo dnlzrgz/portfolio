@@ -2,11 +2,8 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}body--projects{% endblock %}
-
 {% block content %}
   <header class="header header--projects">
-    {% include 'includes/nav.html' %}
     <div class="hero hero--projects">
       <h1 class="hero__title">
         {{ page.title }}
@@ -14,25 +11,30 @@
     </div>
   </header>
 
-  <main class="main main--projects">
+  <main class="main projects">
     {% for project in projects %}
       {% with project=project.specific %}
-        <article class="article article--project">
+        <article class="article">
           <header class="article__header">
-            <time class="article__header__date">
-              {{ project.date|date:'Y' }}
-            </time>
+            <div class="article__image">
+            </div>
 
-            <h2 class="article__header__title">
-              <a href="{{ project.url }}" class="link link--internal">
-                {{ project.title }}
-              </a>
+            <h2 class="article__title">
+              {{ project.title }}, {{ project.date|date:'Y' }}
             </h2>
           </header>
 
-          <main class="article__content">
+          <main class="article__summary">
             {{ project.description|richtext }}
           </main>
+          <footer>
+            <a href="{{ project.url }}" class="article__link">
+              Learn more
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </footer>
       {% endwith %}
       </article>
     {% endfor %}

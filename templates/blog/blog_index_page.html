@@ -2,12 +2,8 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}body--blog{% endblock %}
-
 {% block content %}
   <header class="header header--blog">
-    {% include 'includes/nav.html' %}
-
     <div class="hero hero--blog">
       <h1 class="hero__title">
         {{ page.title }}
@@ -15,33 +11,33 @@
     </div>
   </header>
 
-  <main class="main main--posts">
+  <main class="main blog">
     {% for post in posts %}
       {% with post=post.specific %}
-        <article class="article article--post">
+        <article class="article">
           <header class="article__header">
-            <time class="article__header__date">
+            <time class="article__date">
               {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
             </time>
 
-            <h2 class="article__header__title">
-              <a href="{{ post.url }}" class="link link--internal">
-                {{ post.title }}
-              </a>
-            </h2>
-          </header>
+            <h2 class="article__title">
+              {{ post.title }}
+            </a>
+          </h2>
+        </header>
 
-          <main class="article__content">
-            {{ post.tldr|richtext }}
-          </main>
+        <main class="article__summary">
+          {{ post.tldr|richtext }}
+        </main>
 
-          <footer class="article__footer">
-            {% for tag in post.tags.all %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-                #{{ tag }}
-              </a>
-            {% endfor %}
-          </footer>
+        <footer>
+          <a href="{{ post.url }}" class="article__link">
+            Read more
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </footer>
         </article>
       {% endwith %}
     {% endfor %}
