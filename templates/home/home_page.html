@@ -47,5 +47,20 @@
         </main>
       </section>
     {% endif %}
+
+    {% if page.stack_stack %}
+      <section class="showcase">
+        <header class="showcase__header">
+          <h2>{{ page.stack_title }}</h2>
+          <p>{{ page.stack_content|richtext }}</p>
+        </header>
+        <main class="showcase__stack" role="list">
+          {% for block in page.stack_stack %}
+            <h3 class="stack-item" role="listitem">{{ block.value.title }}</h3>
+          {% endfor %}
+        </main>
+      </section>
+    {% endif %}
+
   </main>
 {% endblock content %}

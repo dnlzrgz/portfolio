@@ -13,7 +13,7 @@ django-permissionedforms==0.1 ; python_version >= "3.12" and python_version < "4
 django-redis==5.4.0 ; python_version >= "3.12" and python_version < "4.0"
 django-taggit==5.0.1 ; python_version >= "3.12" and python_version < "4.0"
 django-treebeard==4.7.1 ; python_version >= "3.12" and python_version < "4.0"
-django==5.0.7 ; python_version >= "3.12" and python_version < "4.0"
+django==5.0.8 ; python_version >= "3.12" and python_version < "4.0"
 djangorestframework==3.15.2 ; python_version >= "3.12" and python_version < "4.0"
 draftjs-exporter==5.0.0 ; python_version >= "3.12" and python_version < "4.0"
 environs==11.0.0 ; python_version >= "3.12" and python_version < "4.0"
