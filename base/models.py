@@ -29,6 +29,8 @@ class ContactEmailSettings(BaseGenericSetting):
 
 @register_setting
 class FooterSettings(BaseGenericSetting):
+    content = models.CharField(blank=True, max_length=255)
+    location = models.CharField(blank=True, max_length=255)
     copy = models.CharField(blank=True, max_length=255)
     links = StreamField(
         [
@@ -46,6 +48,8 @@ class FooterSettings(BaseGenericSetting):
     )
 
     panels = [
+        FieldPanel("content"),
+        FieldPanel("location"),
         FieldPanel("copy"),
         FieldPanel("links"),
     ]

@@ -1,20 +1,31 @@
 {% load wagtailcore_tags %}
 
 <footer class="footer">
-  {% with settings=settings.base.FooterSettings %}
-    <p class="footer__copy">
-      {{ settings.copy }}
-    </p>
+  {% with footer_settings=settings.base.FooterSettings %}
+    <div class="footer__content">
+      {{ footer_settings.content }}
+    </div>
 
-    <div class="footer__social" role="list">
-      <span role="listitem">
-        Connect:
-      </span>
-      {% for block in settings.links %}
-        <a {% if block.value.title == 'Mastodon' %}rel="me"{% endif %} href="{{ block.value.url }}" class="social-link" role="listitem">
+    <div class="footer__contact">
+      <address>
+        {{ footer_settings.location }}
+      </address>
+
+      {% with contact_settings=settings.base.ContactEmailSettings %}
+        <a href="mailto:{{ contact_settings.email }}">{{contact_settings.email}}</a>
+      {% endwith %}
+    </div>
+
+    <div class="footer__social">
+      {% for block in footer_settings.links %}
+        <a {% if block.value.title == 'Mastodon' %}rel="me"{% endif %} href="{{ block.value.url }}" class="social-link">
           {{ block.value.title }}
         </a>
       {% endfor %}
     </div>
+
+    <p class="footer__copy">
+      {{ footer_settings.copy }}
+    </p>
   {% endwith %}
 </footer>
