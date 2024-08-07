@@ -13,8 +13,9 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
   libpq-dev \
   libjpeg62-turbo-dev \
   zlib1g-dev \
-  libwebp-dev \
-  && rm -rf /var/lib/apt/lists/*
+  libwebp-dev && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /
 RUN pip install --no-cache-dir -r /requirements.txt

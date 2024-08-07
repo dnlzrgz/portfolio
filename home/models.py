@@ -30,6 +30,15 @@ class HomePage(Page):
         blank=True,
     )
 
+    stack_title = models.CharField(max_length=255, blank=True)
+    stack_content = RichTextField(editor="minimal", blank=True)
+    stack_stack = StreamField(
+        [
+            ("item", blocks.CharBlock()),
+        ],
+        blank=True,
+    )
+
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
@@ -48,5 +57,13 @@ class HomePage(Page):
                 FieldPanel("featured_projects"),
             ],
             heading="Projects",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("stack_title"),
+                FieldPanel("stack_content"),
+                FieldPanel("stack_stack"),
+            ],
+            heading="Stack",
         ),
     ]
