@@ -54,9 +54,9 @@
           <h2>{{ page.stack_title }}</h2>
           <p>{{ page.stack_content|richtext }}</p>
         </header>
-        <main class="showcase__stack" role="list">
+        <main class="showcase__stack">
           {% for block in page.stack_stack %}
-            <h3 class="stack-item" role="listitem">{{ block.value.title }}</h3>
+            <span class="stack-item">{{ block.value.title }}</span>
           {% endfor %}
         </main>
       </section>

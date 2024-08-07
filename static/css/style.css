@@ -559,31 +559,32 @@ ol {
 
 .footer {
   align-items: flex-start;
-  border-top: var(--border) dashed var(--foreground);
-  display: flex;
-  font-size: var(--text-lg);
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2xl);
+  font-size: var(--text-md);
   margin-top: var(--space-3xl);
+  margin-bottom: var(--space-sm);
   padding: var(--space-md);
 
-  .footer__social {
-    display: flex;
-    gap: var(--space-sm);
-
-    & > span {
-      font-weight: var(--font-semibold);
-    }
+  & address {
+    font-style: normal;
   }
 
-  .social-link {
+  & a {
+    display: block;
     color: var(--foreground);
     text-decoration: none;
-    transition: text-decoration var(--transition-timing)
-      var(--transition-duration);
 
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  .footer__social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
   }
 }
 
