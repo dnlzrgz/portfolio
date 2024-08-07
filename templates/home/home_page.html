@@ -24,7 +24,7 @@
     </div>
   </header>
 
-  <main class="main">
+  <main class="main main--home">
     {% if page.biography %}
       <section class="biography">
         {{ page.biography|richtext }}
@@ -35,7 +35,7 @@
       <section class="showcase">
         <header class="showcase__header">
           <h2>{{ page.projects_title }}</h2>
-          <p>{{ page.projects_content|richtext }}</p>
+          <p>{{ page.projects_subtitle|richtext }}</p>
         </header>
         <main class="showcase__projects">
           {% for block in page.featured_projects %}
@@ -52,12 +52,32 @@
       <section class="showcase">
         <header class="showcase__header">
           <h2>{{ page.stack_title }}</h2>
-          <p>{{ page.stack_content|richtext }}</p>
+          <p>{{ page.stack_subtitle|richtext }}</p>
         </header>
         <main class="showcase__stack">
           {% for block in page.stack_stack %}
             <span class="stack-item">{{ block.value.title }}</span>
           {% endfor %}
+        </main>
+      </section>
+    {% endif %}
+
+    {% if page.contact_title %}
+      <section class="contact">
+        <header class="contact__header">
+          <p>{{ page.contact_subtitle|richtext }}</p>
+          <h2>{{ page.contact_title }}</h2>
+        </header>
+        <main class="contact__sections">
+          <div>
+            <p>{{ page.contact_content|richtext }}</p>
+          </div>
+
+          <div>
+            {% with contact_settings=settings.base.ContactEmailSettings %}
+              <a href="mailto:{{ contact_settings.email }}">{{contact_settings.email}}</a>
+            {% endwith %}
+          </div>
         </main>
       </section>
     {% endif %}
