@@ -17,7 +17,7 @@ class HomePage(Page):
 
     # Project showcase section
     projects_title = models.CharField(max_length=255, blank=True)
-    projects_content = RichTextField(editor="minimal", blank=True)
+    projects_subtitle = RichTextField(editor="minimal", blank=True)
     featured_projects = StreamField(
         [
             (
@@ -30,14 +30,21 @@ class HomePage(Page):
         blank=True,
     )
 
+    # Stack section
     stack_title = models.CharField(max_length=255, blank=True)
-    stack_content = RichTextField(editor="minimal", blank=True)
+    stack_subtitle = RichTextField(editor="minimal", blank=True)
     stack_stack = StreamField(
         [
             ("item", blocks.CharBlock()),
         ],
         blank=True,
     )
+
+    # Contact section
+    contact_title = models.CharField(max_length=255, blank=True)
+    contact_subtitle = RichTextField(editor="minimal", blank=True)
+    contact_content = RichTextField(editor="minimal", blank=True)
+    contact_cta = RichTextField(editor="minimal", blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
@@ -53,15 +60,24 @@ class HomePage(Page):
         MultiFieldPanel(
             [
                 FieldPanel("projects_title"),
-                FieldPanel("projects_content"),
+                FieldPanel("projects_subtitle"),
                 FieldPanel("featured_projects"),
             ],
             heading="Projects",
         ),
         MultiFieldPanel(
             [
+                FieldPanel("contact_title"),
+                FieldPanel("contact_subtitle"),
+                FieldPanel("contact_content"),
+                FieldPanel("contact_cta"),
+            ],
+            heading="Contact",
+        ),
+        MultiFieldPanel(
+            [
                 FieldPanel("stack_title"),
-                FieldPanel("stack_content"),
+                FieldPanel("stack_subtitle"),
                 FieldPanel("stack_stack"),
             ],
             heading="Stack",
