@@ -42,6 +42,13 @@ class ProjectPageTag(TaggedItemBase):
 
 
 class ProjectPage(Page):
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
     description = RichTextField(editor="minimal", blank=True)
     date = models.DateField(default=timezone.now)
     repository_url = models.URLField(blank=True)
@@ -61,6 +68,7 @@ class ProjectPage(Page):
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
+                FieldPanel("image"),
                 FieldPanel("description"),
                 FieldPanel("date"),
                 FieldPanel("repository_url"),
