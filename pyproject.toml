@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portfolio"
-version = "0.2.11"
+version = "0.2.14"
 description = "My personal portfolio."
 authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
 license = "MIT"
@@ -18,12 +18,13 @@ whitenoise = { extras = ["brotli"], version = "^6.6.0" }
 brotli = "^1.1.0"
 django-redis = "^5.4.0"
 django-axes = { extras = ["ipware"], version = "^6.4.0" }
+django-storages = { extras = ["s3"], version = "^1.14.4" }
 
 [tool.poetry.group.dev.dependencies]
 djhtml = "^3.0.6"
 pre-commit = "^3.8.0"
 commitizen = "^3.28.0"
-ruff = "^0.5.5"
+ruff = "^0.5.7"
 django-debug-toolbar = "^4.4.6"
 
 

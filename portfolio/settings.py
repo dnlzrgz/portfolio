@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "axes",
+    "storages",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -293,6 +294,48 @@ STORAGES = {
     },
 }
 
+if env.bool("USE_S3_STORAGE", False):
+    AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = env.str("AWS_S3_REGION_NAME")
+    AWS_DEFAULT_ACL = env.str("AWS_DEFAULT_ACL", "public-read")
+    AWS_QUERYSTRING_AUTH = False
+
+    _AWS_EXPIRY = env.int("AWS_EXPIRY", 60 * 60 * 24 * 7)
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate",
+    }
+
+    AWS_S3_MAX_MEMORY_SIZE = env.int(
+        "AWS_S3_MAX_MEMORY_SIZE",
+        5_000_000,  # 5MB
+    )
+
+    AWS_LOCATION = "static"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
+
+    PUBLIC_MEDIA_LOCATION = "media"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+
+    STORAGES["default"] = {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "location": "media",
+            "file_overwrite": False,
+        },
+    }
+
+    STORAGES["staticfiles"] = {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "location": "static",
+            "file_overwrite": False,
+        },
+    }
+
+
 WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 0)
 
 
@@ -375,6 +418,12 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 }
 
 WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
+
+# Images
+# https://docs.wagtail.org/en/stable/topics/images.html
+WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAILIMAGES_AVIF_QUALITY", 50)
+WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAILIMAGES_JPEG_QUALITY", 40)
+WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAILIMAGES_WEBP_QUALITY", 45)
 
 
 if env.bool("USE_CLOUDFARE_CACHE", False):
