@@ -473,6 +473,10 @@ img {
     font-style: italic;
     padding-left: var(--space-md);
   }
+
+  & a {
+    text-decoration: underline;
+  }
 }
 
 .biography {
