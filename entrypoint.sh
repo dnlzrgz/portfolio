@@ -32,9 +32,18 @@ else:
 EOF
 
 # Start Django
-WORKERS=${WORKERS:-17}
+WORKERS=${WORKERS:-4}
 THREADS=${THREADS:-2}
+WORKERS_CONNECTIONS=${WORKERS_CONNECTIONS:-500}
 MAX_REQUESTS=${MAX_REQUESTS:-1000}
 MAX_REQUESTS_JITTER=${MAX_REQUESTS_JITTER:-50}
 TIMEOUT=${TIMEOUT:-10}
-gunicorn portfolio.wsgi:application --bind 0.0.0.0:${PORT} --workers ${WORKERS} --threads ${THREADS} --max-requests ${MAX_REQUESTS} --max-requests-jitter ${MAX_REQUESTS_JITTER} --timeout ${TIMEOUT} --preload --log-file "-"
+gunicorn portfolio.wsgi:application \
+  --bind 0.0.0.0:${PORT} \
+  --workers ${WORKERS} \
+  --threads ${THREADS} \
+  --worker-connections ${WORKERS_CONNECTIONS} \
+  --max-requests ${MAX_REQUESTS} \
+  --max-requests-jitter ${MAX_REQUESTS_JITTER} \
+  --timeout ${TIMEOUT} \
+  --preload
