@@ -6,9 +6,6 @@ set -e
 echo "Running database migrations..."
 python manage.py migrate
 
-echo "Creating database cache table just in case..."
-python manage.py createcachetable
-
 # Collect static files and compress CSS files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
@@ -46,4 +43,4 @@ gunicorn portfolio.wsgi:application \
   --max-requests ${MAX_REQUESTS} \
   --max-requests-jitter ${MAX_REQUESTS_JITTER} \
   --timeout ${TIMEOUT} \
-  --preload
+  --log-file "-"
