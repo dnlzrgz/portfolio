@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar wagtail_cache %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,11 +61,19 @@
     <body class="body">
         {% wagtailuserbar %}
 
-        {% include 'includes/nav.html' %}
+        {% with cache_duration=3600 %}
+            {% wagtailpagecache cache_duration "nav" %}
+                {% include 'includes/nav.html' %}
+            {% endwagtailpagecache %}
 
-        {% block content %}
-        {% endblock %}
+            {% wagtailpagecache cache_duration "content" %}
+                {% block content %}
+                {% endblock %}
+            {% endwagtailpagecache %}
 
-        {% include 'includes/footer.html' %}
+            {% wagtailpagecache cache_duration "footer" %}
+                {% include 'includes/footer.html' %}
+            {% endwagtailpagecache %}
+        {% endwith %}
     </body>
 </html>
