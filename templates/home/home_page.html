@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
     {# Hero section #}
@@ -40,7 +40,11 @@
         <main class="showcase__projects">
           {% for block in page.featured_projects %}
             <article class="project">
-              <div class="project__image"></div>
+              <div class="project__image">
+                {% if block.value.image %}
+                  {% picture block.value.image format-{avif,jpeg} %}
+                {% endif %}
+              </div>
               <h3 class="project__title">{{ block.value.title }}</h3>
             </article>
           {% endfor %}

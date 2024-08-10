@@ -6,17 +6,25 @@ const prefersDarkScheme = window.matchMedia(
   "(prefers-color-scheme: dark)",
 ).matches;
 
-const toggleTheme = () => {
-  if (switchTheme.checked || prefersDarkScheme) {
-    switchTheme.checked = true;
-    document.documentElement.classList.add("dark");
-    return;
-  }
-
-  document.documentElement.classList.remove("dark");
+const applyTheme = (isDark) => {
+  document.documentElement.classList.toggle("dark", isDark);
+  switchTheme.checked = isDark;
 };
 
-window.addEventListener("load", toggleTheme);
+const getCurrentTheme = () => {
+  const savedTheme = localStorage.getItem("theme");
+  return savedTheme ? savedTheme === "dark" : prefersDarkScheme;
+};
+
+const toggleTheme = () => {
+  const isDark = switchTheme.checked;
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  applyTheme(isDark);
+};
+
+window.addEventListener("load", () => {
+  applyTheme(getCurrentTheme());
+});
 switchTheme.addEventListener("change", toggleTheme);
 
 /**

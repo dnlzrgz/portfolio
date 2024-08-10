@@ -9,15 +9,15 @@
 {% endblock og %}
 
 {% block content %}
-  <header class="header header--project">
-    <div class="hero hero--project">
+  <header class="header header--post">
+    <div class="hero hero--post">
       <h1 class="hero__title">
         {{ page.title }}
       </h1>
     </div>
   </header>
 
-  <main class="main project">
+  <main class="main main--post">
     {{ page.body|richtext }}
   </main>
 {% endblock %}

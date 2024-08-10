@@ -6,8 +6,9 @@ prod.yaml
 pyproject.toml
 
 # Django project
-/media/
-*.sqlite3
+media
+**/*.sqlite3
+**/*.db
 
 # Python and others
 __pycache__
