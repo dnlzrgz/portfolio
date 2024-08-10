@@ -15,30 +15,8 @@
 
 
 {% block content %}
-  <header class="header header__project">
-    <div class="hero hero--project">
-      <div class="hero__links">
-        {% if page.repository_url %}
-          <a href="{{page.repository_url}}" class="link link--external link--repository">
-            GitHub
-
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
-              <path d="M7 17L17 7M7 7h10v10"></path>
-            </svg>
-          </a>
-        {% endif %}
-
-        {% if page.page_url %}
-          <a href="{{page.page_url}}" class="link link--external link--website">
-            Website
-
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="link__icon icon" height="24" width="24" style="color: currentcolor;">
-              <path d="M7 17L17 7M7 7h10v10"></path>
-            </svg>
-          </a>
-        {% endif %}
-      </div>
-
+  <header class="header header--post">
+    <div class="hero hero--post">
       <h1 class="hero__title">
         {{ page.title }}
       </h1>
@@ -47,21 +25,21 @@
         {{ page.description|richtext }}
       </div>
 
+      {% if page.repository_url %}
+        <div class="hero__repository">
+          <a href="{{ page.repository_url }}" class="hero__cta">
+            Repository
 
-      <div class="hero__tags">
-        {% with tags=page.tags.all %}
-          {% if tags %}
-            {% for tag in tags %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}" class="link link--internal link--tag">
-                #{{ tag }}
-              </a>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-      </div>
-      </header
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </header>
 
-      <main class="main project">
-        {{ page.body|richtext }}
-      </main>
+  <main class="main main--post">
+    {{ page.body|richtext }}
+  </main>
 {% endblock %}

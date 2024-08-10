@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
   <header class="header header--projects">
@@ -17,6 +17,9 @@
         <article class="article">
           <header class="article__header">
             <div class="article__image">
+              {% if project.image %}
+                {% picture project.image format-{avif,jpeg} %}
+              {% endif %}
             </div>
 
             <h2 class="article__title">
