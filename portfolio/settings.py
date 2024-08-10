@@ -134,7 +134,7 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASE_ENGINE = env.str("DB_ENGINE", "sqlite3")
+DATABASE_ENGINE = env.str("DB_ENGINE", "sqlite")
 DATABASES = {}
 
 if DATABASE_ENGINE == "postgres":
@@ -148,7 +148,7 @@ if DATABASE_ENGINE == "postgres":
             "PORT": env.str("POSTGRES_PORT", 5432),
         }
     }
-elif DATABASE_ENGINE == "sqlite3":
+elif DATABASE_ENGINE == "sqlite":
     # To learn more about these settings:
     # https://gcollazo.com/optimal-sqlite-settings-for-django/
     DATABASES = {
@@ -420,7 +420,6 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
 
 # Images
-# https://docs.wagtail.org/en/stable/topics/images.html
 WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAILIMAGES_AVIF_QUALITY", 50)
 WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAILIMAGES_JPEG_QUALITY", 40)
 WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAILIMAGES_WEBP_QUALITY", 45)
