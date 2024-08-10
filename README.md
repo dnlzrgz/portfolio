@@ -2,7 +2,7 @@
 
 # dnlzrgz.com
 
-> A very simple and fast portfolio made with Django, Wagtail, Pure CSS, a bit of `htmx` and JavaScript
+> A simple and fast portfolio made with Django, Wagtail, some CSS and a bit of JavaScript.
 
 ![screenshot of the home page](./static/assets/screenshot.png)
 
@@ -10,24 +10,25 @@
 
 ## Features
 
-- 💡 Support for dark/light themes.
-- ⚡ Fast and responsive styles.
-- 🪶 Ready for blogging and with support for tags.
-- 📤 RSS feed provided by default.
-- 📝 Markdown support.
+- 💡 Dark/light themes.
+- ⚡ Responsive styles.
+- 🪶 Ready for blogging.
+- 📤 RSS feed.
 - 🌱 SEO-friendly URLs, meta tags, and sitemap generation.
 - 🚀 Performance optimizations like lazy loading for images by default.
+- ⚡️ Lightning-fast performance.
 - 💥 Support for front-end cache management.
 - 📦 Docker support for easier deployment and scalability.
-- 🔒 Advanced security features, such as rate limiting and IP blacklisting.
-- ⚙️  Configurable via env variables.
+- ☁️ Optional support for AWS S3.
+- 🔒 Advanced security features, such as IP blacklisting.
+- ⚙️ Configurable via env variables.
 
 ## Toolbox
 
 - [Wagtail](https://wagtail.org/)
 - [Django](https://www.djangoproject.com/)
 - Pure CSS.
-- [htmx](https://htmx.org/)
+- Vanilla JavaScript.
 - [Geist fonts by Vercel](https://vercel.com/font)
 - [Geist icons by Vercel](https://geist-ui.dev/en-us/components/icons)
 
