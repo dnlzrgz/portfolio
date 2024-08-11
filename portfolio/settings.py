@@ -71,7 +71,6 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "axes",
-    "storages",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -135,8 +134,6 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASE_ENGINE = env.str("DB_ENGINE", "sqlite")
-DATABASES = {}
-
 if DATABASE_ENGINE == "postgres":
     DATABASES = {
         "default": {
@@ -171,7 +168,7 @@ elif DATABASE_ENGINE == "sqlite":
         }
     }
 else:
-    raise ValueError("Invalid DATABASE_ENGINE value. Must be 'postgres' or 'sqlite3'.")
+    raise ValueError("Invalid DATABASE_ENGINE value. Must be 'postgres' or 'sqlite'.")
 
 
 DATABASES["default"]["ATOMIC_REQUESTS"] = env.bool(
@@ -295,6 +292,8 @@ STORAGES = {
 }
 
 if env.bool("USE_S3_STORAGE", False):
+    INSTALLED_APPS += ["storages"]
+
     AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
