@@ -7,7 +7,7 @@ from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 
 class HomePage(Page):
     # Hero section
-    hero_title = RichTextField(editor="minimal", blank=True)
+    hero_title = models.CharField(max_length=255, blank=True)
     hero_subtitle = models.CharField(max_length=255, blank=True)
     hero_cta_text = models.CharField(max_length=255, blank=True)
     hero_cta_url = models.URLField(blank=True)

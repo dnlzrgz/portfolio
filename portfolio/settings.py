@@ -379,6 +379,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
             "features": [
                 "bold",
                 "italic",
+                "subscript",
                 "link",
             ],
         },
@@ -389,6 +390,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
             "features": [
                 "bold",
                 "italic",
+                "strikethrough",
                 "link",
             ],
         },
@@ -402,6 +404,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
                 "h4",
                 "bold",
                 "italic",
+                "strikethrough",
                 "ol",
                 "ul",
                 "link",
