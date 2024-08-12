@@ -1,12 +1,17 @@
 #!/bin/bash
 
+set -e
+
 # Run database migrations
 echo "Running database migrations..."
 python manage.py migrate
 
+echo "Creating database cache table just in case..."
+python manage.py createcachetable
+
 # Collect static files and compress CSS files
 echo "Collecting static files..."
-python manage.py collectstatic --noinput
+python manage.py collectstatic --clear --noinput
 
 # Create an admin user if it does not exist
 echo "Creating admin user..."
