@@ -5,12 +5,16 @@ from django.core.paginator import Paginator
 from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-from wagtail.models import Page
+from wagtail import blocks
+from wagtail.models import Page, StreamField
 from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.search import index
 from wagtail.signals import page_published
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.contrib.frontend_cache.utils import PurgeBatch
+from blog.custom_blocks import CodeBlock
 
 
 class BlogIndexPage(Page):
@@ -47,7 +51,17 @@ class BlogPostPage(Page):
         blank=True,
     )
 
-    body = RichTextField(blank=True, editor="full")
+    body = StreamField(
+        [
+            ("heading", blocks.TextBlock()),
+            ("subheading", blocks.TextBlock()),
+            ("quote", blocks.BlockQuoteBlock()),
+            ("paragraph", blocks.RichTextBlock(editor="full")),
+            ("code", CodeBlock(label="Code")),
+            ("image", ImageChooserBlock()),
+            ("embed", EmbedBlock()),
+        ],
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField("tldr"),

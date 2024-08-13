@@ -1,0 +1,7 @@
+{% load wagtailadmin_tags %}
+
+<pre>
+<code class="language-{{ self.language|lower }}">
+{{ self.code|escape|safe }}
+</code>
+</pre>

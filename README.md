@@ -13,6 +13,7 @@
 - 💡 Dark/light themes.
 - ⚡ Responsive styles.
 - 🪶 Ready for blogging.
+- 🧑‍💻 Support for code blocks with syntax highlighting.
 - 📤 RSS feed.
 - 🌱 SEO-friendly URLs, meta tags, and sitemap generation.
 - 🚀 Performance optimizations like lazy loading for images by default.

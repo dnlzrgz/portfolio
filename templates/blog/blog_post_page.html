@@ -13,6 +13,26 @@
   {% endif %}
 {% endblock og %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/highlight.css' %}" charset="utf-8">
+{% endblock extra_css %}
+
+{% block extra_js %}
+  <script src="{% static 'js/highlight.css.js' %}" defer></script>
+  <script src="{% static 'js/highlight.go.js' %}" defer></script>
+  <script src="{% static 'js/highlight.html.js' %}" defer></script>
+  <script src="{% static 'js/highlight.javascript.js' %}" defer></script>
+  <script src="{% static 'js/highlight.js' %}" defer></script>
+  <script src="{% static 'js/highlight.python.js' %}" defer></script>
+  <script src="{% static 'js/highlight.sql.js' %}" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hljs.highlightAll();
+    });
+  </script>
+{% endblock extra_js %}
+
 {% block content %}
   <header class="header header--post">
     <div class="hero hero--post">
@@ -31,7 +51,15 @@
     </div>
   </header>
 
-  <main class="main post">
-    {{ page.body|richtext }}
+  <main class="main main--post">
+    {% for block in page.body %}
+      {% if block.block_type == 'heading' %}
+        <h2>{{ block.value }}</h2>
+      {% elif block.block_type == 'subheading' %}
+        <h3>{{ block.value }}</h3>
+      {% else %}
+        {% include_block block %}
+      {% endif %}
+    {% endfor %}
   </main>
 {% endblock content %}
