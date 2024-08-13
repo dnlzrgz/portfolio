@@ -19,7 +19,7 @@
 - ⚡️ Lightning-fast performance.
 - 💥 Support for front-end cache management.
 - 📦 Docker support for easier deployment and scalability.
-- ☁️ Optional support for AWS S3.
+- ☁️ Optional support for AWS S3 (you'll need to install `django-storages[s3]` first).
 - 🔒 Advanced security features, such as IP blacklisting.
 - ⚙️ Configurable via env variables.
 
@@ -31,11 +31,6 @@
 - Vanilla JavaScript.
 - [Geist fonts by Vercel](https://vercel.com/font)
 - [Geist icons by Vercel](https://geist-ui.dev/en-us/components/icons)
-
-## Motivation
-
-After delving deep into my Computer Science degree at UNED over the past couple of years, I decided it was time to refocus on my career. And what better way to showcase my work and abilities than through a personal portfolio? However, I wanted my portfolio to serve a greater purpose than merely displaying the projects I've worked on or am currently involved in. I miss having a platform to share cool stuff I've stumbled upon and to write about topics that have pique my interest or that I'm currently learning about.  
-In short, I have aimed to create a portfolio that emphasized speed, ease of maintenance, and responsiveness—a platform that could evolve and improve over time.
 
 ## License
 

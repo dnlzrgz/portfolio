@@ -154,7 +154,7 @@ elif DATABASE_ENGINE == "sqlite":
             "NAME": BASE_DIR / "db.sqlite3",
             "OPTIONS": {
                 "init_command": (
-                    "PRAGMA foreign_keys=ON;"
+                    "PRAGMA foreign_keys = ON;"
                     "PRAGMA journal_mode = WAL;"
                     "PRAGMA synchronous = NORMAL;"
                     "PRAGMA busy_timeout = 5000;"
@@ -342,7 +342,6 @@ WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 0)
 
 WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", "portfolio")
 
-
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
 WAGTAILSEARCH_BACKENDS = {
@@ -419,7 +418,11 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
     },
 }
 
-WAGTAILEMBEDS_FINDERS = [{"class": "wagtail.embeds.finders.oembed"}]
+WAGTAILEMBEDS_FINDERS = [
+    {
+        "class": "wagtail.embeds.finders.oembed",
+    },
+]
 
 # Images
 WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAILIMAGES_AVIF_QUALITY", 50)
@@ -427,6 +430,9 @@ WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAILIMAGES_JPEG_QUALITY", 40)
 WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAILIMAGES_WEBP_QUALITY", 45)
 
 
+# Frontend cache invalidator
+# https://docs.wagtail.org/en/stable/reference/contrib/frontendcache.html
+#
 if env.bool("USE_CLOUDFARE_CACHE", False):
     WAGTAILFRONTENDCACHE = {
         "cloudflare": {
