@@ -39,6 +39,19 @@ test:
 	python manage.py test
 	@echo "✨ All tests complete!"
 
+# Download highlight.js related scripts and files
+download-highlight:
+	@echo "📥 Downloading scripts and styles..."
+	curl -sL https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css -o static/css/highlight.css
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js -o static/js/highlight.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js -o static/js/highlight.css.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js -o static/js/highlight.go.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js -o static/js/highlight.html.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js -o static/js/highlight.javascript.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js -o static/js/highlight.python.js
+	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js -o static/js/highlight.sql.js
+	@echo "✨ Script and styles downloaded!"
+
 # Collect static files
 collect:
 	@echo "📦 Collecting static files..."
@@ -83,6 +96,7 @@ prod-logs:
 
 # Setup project
 setup:
+	@download-highlight
 	poetry install
 	pre-commit install
 	pre-commit run --all-files

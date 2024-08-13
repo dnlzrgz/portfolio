@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "portfolio"
-version = "0.3.1"
+version = "0.3.3"
 description = "A personal portfolio made with Django, Wagtail, a bit of CSS and a bit of JavaScript."
 authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
 license = "MIT"

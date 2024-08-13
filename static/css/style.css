@@ -189,6 +189,13 @@ img {
   width: var(--w-100);
 }
 
+pre,
+code {
+  font-family: "Geist Mono", var(--fallback-mono);
+  font-style: monospace;
+  overflow-x: auto;
+}
+
 /**
  * Styles
  **/
@@ -378,6 +385,10 @@ img {
     max-width: var(--w-100);
   }
 
+  .hero__date {
+    font-size: var(--text-xl);
+  }
+
   .hero__summary,
   .hero__description,
   .hero__subtitle {
@@ -472,6 +483,10 @@ img {
     font-size: var(--text-2xl);
     font-style: italic;
     padding-left: var(--space-md);
+  }
+
+  & pre {
+    margin: var(--space-md) 0;
   }
 
   & a {
