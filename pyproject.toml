@@ -13,10 +13,9 @@ django = "^5.1"
 environs = "^11.0.0"
 gunicorn = "^22.0.0"
 psycopg = { extras = ["binary"], version = "^3.1.19" }
-redis = {extras = ["hiredis"], version = "^5.0.8"}
-whitenoise = {extras = ["brotli"], version = "^6.7.0"}
+redis = { extras = ["hiredis"], version = "^5.0.8" }
+whitenoise = { extras = ["brotli"], version = "^6.7.0" }
 brotli = "^1.1.0"
-django-redis = "^5.4.0"
 django-axes = "^6.5.1"
 
 [tool.poetry.group.dev.dependencies]
