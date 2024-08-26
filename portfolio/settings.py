@@ -188,12 +188,8 @@ DATABASES["default"]["CONN_MAX_AGE"] = env.int(
 if env.bool("USE_REDIS", False):
     CACHES = {
         "default": {
-            "BACKEND": "django_redis.cache.RedisCache",
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
             "LOCATION": env.str("REDIS_LOCATION", ""),
-            "OPTIONS": {
-                "CLIENT_CLASS": "django_redis.client.DefaultClient",
-                "IGNORE_EXCEPTIONS": True,
-            },
         }
     }
 elif env.bool("USE_DATABASE_AS_CACHE", False):
