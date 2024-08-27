@@ -311,8 +311,6 @@ if env.bool("USE_S3_STORAGE", False):
 
     AWS_LOCATION = "static"
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
-
     PUBLIC_MEDIA_LOCATION = "media"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
 
@@ -320,14 +318,6 @@ if env.bool("USE_S3_STORAGE", False):
         "BACKEND": "storages.backends.s3.S3Storage",
         "OPTIONS": {
             "location": "media",
-            "file_overwrite": False,
-        },
-    }
-
-    STORAGES["staticfiles"] = {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "location": "static",
             "file_overwrite": False,
         },
     }
