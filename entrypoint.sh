@@ -46,4 +46,6 @@ gunicorn portfolio.wsgi:application \
   --max-requests ${MAX_REQUESTS} \
   --max-requests-jitter ${MAX_REQUESTS_JITTER} \
   --timeout ${TIMEOUT} \
-  --log-file "-"
+  --log-file "-" \
+  --error-logfile "-" \
+  --preload
