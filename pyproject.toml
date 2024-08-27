@@ -17,6 +17,7 @@ redis = { extras = ["hiredis"], version = "^5.0.8" }
 whitenoise = { extras = ["brotli"], version = "^6.7.0" }
 brotli = "^1.1.0"
 django-axes = "^6.5.1"
+django-storages = {extras = ["s3"], version = "^1.14.4"}
 
 [tool.poetry.group.dev.dependencies]
 djhtml = "^3.0.6"
