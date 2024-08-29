@@ -551,6 +551,12 @@ code {
       .project__image {
         aspect-ratio: 16/9;
         background: var(--foreground);
+        filter: grayscale(100%);
+        transition: filter var(--transition-timing) var(--transition-duration);
+      }
+
+      .project__image:hover {
+        filter: none;
       }
 
       .project__title {
