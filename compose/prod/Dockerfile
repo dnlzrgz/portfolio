@@ -1,33 +1,29 @@
-FROM python:3.12.6-slim-bookworm
+FROM debian:stable-20240904-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-RUN useradd wagtail
+WORKDIR /app
 
-ENV PYTHONUNBUFFERED 1
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PORT 8000
+ENV UV_LINK_MODE=copy
+ENV UV_NO_CACHE=1
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_PYTHON=3.12.6
+ENV PORT=8000
 
-EXPOSE ${PORT}
+EXPOSE $PORT
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
   build-essential \
   libpq-dev \
   libjpeg62-turbo-dev \
   zlib1g-dev \
-  libwebp-dev && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+  libwebp-dev \
+  && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /
-RUN pip install --no-cache-dir -r /requirements.txt
+COPY . /app
 
-WORKDIR /app
-
-RUN chown wagtail:wagtail /app
-
-COPY --chown=wagtail:wagtail . .
+RUN uv sync --frozen --no-dev --no-install-project
 
 RUN chmod +x ./entrypoint.sh
 
-USER wagtail
-
 CMD ["./entrypoint.sh"]
+

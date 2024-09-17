@@ -1,35 +1,25 @@
-[tool.poetry]
+[project]
 name = "portfolio"
-version = "0.3.3"
-description = "A personal portfolio made with Django, Wagtail, a bit of CSS and a bit of JavaScript."
-authors = ["dnlzrgz <24715931+dnlzrgz@users.noreply.github.com>"]
-license = "MIT"
+version = "0.4.0"
+description = "A personal portfolio made with Django and Wagtail."
 readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "django-axes>=6.5.1",
+  "django-storages[s3]>=1.14.4",
+  "django>=5.1.1",
+  "environs>=11.0.0",
+  "gunicorn>=23.0.0",
+  "psycopg>=3.2.1",
+  "redis[hiredis]>=5.0.8",
+  "wagtail>=6.2.1",
+  "whitenoise[brotli]>=6.7.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-wagtail = "^6.1"
-django = "^5.1"
-environs = "^11.0.0"
-gunicorn = "^22.0.0"
-psycopg = { extras = ["binary"], version = "^3.1.19" }
-redis = { extras = ["hiredis"], version = "^5.0.8" }
-whitenoise = { extras = ["brotli"], version = "^6.7.0" }
-brotli = "^1.1.0"
-django-axes = "^6.5.1"
-django-storages = {extras = ["s3"], version = "^1.14.4"}
-
-[tool.poetry.group.dev.dependencies]
-djhtml = "^3.0.6"
-pre-commit = "^3.8.0"
-commitizen = "^3.29.0"
-ruff = "^0.6.0"
-django-debug-toolbar = "^4.4.6"
-
+[tool.uv]
+dev-dependencies = [
+  "django-debug-toolbar>=4.4.6",
+]
 
 [tool.ruff.lint]
-ignore = ["F401", 'F403']
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+ignore = ["F401", "F403"]

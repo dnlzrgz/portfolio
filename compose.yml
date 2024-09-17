@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: ./compose/prod/Dockerfile
     container_name: portfolio_prod
-    profiles: [production]
+    profiles: [prod]
     ports:
       - "8000:8000"
     depends_on:
@@ -20,7 +20,8 @@ services:
       context: .
       dockerfile: ./compose/dev/Dockerfile
     container_name: portfolio_dev
-    profiles: [development]
+    profiles: [dev]
+    entrypoint: "uv run python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     volumes:
@@ -42,6 +43,6 @@ services:
   cache:
     image: redis:7.4.0-alpine3.20
     container_name: portfolio_redis
-    profiles: [production]
+    profiles: [prod]
     depends_on:
       - db

@@ -1,9 +1,6 @@
 # Misc
 Makefile
 README.md
-dev.yaml
-prod.yaml
-pyproject.toml
 
 # Django project
 media
@@ -16,6 +13,7 @@ __pycache__
 .DS_Store
 *.swp
 /venv/
+/.venv/
 /tmp/
 /.vagrant/
 /Vagrantfile.local
