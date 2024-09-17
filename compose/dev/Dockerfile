@@ -1,11 +1,14 @@
-FROM python:3.12.6-slim-bookworm
+FROM debian:stable-20240904-slim
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
-RUN useradd wagtail
+WORKDIR /app
 
-EXPOSE 8000
+ENV UV_LINK_MODE=copy
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_PYTHON=3.12.6
+ENV PORT=8000
 
-ENV PYTHONUNBUFFERED 1
-ENV PORT 8000
+EXPOSE $PORT
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
   build-essential \
@@ -15,15 +18,8 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
   libwebp-dev \
   && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.dev.txt /
-RUN pip install --no-cache-dir -r /requirements.dev.txt
+COPY pyproject.toml .
+COPY uv.lock .
 
-WORKDIR /app
 
-RUN chown wagtail:wagtail /app
-
-COPY --chown=wagtail:wagtail . .
-
-USER wagtail
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN uv sync --frozen --no-dev --no-install-project
