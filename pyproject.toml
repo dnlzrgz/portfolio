@@ -1,6 +1,6 @@
 [project]
 name = "portfolio"
-version = "0.4.0"
+version = "0.4.1"
 description = "A personal portfolio made with Django and Wagtail."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -18,7 +18,7 @@ dependencies = [
 
 [tool.uv]
 dev-dependencies = [
-  "django-debug-toolbar>=4.4.6",
+    "django-debug-toolbar>=4.4.6",
 ]
 
 [tool.ruff.lint]
