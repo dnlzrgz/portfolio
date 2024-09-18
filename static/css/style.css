@@ -189,6 +189,13 @@ img {
   width: var(--w-100);
 }
 
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 pre,
 code {
   font-family: "Geist Mono", var(--fallback-mono);
@@ -682,6 +689,40 @@ code {
   }
 }
 
+.nda-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  input[type="password"] {
+    border-radius: var(--rounded);
+    border: var(--border) solid var(--foreground);
+    padding: var(--space-xs) var(--space-md);
+    width: var(--w-100);
+  }
+
+  button {
+    align-items: center;
+    background: var(--foreground);
+    border-radius: var(--rounded);
+    border: var(--border) solid var(--foreground);
+    color: var(--background);
+    cursor: pointer;
+    font-size: var(--text-xl);
+    padding: var(--space-sm) var(--space-lg);
+    transition:
+      background var(--transition-timing) var(--transition-duration),
+      color var(--transition-timing) var(--transition-duration);
+
+    &:hover {
+      text-decoration: none;
+      background: var(--background);
+      color: var(--foreground);
+    }
+  }
+}
+
 /**
  * Media queries
  **/
@@ -745,6 +786,10 @@ code {
     & h3 {
       font-size: var(--text-2xl);
     }
+  }
+
+  .main--post--private {
+    text-align: center;
   }
 
   .biography {

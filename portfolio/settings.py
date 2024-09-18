@@ -417,10 +417,13 @@ WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAILIMAGES_AVIF_QUALITY", 50)
 WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAILIMAGES_JPEG_QUALITY", 40)
 WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAILIMAGES_WEBP_QUALITY", 45)
 
+# Private pages
+WAGTAIL_PRIVATE_PAGE_OPTIONS = {"SHARED_PASSWORD": True}
+
 
 # Frontend cache invalidator
 # https://docs.wagtail.org/en/stable/reference/contrib/frontendcache.html
-#
+
 if env.bool("USE_CLOUDFARE_CACHE", False):
     WAGTAILFRONTENDCACHE = {
         "cloudflare": {

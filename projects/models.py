@@ -60,6 +60,8 @@ class ProjectPage(Page):
 
     body = RichTextField(blank=True, editor="full")
 
+    password_required_template = "projects/password_required.html"
+
     search_fields = Page.search_fields + [
         index.SearchField("description"),
         index.SearchField("body"),
