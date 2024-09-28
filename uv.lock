@@ -33,30 +33,30 @@ wheels = [
 
 [[package]]
 name = "boto3"
-version = "1.35.21"
+version = "1.35.29"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "botocore" },
     { name = "jmespath" },
     { name = "s3transfer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cc/a4/8fa937739e6bf344a16088cf6c352e1ff2d7f28fcc7878fd328940aa7fe9/boto3-1.35.21.tar.gz", hash = "sha256:db5fbbd10248db060f2ccce3ae17764f1641c99c8b9f51d422c26ebe25703a1e", size = 108655 }
+sdist = { url = "https://files.pythonhosted.org/packages/25/d8/f7bc41e01e83eaad1ec297cfb675c1f98cc59450b1f4a76b93a1e31a2b09/boto3-1.35.29.tar.gz", hash = "sha256:7bbb1ee649e09e956952285782cfdebd7e81fc78384f48dfab3d66c6eaf3f63f", size = 111002 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/17/90/774ddb1246fbc65d0317afa2a98c7da0e6bcdad55819e0abca62c284ebcb/boto3-1.35.21-py3-none-any.whl", hash = "sha256:247f88eedce9ae4e014a8fc14a9473759bb8e391460d49396a3b600fb649f33b", size = 139154 },
+    { url = "https://files.pythonhosted.org/packages/47/0c/5646287d1f4aeab4e0b55e517935d2debba6bce47cc0542ab618868b18d3/boto3-1.35.29-py3-none-any.whl", hash = "sha256:2244044cdfa8ac345d7400536dc15a4824835e7ec5c55bc267e118af66bb27db", size = 139138 },
 ]
 
 [[package]]
 name = "botocore"
-version = "1.35.21"
+version = "1.35.29"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jmespath" },
     { name = "python-dateutil" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/dd/a4/0467bb54a439025c0a3b823303920a0210b9f8fe757d891d5749bf81401b/botocore-1.35.21.tar.gz", hash = "sha256:db917e7d7b3a2eed1310c6496784bc813c91f020a021c2ab5f9df7d28cdb4f1d", size = 12752274 }
+sdist = { url = "https://files.pythonhosted.org/packages/41/23/482871ed269fa0c832f98c840686b4ef18662b3fb800eab48a48817d286c/botocore-1.35.29.tar.gz", hash = "sha256:4ed28ab03675bb008a290c452c5ddd7aaa5d4e3fa1912aadbdf93057ee84362b", size = 12772652 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/39/cb/a951b6e4bff91da2e065a6931d3368fccf59ab6ad9faa174b8d7753cde20/botocore-1.35.21-py3-none-any.whl", hash = "sha256:3db9ddfe521edc0753fc8c68caef71c7806e1d2d21ce8cbabc2065b7d79192f2", size = 12542710 },
+    { url = "https://files.pythonhosted.org/packages/8a/eb/30c1bf5dc2ec8829baee4d8423da5b63ae2c9f7678d809ef2e375fd67212/botocore-1.35.29-py3-none-any.whl", hash = "sha256:f8e3ae0d84214eff3fb69cb4dc51cea6c43d3bde82027a94d00c52b941d6c3d5", size = 12560375 },
 ]
 
 [[package]]
@@ -137,15 +137,15 @@ wheels = [
 
 [[package]]
 name = "django-axes"
-version = "6.5.1"
+version = "6.5.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "asgiref" },
     { name = "django" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6e/a5/31721dc9777fe7f01b4bd710f93d031ff03603b960bc282c53edd5578bf2/django_axes-6.5.1.tar.gz", hash = "sha256:d57f0fc95d581a602c642b3fe5bc31488b9401bd7441f3bec1fef0e599028499", size = 246679 }
+sdist = { url = "https://files.pythonhosted.org/packages/8e/cc/383f9c247f65e5e2e90df4a2be0c982053684364349b51c1d1509d6e7a75/django_axes-6.5.2.tar.gz", hash = "sha256:c2c007d61a3de018ef97649350dc15e5663cd9def1a05de8eeb0fe6adc1ed2ab", size = 246681 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/39/316e4b5a4c931698480953ea5f43df0657f8c47b9e981cfc331b8ed9eef5/django_axes-6.5.1-py3-none-any.whl", hash = "sha256:7435068cc8523bfa3f34faa62bb3a772b76d00925c3ff54aef43e4316e74bf05", size = 68409 },
+    { url = "https://files.pythonhosted.org/packages/da/89/340932f7ef3adeab4aa4a1824a7f094bd24be86025c62bd26c0183e0ff0c/django_axes-6.5.2-py3-none-any.whl", hash = "sha256:fab92b98032fff55d7d2e0fdfade2be189949b6590b9e0c90e6fd213dd70bb67", size = 68447 },
 ]
 
 [[package]]
@@ -539,11 +539,11 @@ wheels = [
 
 [[package]]
 name = "redis"
-version = "5.0.8"
+version = "5.1.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/48/10/defc227d65ea9c2ff5244645870859865cba34da7373477c8376629746ec/redis-5.0.8.tar.gz", hash = "sha256:0c5b10d387568dfe0698c6fad6615750c24170e548ca2deac10c649d463e9870", size = 4595651 }
+sdist = { url = "https://files.pythonhosted.org/packages/9b/b6/7a4b49eadff6bdd1904ef96b7e1dede8754673fe4724969bfae3d418ad8d/redis-5.1.0.tar.gz", hash = "sha256:b756df1e4a3858fcc0ef861f3fc53623a96c41e2b1f5304e09e0fe758d333d40", size = 4607302 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c5/d1/19a9c76811757684a0f74adc25765c8a901d67f9f6472ac9d57c844a23c8/redis-5.0.8-py3-none-any.whl", hash = "sha256:56134ee08ea909106090934adc36f65c9bcbbaecea5b21ba704ba6fb561f8eb4", size = 255608 },
+    { url = "https://files.pythonhosted.org/packages/fd/d6/37ba7502c5144c93e2e63c81fbfd69c8b97c275328eb85734ce996d3dc13/redis-5.1.0-py3-none-any.whl", hash = "sha256:fd4fccba0d7f6aa48c58a78d76ddb4afc698f5da4a2c1d03d916e4fd7ab88cdd", size = 261212 },
 ]
 
 [package.optional-dependencies]
@@ -622,11 +622,11 @@ wheels = [
 
 [[package]]
 name = "tzdata"
-version = "2024.1"
+version = "2024.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/74/5b/e025d02cb3b66b7b76093404392d4b44343c69101cc85f4d180dd5784717/tzdata-2024.1.tar.gz", hash = "sha256:2674120f8d891909751c38abcdfd386ac0a5a1127954fbc332af6b5ceae07efd", size = 190559 }
+sdist = { url = "https://files.pythonhosted.org/packages/e1/34/943888654477a574a86a98e9896bae89c7aa15078ec29f490fef2f1e5384/tzdata-2024.2.tar.gz", hash = "sha256:7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc", size = 193282 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/58/f9c9e6be752e9fcb8b6a0ee9fb87e6e7a1f6bcab2cdc73f02bb7ba91ada0/tzdata-2024.1-py2.py3-none-any.whl", hash = "sha256:9068bc196136463f5245e51efda838afa15aaeca9903f49050dfa2679db4d252", size = 345370 },
+    { url = "https://files.pythonhosted.org/packages/a6/ab/7e5f53c3b9d14972843a647d8d7a853969a58aecc7559cb3267302c94774/tzdata-2024.2-py2.py3-none-any.whl", hash = "sha256:a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd", size = 346586 },
 ]
 
 [[package]]
@@ -640,7 +640,7 @@ wheels = [
 
 [[package]]
 name = "wagtail"
-version = "6.2.1"
+version = "6.2.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyascii" },
@@ -661,9 +661,9 @@ dependencies = [
     { name = "telepath" },
     { name = "willow", extra = ["heif"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6d/97/97b59c6bcd913f394e9f475dd952466954e9959ca9e10a45d4b251141eae/wagtail-6.2.1.tar.gz", hash = "sha256:0f136ef23b157997a44fa46543a320a31437350951cf13add8ea8b69cc5e8385", size = 6516190 }
+sdist = { url = "https://files.pythonhosted.org/packages/75/cb/7fca6daf7b11b15e0457fa58d1c5ef705bad6048403624a5079f386bb4a6/wagtail-6.2.2.tar.gz", hash = "sha256:506ac2b59dae85069ae754b45bc13b91cbd86e92d4f5d663658773b0ed7a16b9", size = 6568116 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ca/b0/942f6bca14bfc2fbe786ebbaa90a831b71cbe3592e3da3f34d6be9f775b1/wagtail-6.2.1-py3-none-any.whl", hash = "sha256:31d073ea8acdc973ef45c5719977a1bb122ad0fc3f01348f37e922128200b42a", size = 8976424 },
+    { url = "https://files.pythonhosted.org/packages/ee/98/9f528bd41b8a3ba21fd3eeb0f869758bd807cc5e54dd5b8eec8cbe465c44/wagtail-6.2.2-py3-none-any.whl", hash = "sha256:d0382603aef5d7e4a46529aa125857774a317c2870c9b6836767932969829429", size = 9072327 },
 ]
 
 [[package]]
