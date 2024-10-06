@@ -2,6 +2,7 @@
 Django settings for portfolio project.
 """
 
+from datetime import timedelta
 from pathlib import Path
 from environs import Env
 
@@ -467,7 +468,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", False)
 AXES_ENABLED = env.bool("AXES_ENABLED", True)
 AXES_FAILURE_LIMIT = env.int("AXES_FAILURE_LIMIT", 3)
 AXES_LOCK_OUT_AT_FAILURE = env.bool("AXES_LOCK_OUT_AT_FAILURE", True)
-AXES_COOLOFF_TIME = env.int("AXES_COOLOFF_TIME", 24)
+AXES_COOLOFF_TIME = lambda request: timedelta(hours=env.int("AXES_COOLOFF_TIME", 24))
 
 AXES_IPWARE_META_PRECEDENCE_ORDER = [
     "HTTP_CF_CONNECTING_IP",

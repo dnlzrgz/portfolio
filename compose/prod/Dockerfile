@@ -1,4 +1,4 @@
-FROM debian:stable-20240904-slim
+FROM debian:stable-20240926-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
 WORKDIR /app
