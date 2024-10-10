@@ -136,85 +136,36 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASE_ENGINE = env.str("DB_ENGINE", "sqlite")
-if DATABASE_ENGINE == "postgres":
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": env.str("POSTGRES_DB"),
-            "USER": env.str("POSTGRES_USER"),
-            "PASSWORD": env.str("POSTGRES_PASSWORD"),
-            "HOST": env.str("POSTGRES_HOST"),
-            "PORT": env.str("POSTGRES_PORT", 5432),
-        }
-    }
-elif DATABASE_ENGINE == "sqlite":
-    # To learn more about these settings:
-    # https://gcollazo.com/optimal-sqlite-settings-for-django/
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-            "OPTIONS": {
-                "init_command": (
-                    "PRAGMA foreign_keys = ON;"
-                    "PRAGMA journal_mode = WAL;"
-                    "PRAGMA synchronous = NORMAL;"
-                    "PRAGMA busy_timeout = 5000;"
-                    "PRAGMA temp_store = MEMORY;"
-                    "PRAGMA mmap_size = 134217728;"
-                    "PRAGMA journal_size_limit = 67108864;"
-                    "PRAGMA cache_size = 2000;"
-                ),
-                "transaction_mode": "IMMEDIATE",
-            },
-        }
-    }
-else:
-    raise ValueError("Invalid DATABASE_ENGINE value. Must be 'postgres' or 'sqlite'.")
-
-
-DATABASES["default"]["ATOMIC_REQUESTS"] = env.bool(
-    "DATABASE_ATOMIC_REQUESTS",
-    True,
-)
-
-DATABASES["default"]["CONN_MAX_AGE"] = env.int(
-    "DATABASE_CONN_MAX_AGE",
-    default=60,
-)
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": env.str("POSTGRES_DB"),
+        "USER": env.str("POSTGRES_USER"),
+        "PASSWORD": env.str("POSTGRES_PASSWORD"),
+        "HOST": env.str("POSTGRES_HOST"),
+        "PORT": env.str("POSTGRES_PORT", 5432),
+        "ATOMIC_REQUESTS": env.bool("DATABASE_ATOMIC_REQUESTS", True),
+        "CONN_MAX_AGE": env.int("DATABASE_CONN_MAX_AGE", default=60),
+    },
+}
 
 
 # Cache
 # https://docs.djangoproject.com/en/5.0/topics/cache/
 
-if env.bool("USE_REDIS", False):
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": env.str("REDIS_LOCATION", ""),
-        }
-    }
-elif env.bool("USE_DATABASE_AS_CACHE", False):
+if env.bool("USE_CACHE", False):
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-            "LOCATION": env.str("DATABASE_CACHE_TABLE_LOCATION", "cache_table"),
+            "LOCATION": env.str("CACHE_TABLE", "cache_table"),
         }
     }
 else:
-    if DEBUG:
-        CACHES = {
-            "default": {
-                "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-            }
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
         }
-    else:
-        CACHES = {
-            "default": {
-                "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-            }
-        }
+    }
 
 CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 0)
 

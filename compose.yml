@@ -13,7 +13,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      - cache
 
   web-dev:
     build:
@@ -30,8 +29,8 @@ services:
       - db
 
   db:
-    image: postgres:16.4-alpine3.20
-    container_name: portfolio_postgres
+    image: postgres:17.0-alpine3.20
+    container_name: portfolio_db
     environment:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
@@ -39,10 +38,3 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - postgres_data_backups:/backups
-
-  cache:
-    image: redis:7.4.0-alpine3.20
-    container_name: portfolio_redis
-    profiles: [prod]
-    depends_on:
-      - db

@@ -11,14 +11,16 @@ dependencies = [
   "environs>=11.0.0",
   "gunicorn>=23.0.0",
   "psycopg>=3.2.1",
-  "redis[hiredis]>=5.0.8",
   "wagtail>=6.2.1",
-  "whitenoise[brotli]>=6.7.0",
+  "whitenoise>=6.7.0",
 ]
 
 [tool.uv]
 dev-dependencies = [
+    "commitizen>=3.29.1",
     "django-debug-toolbar>=4.4.6",
+    "djhtml>=3.0.6",
+    "ruff>=0.6.9",
 ]
 
 [tool.ruff.lint]
