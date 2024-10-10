@@ -1,14 +1,26 @@
-FROM debian:stable-20240926-slim
+FROM python:3.13.0-slim-bookworm AS builder
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
 
 WORKDIR /app
 
-ENV UV_LINK_MODE=copy
-ENV UV_NO_CACHE=1
-ENV UV_COMPILE_BYTECODE=1
-ENV UV_PYTHON=3.12.7
-ENV PORT=8000
+RUN --mount=type=cache,target=/root/.cache/uv \
+  --mount=type=bind,source=uv.lock,target=uv.lock \
+  --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+  uv sync --frozen --no-install-project --no-dev
 
+COPY . /app
+
+RUN --mount=type=cache,target=/roo/.cache/uv \
+  uv sync --frozen --no-dev
+
+FROM python:3.13.0-slim-bookworm
+
+WORKDIR /app
+
+ENV PORT=8000
 EXPOSE $PORT
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
@@ -19,11 +31,10 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
   libwebp-dev \
   && rm -rf /var/lib/apt/lists/*
 
-COPY . /app
+COPY --from=builder --chown=app:app /app /app
 
-RUN uv sync --frozen --no-dev --no-install-project
+ENV PATH="/app/.venv/bin:$PATH"
 
 RUN chmod +x ./entrypoint.sh
 
 CMD ["./entrypoint.sh"]
-
