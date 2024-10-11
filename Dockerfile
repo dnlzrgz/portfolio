@@ -18,6 +18,9 @@ RUN --mount=type=cache,target=/roo/.cache/uv \
 
 FROM python:3.13.0-slim-bookworm
 
+RUN groupadd -g 1000 app && \
+  useradd -u 1000 -g app -m app
+
 WORKDIR /app
 
 ENV PORT=8000
@@ -36,5 +39,7 @@ COPY --from=builder --chown=app:app /app /app
 ENV PATH="/app/.venv/bin:$PATH"
 
 RUN chmod +x ./entrypoint.sh
+
+USER app
 
 CMD ["./entrypoint.sh"]
