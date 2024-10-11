@@ -3,28 +3,11 @@ volumes:
   postgres_data_backups: {}
 
 services:
-  web-prod:
-    build:
-      context: .
-      dockerfile: ./compose/prod/Dockerfile
-    container_name: portfolio_prod
-    profiles: [prod]
+  web:
+    build: .
+    container_name: portfolio_web
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-  web-dev:
-    build:
-      context: .
-      dockerfile: ./compose/dev/Dockerfile
-    container_name: portfolio_dev
-    profiles: [dev]
-    entrypoint: "uv run python manage.py runserver 0.0.0.0:8000"
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app
     depends_on:
       - db
 

@@ -34,16 +34,6 @@ if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-if settings.DEBUG:
-    # Debug toolbar
-    urlpatterns += [
-        path(
-            "__debug__/",
-            include("debug_toolbar.urls"),
-        ),
-    ]
-
-
 urlpatterns = urlpatterns + [
     path("sitemap.xml", sitemap),
     path("", include(wagtail_urls)),

@@ -42,30 +42,30 @@ wheels = [
 
 [[package]]
 name = "boto3"
-version = "1.35.37"
+version = "1.35.38"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "botocore" },
     { name = "jmespath" },
     { name = "s3transfer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/80/8b/31845869fb935b93d1f1a846d2a8e13dc91af4cf03ba701e2068c08b99af/boto3-1.35.37.tar.gz", hash = "sha256:470d981583885859fed2fd1c185eeb01cc03e60272d499bafe41b12625b158c8", size = 110977 }
+sdist = { url = "https://files.pythonhosted.org/packages/bc/32/a0d3c55b3325604fc09303c9a8ccad2d8846d482f5a6aa3290c41ba36a11/boto3-1.35.38.tar.gz", hash = "sha256:90c8cddc4a08c8040057ad44c7468ff82fea9fe8b6517db5ff01a9b2900299cc", size = 111017 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/d9/6094eaa18d9c4817df7f413b40eacb43918f46e3432eba45df926c01854d/boto3-1.35.37-py3-none-any.whl", hash = "sha256:385ca77bf8ea4ab2d97f6e2435bdb29f77d9301e2f7ac796c2f465753c2adf3c", size = 139144 },
+    { url = "https://files.pythonhosted.org/packages/e7/3b/406f5782d56c3a1ef672915a39aac70622d5e6bf52098e87424d46020402/boto3-1.35.38-py3-none-any.whl", hash = "sha256:234a475fe56b65e99b4f5cfff50adaac6b23d39558d6b55137bbf1e50dd0ef08", size = 139143 },
 ]
 
 [[package]]
 name = "botocore"
-version = "1.35.37"
+version = "1.35.38"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jmespath" },
     { name = "python-dateutil" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/57/a4/bc96ba621c869f723ce4cb4dadb53fdbb821d64ef1146f0749098ef342cf/botocore-1.35.37.tar.gz", hash = "sha256:b2b4d29bafd95b698344f2f0577bb67064adbf1735d8a0e3c7473daa59c23ba6", size = 12810098 }
+sdist = { url = "https://files.pythonhosted.org/packages/c7/b6/f73335bd06007e09ae027bb1568fca59f0ffc7773eb295db369b182d7759/botocore-1.35.38.tar.gz", hash = "sha256:55d9305c44e5ba29476df456120fa4fb919f03f066afa82f2ae400485e7465f4", size = 12825407 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/1c/3057bfd23f56ff11d41db1db8f2c9423381d6e60ae90594921ac2a63be53/botocore-1.35.37-py3-none-any.whl", hash = "sha256:64f965d4ba7adb8d79ce044c3aef7356e05dd74753cf7e9115b80f477845d920", size = 12597169 },
+    { url = "https://files.pythonhosted.org/packages/41/46/4ddfd0b59dbea9216a50b09a858b81369678e43cd581b73e892582b529ff/botocore-1.35.38-py3-none-any.whl", hash = "sha256:2eb17d32fa2d3bb5d475132a83564d28e3acc2161534f24b75a54418a1d51359", size = 12612243 },
 ]
 
 [[package]]
@@ -189,19 +189,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/09/9b/d79a57723585e89912be840ab21f7eea40c4aa6ced23d6eeeb32af1ac7f6/django_axes-7.0.0.tar.gz", hash = "sha256:fb0819dff6ee71d9e532a32ce168451255e37010f2e60ee62e1da4d6599126da", size = 247536 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d4/ef/41978f0b13d29134930385b2fd4e926102bd616731d679d166eeac715554/django_axes-7.0.0-py3-none-any.whl", hash = "sha256:478955a3cc766ba0b79446bd2c35c4d1c994b81cdd21e80c026bf3cd0927792f", size = 68662 },
-]
-
-[[package]]
-name = "django-debug-toolbar"
-version = "4.4.6"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-    { name = "sqlparse" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/d4/9c/0a3238eda0a46df20f2e3fe2a30313d34f5042a1a737d08230b77c29a3e9/django_debug_toolbar-4.4.6.tar.gz", hash = "sha256:36e421cb908c2f0675e07f9f41e3d1d8618dc386392ec82d23bcfcd5d29c7044", size = 272610 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/2f/33/2036a472eedfbe49240dffea965242b3f444de4ea4fbeceb82ccea33a2ce/django_debug_toolbar-4.4.6-py3-none-any.whl", hash = "sha256:3beb671c9ec44ffb817fad2780667f172bd1c067dbcabad6268ce39a81335f45", size = 229621 },
 ]
 
 [[package]]
@@ -551,7 +538,6 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "commitizen" },
-    { name = "django-debug-toolbar" },
     { name = "djhtml" },
     { name = "ruff" },
 ]
@@ -571,7 +557,6 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "commitizen", specifier = ">=3.29.1" },
-    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
     { name = "djhtml", specifier = ">=3.0.6" },
     { name = "ruff", specifier = ">=0.6.9" },
 ]

@@ -28,30 +28,22 @@ download-highlight:
 collect:
 	uv run python manage.py collectstatic --no-input
 
-dev-start:
-	docker compose --profile dev up --build
+migrate:
+	uv run python manage.py migrate
 
-dev-stop:
-	docker compose --profile dev down
+local:
+	uv run python manage.py runserver
 
-dev-logs:
-	docker compose --profile dev logs -f
+docker-start:
+	docker compose up -d --build
 
-prod-start:
-	docker compose --profile prod up -d --build
+docker-stop:
+	docker compose down
 
-prod-stop:
-	docker compose --profile prod down
+docker-logs:
+	docker compose logs -f
 
-prod-logs:
-	docker compose --profile prod logs -f
-
-dev:
-	@make dev-stop
-	@make dev-start
-	@make dev-logs
-
-prod:
-	@make prod-stop
-	@make prod-start
-	@make prod-logs
+docker:
+	@make docker-stop
+	@make docker-start
+	@make docker-logs
