@@ -13,19 +13,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 env.read_env()
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", False)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str(
-    "SECRET_KEY",
-    "django-insecure-&r9rcqb*2b-pxu)j!q+$e!(#&t=5^v=l3tivxte28cvd^9^w8q",
-)
+SECRET_KEY = env.str("SECRET_KEY")
 
-ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS",
-    ["*"],
-)
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 WAGTAIL_ADMIN_URL = env.str("WAGTAIL_ADMIN_URL", "admin/")
 
@@ -50,11 +42,13 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # Application definition
 
 INSTALLED_APPS = [
+    # local
     "base",
     "home",
     "blog",
     "projects",
     "search",
+    # Wagtail
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
@@ -69,9 +63,11 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    # 3rd party
     "modelcluster",
     "taggit",
     "axes",
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -81,12 +77,6 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
 ]
-
-if DEBUG:
-    INSTALLED_APPS += [
-        "debug_toolbar",
-    ]
-
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -103,11 +93,6 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-
-if DEBUG:
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
 
 ROOT_URLCONF = "portfolio.urls"
 
@@ -136,24 +121,45 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env.str("POSTGRES_DB"),
-        "USER": env.str("POSTGRES_USER"),
-        "PASSWORD": env.str("POSTGRES_PASSWORD"),
-        "HOST": env.str("POSTGRES_HOST"),
-        "PORT": env.str("POSTGRES_PORT", 5432),
-        "ATOMIC_REQUESTS": env.bool("DATABASE_ATOMIC_REQUESTS", True),
-        "CONN_MAX_AGE": env.int("DATABASE_CONN_MAX_AGE", default=60),
-    },
-}
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+            "OPTIONS": {
+                "init_command": (
+                    "PRAGMA foreign_keys = ON;"
+                    "PRAGMA journal_mode = WAL;"
+                    "PRAGMA synchronous = NORMAL;"
+                    "PRAGMA busy_timeout = 5000;"
+                    "PRAGMA temp_store = MEMORY;"
+                    "PRAGMA mmap_size = 134217728;"
+                    "PRAGMA journal_size_limit = 67108864;"
+                    "PRAGMA cache_size = 2000;"
+                ),
+                "transaction_mode": "IMMEDIATE",
+            },
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": env.str("POSTGRES_DB"),
+            "USER": env.str("POSTGRES_USER"),
+            "PASSWORD": env.str("POSTGRES_PASSWORD"),
+            "HOST": env.str("POSTGRES_HOST"),
+            "PORT": env.str("POSTGRES_PORT", 5432),
+            "ATOMIC_REQUESTS": env.bool("DATABASE_ATOMIC_REQUESTS", True),
+            "CONN_MAX_AGE": env.int("DATABASE_CONN_MAX_AGE", default=60),
+        },
+    }
 
 
 # Cache
 # https://docs.djangoproject.com/en/5.0/topics/cache/
 
-if env.bool("USE_CACHE", False):
+if env.bool("USE_CACHE", True):
     CACHES = {
         "default": {
             "BACKEND": "django.core.cache.backends.db.DatabaseCache",
@@ -167,7 +173,7 @@ else:
         }
     }
 
-CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 0)
+CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 31_536_000)
 
 
 # Authentication backends
@@ -201,13 +207,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = env.str("LANGUAGE_CODE", "en-us")
 
-TIME_ZONE = "UTC"
+TIME_ZONE = env.str("TIME_ZONE", "UTC")
 
-USE_I18N = True
+USE_I18N = env.bool("USE_I18N", True)
 
-USE_TZ = True
+USE_TZ = env.bool("USE_TZ", True)
 
 SITE_ID = 1
 
@@ -275,7 +281,7 @@ if env.bool("USE_S3_STORAGE", False):
     }
 
 
-WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 0)
+WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 31_536_000)
 
 
 # Wagtail settings
@@ -365,9 +371,9 @@ WAGTAILEMBEDS_FINDERS = [
 ]
 
 # Images
-WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAILIMAGES_AVIF_QUALITY", 50)
-WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAILIMAGES_JPEG_QUALITY", 40)
-WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAILIMAGES_WEBP_QUALITY", 45)
+WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAIL_IMAGES_AVIF_QUALITY", 50)
+WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAIL_IMAGES_JPEG_QUALITY", 40)
+WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAIL_IMAGES_WEBP_QUALITY", 45)
 
 # Private pages
 WAGTAIL_PRIVATE_PAGE_OPTIONS = {"SHARED_PASSWORD": True}
@@ -389,28 +395,25 @@ if env.bool("USE_CLOUDFARE_CACHE", False):
 # CSRF
 # https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-trusted-origins
 
-CSRF_TRUSTED_ORIGINS = env.list(
-    "CSRF_TRUSTED_ORIGINS",
-    [],
-)
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
 
-CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", False)
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", True)
 
 
 # Security related settings
 # https://docs.djangoproject.com/en/5.0/topics/security/
 
-SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", 0)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", False)
-SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", False)
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", False)
+SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", 31536000)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", True)
+SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", True)
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", True)
 
-if env.bool("SECURE_PROXY_SSL_HEADER", False):
+if env.bool("SECURE_PROXY_SSL_HEADER", True):
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", False)
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", True)
 
-SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", False)
+SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", True)
 
 
 # Axes
