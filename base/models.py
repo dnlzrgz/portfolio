@@ -10,7 +10,7 @@ from wagtail.contrib.settings.models import (
 
 
 class StaticPage(Page):
-    body = RichTextField(blank=True, editor="full")
+    body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("body"),

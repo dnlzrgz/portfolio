@@ -13,11 +13,11 @@ class HomePage(Page):
     hero_cta_url = models.URLField(blank=True)
 
     # Biography
-    biography = RichTextField(editor="minimal", blank=True)
+    biography = RichTextField(blank=True)
 
     # Project showcase section
     projects_title = models.CharField(max_length=255, blank=True)
-    projects_subtitle = RichTextField(editor="minimal", blank=True)
+    projects_subtitle = RichTextField(blank=True)
     featured_projects = StreamField(
         [
             (
@@ -32,7 +32,7 @@ class HomePage(Page):
 
     # Stack section
     stack_title = models.CharField(max_length=255, blank=True)
-    stack_subtitle = RichTextField(editor="minimal", blank=True)
+    stack_subtitle = RichTextField(blank=True)
     stack_stack = StreamField(
         [
             ("item", blocks.CharBlock()),
@@ -42,9 +42,9 @@ class HomePage(Page):
 
     # Contact section
     contact_title = models.CharField(max_length=255, blank=True)
-    contact_subtitle = RichTextField(editor="minimal", blank=True)
-    contact_content = RichTextField(editor="minimal", blank=True)
-    contact_cta = RichTextField(editor="minimal", blank=True)
+    contact_subtitle = RichTextField(blank=True)
+    contact_content = RichTextField(blank=True)
+    contact_cta = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(

@@ -1,26 +1,19 @@
 [project]
 name = "portfolio"
-version = "0.4.1"
+version = "1.1.0"
 description = "A personal portfolio made with Django and Wagtail."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-  "django-axes>=6.5.1",
   "django-storages[s3]>=1.14.4",
   "django>=5.1.1",
   "environs>=11.0.0",
-  "gunicorn>=23.0.0",
-  "psycopg>=3.2.1",
+  "wagtail-bakery>=0.8.0",
   "wagtail>=6.2.1",
-  "whitenoise>=6.7.0",
 ]
 
 [tool.uv]
-dev-dependencies = [
-    "commitizen>=3.29.1",
-    "djhtml>=3.0.6",
-    "ruff>=0.6.9",
-]
+dev-dependencies = ["commitizen>=3.29.1", "djhtml>=3.0.6", "ruff>=0.6.9"]
 
 [tool.ruff.lint]
 ignore = ["F401", "F403"]

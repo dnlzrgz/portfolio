@@ -2,7 +2,6 @@
 Django settings for portfolio project.
 """
 
-from datetime import timedelta
 from pathlib import Path
 from environs import Env
 
@@ -66,7 +65,8 @@ INSTALLED_APPS = [
     # 3rd party
     "modelcluster",
     "taggit",
-    "axes",
+    "bakery",
+    "wagtailbakery",
     # Django
     "django.contrib.admin",
     "django.contrib.auth",
@@ -74,19 +74,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sitemaps",
-    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "axes.middleware.AxesMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "django.middleware.gzip.GZipMiddleware",
@@ -121,68 +118,30 @@ WSGI_APPLICATION = "portfolio.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-            "OPTIONS": {
-                "init_command": (
-                    "PRAGMA foreign_keys = ON;"
-                    "PRAGMA journal_mode = WAL;"
-                    "PRAGMA synchronous = NORMAL;"
-                    "PRAGMA busy_timeout = 5000;"
-                    "PRAGMA temp_store = MEMORY;"
-                    "PRAGMA mmap_size = 134217728;"
-                    "PRAGMA journal_size_limit = 67108864;"
-                    "PRAGMA cache_size = 2000;"
-                ),
-                "transaction_mode": "IMMEDIATE",
-            },
-        }
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": env.str("POSTGRES_DB"),
-            "USER": env.str("POSTGRES_USER"),
-            "PASSWORD": env.str("POSTGRES_PASSWORD"),
-            "HOST": env.str("POSTGRES_HOST"),
-            "PORT": env.str("POSTGRES_PORT", 5432),
-            "ATOMIC_REQUESTS": env.bool("DATABASE_ATOMIC_REQUESTS", True),
-            "CONN_MAX_AGE": env.int("DATABASE_CONN_MAX_AGE", default=60),
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+        "OPTIONS": {
+            "init_command": (
+                "PRAGMA foreign_keys = ON;"
+                "PRAGMA journal_mode = WAL;"
+                "PRAGMA synchronous = NORMAL;"
+                "PRAGMA busy_timeout = 5000;"
+                "PRAGMA temp_store = MEMORY;"
+                "PRAGMA mmap_size = 134217728;"
+                "PRAGMA journal_size_limit = 67108864;"
+                "PRAGMA cache_size = 2000;"
+            ),
+            "transaction_mode": "IMMEDIATE",
         },
     }
-
-
-# Cache
-# https://docs.djangoproject.com/en/5.0/topics/cache/
-
-if env.bool("USE_CACHE", True):
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-            "LOCATION": env.str("CACHE_TABLE", "cache_table"),
-        }
-    }
-else:
-    CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.dummy.DummyCache",
-        }
-    }
-
-CACHE_TIMEOUT_SECONDS = env.int("CACHE_TIMEOUT_SECONDS", 31_536_000)
-
+}
 
 # Authentication backends
 # https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#specifying-authentication-backends
 
-AUTHENTICATION_BACKENDS = (
-    "axes.backends.AxesStandaloneBackend",
-    "django.contrib.auth.backends.ModelBackend",
-)
+AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 
 # Password validation
@@ -243,46 +202,9 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
-
-if env.bool("USE_S3_STORAGE", False):
-    INSTALLED_APPS += ["storages"]
-
-    AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
-    AWS_S3_REGION_NAME = env.str("AWS_S3_REGION_NAME")
-    AWS_DEFAULT_ACL = env.str("AWS_DEFAULT_ACL", "public-read")
-    AWS_QUERYSTRING_AUTH = False
-
-    _AWS_EXPIRY = env.int("AWS_EXPIRY", 60 * 60 * 24 * 7)
-    AWS_S3_OBJECT_PARAMETERS = {
-        "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate",
-    }
-
-    AWS_S3_MAX_MEMORY_SIZE = env.int(
-        "AWS_S3_MAX_MEMORY_SIZE",
-        5_000_000,  # 5MB
-    )
-
-    AWS_LOCATION = "static"
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    PUBLIC_MEDIA_LOCATION = "media"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
-
-    STORAGES["default"] = {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "location": "media",
-            "file_overwrite": False,
-        },
-    }
-
-
-WHITENOISE_MAX_AGE = env.int("WHITENOISE_MAX_AGE", 31_536_000)
-
 
 # Wagtail settings
 
@@ -317,53 +239,6 @@ WAGTAILDOCS_EXTENSIONS = [
     "zip",
 ]
 
-WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    "default": {
-        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
-        "OPTIONS": {
-            "features": [
-                "bold",
-                "italic",
-                "subscript",
-                "link",
-            ],
-        },
-    },
-    "minimal": {
-        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
-        "OPTIONS": {
-            "features": [
-                "bold",
-                "italic",
-                "strikethrough",
-                "link",
-            ],
-        },
-    },
-    "full": {
-        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
-        "OPTIONS": {
-            "features": [
-                "h2",
-                "h3",
-                "h4",
-                "bold",
-                "italic",
-                "strikethrough",
-                "ol",
-                "ul",
-                "link",
-                "hr",
-                "image",
-                "embed",
-                "code",
-                "document-link",
-                "blockquote",
-            ],
-        },
-    },
-}
-
 WAGTAILEMBEDS_FINDERS = [
     {
         "class": "wagtail.embeds.finders.oembed",
@@ -392,43 +267,14 @@ if env.bool("USE_CLOUDFARE_CACHE", False):
     }
 
 
-# CSRF
-# https://docs.djangoproject.com/en/5.0/ref/settings/#csrf-trusted-origins
+# Bakery
+# https://github.com/wagtail-nest/wagtail-bakery
 
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS")
+BAKERY_MULTISITE = env.bool("WAGTAIL_BAKERY_MULTISITE", False)
 
-CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", True)
+BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/buil/")
 
-
-# Security related settings
-# https://docs.djangoproject.com/en/5.0/topics/security/
-
-SECURE_HSTS_SECONDS = env.int("SECURE_HSTS_SECONDS", 31536000)
-SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("SECURE_HSTS_INCLUDE_SUBDOMAINS", True)
-SECURE_HSTS_PRELOAD = env.bool("SECURE_HSTS_PRELOAD", True)
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", True)
-
-if env.bool("SECURE_PROXY_SSL_HEADER", True):
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", True)
-
-SECURE_CONTENT_TYPE_NOSNIFF = env.bool("SECURE_CONTENT_TYPE_NOSNIFF", True)
-
-
-# Axes
-# https://django-axes.readthedocs.io/en/latest/4_configuration.html
-
-AXES_ENABLED = env.bool("AXES_ENABLED", True)
-AXES_FAILURE_LIMIT = env.int("AXES_FAILURE_LIMIT", 3)
-AXES_LOCK_OUT_AT_FAILURE = env.bool("AXES_LOCK_OUT_AT_FAILURE", True)
-AXES_COOLOFF_TIME = lambda request: timedelta(hours=env.int("AXES_COOLOFF_TIME", 24))
-
-AXES_IPWARE_META_PRECEDENCE_ORDER = [
-    "HTTP_CF_CONNECTING_IP",
-    "HTTP_X_FORWARDED_FOR",
-    "REMOTE_ADDR",
-]
+BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 
 
 # Logging
@@ -437,42 +283,15 @@ AXES_IPWARE_META_PRECEDENCE_ORDER = [
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "filters": {
-        "require_debug_false": {
-            "()": "django.utils.log.RequireDebugFalse",
-        },
-    },
-    "formatters": {
-        "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
-        },
-    },
     "handlers": {
-        "mail_admins": {
-            "level": "ERROR",
-            "filters": ["require_debug_false"],
-            "class": "django.utils.log.AdminEmailHandler",
-        },
         "console": {
-            "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "verbose",
         },
-    },
-    "root": {
-        "level": "INFO",
-        "handlers": ["console"],
     },
     "loggers": {
-        "django.request": {
-            "handlers": ["mail_admins"],
-            "level": "ERROR",
-            "propagate": True,
-        },
-        "django.security.DisallowedHost": {
-            "level": "ERROR",
-            "handlers": ["console", "mail_admins"],
-            "propagate": True,
+        "django": {
+            "handlers": ["console"],
+            "level": env.str("DJANGO_LOG_LEVEL", "INFO"),
         },
     },
 }

@@ -49,7 +49,7 @@ class ProjectPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    description = RichTextField(editor="minimal", blank=True)
+    description = RichTextField(blank=True)
     date = models.DateField(default=timezone.now)
     repository_url = models.URLField(blank=True)
     page_url = models.URLField(blank=True)
@@ -58,7 +58,7 @@ class ProjectPage(Page):
         blank=True,
     )
 
-    body = RichTextField(blank=True, editor="full")
+    body = RichTextField(blank=True)
 
     password_required_template = "projects/password_required.html"
 
