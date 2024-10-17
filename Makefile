@@ -7,9 +7,9 @@ lint:
 	uvx djhtml .
 
 check:
-	uv run python manage.py check
-	uv run python manage.py check --deploy
-	uv run python manage.py check --tag security
+	uv run manage.py check
+	uv run manage.py check --deploy
+	uv run manage.py check --tag security
 
 update:
 	uv lock --upgrade
@@ -26,24 +26,13 @@ download-highlight:
 	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js -o static/js/highlight.sql.js
 
 collect:
-	uv run python manage.py collectstatic --no-input
+	uv run manage.py collectstatic --no-input
 
 migrate:
-	uv run python manage.py migrate
+	uv run manage.py migrate
 
-local:
-	uv run python manage.py runserver
+build:
+	uv run manage.py build
 
-docker-start:
-	docker compose up -d --build
-
-docker-stop:
-	docker compose down
-
-docker-logs:
-	docker compose logs -f
-
-docker:
-	@make docker-stop
-	@make docker-start
-	@make docker-logs
+runserver:
+	uv run manage.py runserver

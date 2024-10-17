@@ -56,7 +56,7 @@ class BlogPostPage(Page):
             ("heading", blocks.TextBlock()),
             ("subheading", blocks.TextBlock()),
             ("quote", blocks.BlockQuoteBlock()),
-            ("paragraph", blocks.RichTextBlock(editor="full")),
+            ("paragraph", blocks.RichTextBlock()),
             ("code", CodeBlock(label="Code")),
             ("image", ImageChooserBlock()),
             ("embed", EmbedBlock()),
