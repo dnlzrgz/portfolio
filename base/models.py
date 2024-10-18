@@ -17,7 +17,7 @@ class StaticPage(Page):
         FieldPanel("body"),
     ]
 
-    parent_page_types = ["home.HomePage"]
+    parent_page_types = []
     subpage_types = []
 
 
