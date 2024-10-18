@@ -16,7 +16,7 @@ DEBUG = env.bool("DEBUG", False)
 
 SECRET_KEY = env.str("SECRET_KEY")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = ["*"]
 
 WAGTAIL_ADMIN_URL = env.str("WAGTAIL_ADMIN_URL", "admin/")
 
@@ -43,7 +43,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 INSTALLED_APPS = [
     # local
     "base",
-    "home",
     "blog",
     "projects",
     "search",
@@ -272,7 +271,7 @@ if env.bool("USE_CLOUDFARE_CACHE", False):
 
 BAKERY_MULTISITE = env.bool("WAGTAIL_BAKERY_MULTISITE", False)
 
-BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/buil/")
+BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/build/")
 
 BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 

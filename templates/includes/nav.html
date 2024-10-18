@@ -2,37 +2,32 @@
 
 {% get_site_root as site_root %}
 <nav class="nav">
-  <a href="{% pageurl site_root %}" class="nav__home">
+  <a href="{% pageurl site_root %}" class="link link--root">
     dnlzrgz
   </a>
 
-  <div class="nav__switch">
-    <input type="checkbox" id="switch" class="switch" role="switch" aria-label="dark mode switch" data-js-switch-theme />
-    <label for="switch"></label>
-  </div>
-
-  <button class="menu__open" role="menu" aria-label="Open menu" data-js-menu-expand>
-    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" width="24" height="24" class="icon">
+  <button class="button button--open-menu" role="menu" aria-label="Open menu" data-js-menu-expand>
+    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" width="24" height="24">
       <path d="M3 12h18M3 6h18M3 18h18"></path>
     </svg>
   </button>
 </nav>
 
-<aside class="menu" role="menu" data-js-menu>
-  <div class="menu__controls">
-    <button class="menu__close" aria-label="Close menu" data-js-menu-collapse>
-      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" class="icon" height="24" width="24">
+<aside role="menu" class="hide" data-js-menu>
+  <div class="button button--close-menu">
+    <button aria-label="Close menu" data-js-menu-collapse>
+      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" shape-rendering="geometricPrecision" viewBox="0 0 24 24" height="24" width="24">
         <path d="M18 6L6 18M6 6l12 12"></path>
       </svg>
     </button>
   </div>
 
-  <nav class="menu__nav">
-    <a href="/" class="nav__link {% if site_root.id == page.id %}selected{% endif %}">
+  <nav role="list">
+    <a href="/" role="listitem">
       {{ site_root.title }}
     </a>
     {% for menuitem in site_root.get_children.live.in_menu|slice:":3" %}
-      <a href="{% pageurl menuitem %}" class="nav__link {% if menuitem.id == page.id %}selected{% endif %}" role="listitem">
+      <a href="{% pageurl menuitem %}" role="listitem">
         {{ menuitem.title }}
       </a>
     {% endfor %}
