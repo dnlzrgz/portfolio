@@ -34,5 +34,8 @@ migrate:
 build:
 	uv run manage.py build
 
+buildserver:
+	uv run manage.py buildserver
+
 runserver:
 	uv run manage.py runserver
