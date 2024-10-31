@@ -15,6 +15,7 @@ from wagtail.contrib.frontend_cache.utils import PurgeBatch
 
 
 class ProjectsIndexPage(Page):
+    parent_page_types = ["base.HomePage"]
     subpage_types = ["projects.ProjectPage"]
 
     def get_projets_items(self):
