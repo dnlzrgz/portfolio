@@ -18,22 +18,9 @@ SECRET_KEY = env.str("SECRET_KEY")
 
 ALLOWED_HOSTS = ["*"]
 
-WAGTAIL_ADMIN_URL = env.str("WAGTAIL_ADMIN_URL", "admin/")
+WAGTAIL_ADMIN_URL = "admin/"
 
-DJANGO_ADMIN_URL = env.str("DJANGO_ADMIN_URL", "django-admin/")
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-
-if DEBUG:
-    import socket
-
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-        "127.0.0.1",
-        "10.0.2.2",
-    ]
+DJANGO_ADMIN_URL = "django-admin/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -165,13 +152,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = env.str("LANGUAGE_CODE", "en-us")
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = env.str("TIME_ZONE", "UTC")
+TIME_ZONE = "UTC"
 
-USE_I18N = env.bool("USE_I18N", True)
+USE_I18N = True
 
-USE_TZ = env.bool("USE_TZ", True)
+USE_TZ = True
 
 SITE_ID = 1
 
@@ -207,7 +194,7 @@ STORAGES = {
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = env.str("WAGTAIL_SITE_NAME", "portfolio")
+WAGTAIL_SITE_NAME = "portfolio"
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html

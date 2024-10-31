@@ -3,9 +3,8 @@ name = "portfolio"
 version = "1.1.0"
 description = "A personal portfolio made with Django and Wagtail."
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
-  "django-storages[s3]>=1.14.4",
   "django>=5.1.1",
   "environs>=11.0.0",
   "wagtail-bakery>=0.8.0",
