@@ -18,6 +18,7 @@ from blog.custom_blocks import CodeBlock
 
 
 class BlogIndexPage(Page):
+    parent_page_types = ["base.HomePage"]
     subpage_types = ["blog.BlogPostPage"]
 
     def get_blog_items(self):

@@ -1,33 +1,4 @@
 /**
- * Dark/Light theme switch
- **/
-const switchTheme = document.querySelector("[data-js-switch-theme]");
-const prefersDarkScheme = window.matchMedia(
-  "(prefers-color-scheme: dark)",
-).matches;
-
-const applyTheme = (isDark) => {
-  document.documentElement.classList.toggle("dark", isDark);
-  switchTheme.checked = isDark;
-};
-
-const getCurrentTheme = () => {
-  const savedTheme = localStorage.getItem("theme");
-  return savedTheme ? savedTheme === "dark" : prefersDarkScheme;
-};
-
-const toggleTheme = () => {
-  const isDark = switchTheme.checked;
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-  applyTheme(isDark);
-};
-
-window.addEventListener("load", () => {
-  applyTheme(getCurrentTheme());
-});
-switchTheme.addEventListener("change", toggleTheme);
-
-/**
  * Overlay menu
  **/
 const menuOverlay = document.querySelector("[data-js-menu]");

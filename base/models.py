@@ -1,6 +1,5 @@
 from django.db import models
-from wagtail import blocks
-from wagtail.models import ClusterableModel, Page, StreamField
+from wagtail.models import Page, StreamField
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
 from wagtail.contrib.settings.models import (
@@ -8,6 +7,46 @@ from wagtail.contrib.settings.models import (
     BaseSiteSetting,
     register_setting,
 )
+from base.blocks import (
+    AbstractBlock,
+    CalendarBlock,
+    ContactEmailBlock,
+    FeaturedBlogPostBlock,
+    FeaturedProjectBlock,
+    ImageBlock,
+    NoteBlock,
+    SocialMediaLinksBlock,
+    StackListBlock,
+    TodoListBlock,
+)
+
+
+class HomePage(Page):
+    widgets = StreamField(
+        [
+            ("abstract", AbstractBlock()),
+            ("calendar", CalendarBlock()),
+            ("contact_email", ContactEmailBlock()),
+            ("featured_blog_post", FeaturedBlogPostBlock()),
+            ("featured_project", FeaturedProjectBlock()),
+            ("image", ImageBlock()),
+            ("note", NoteBlock()),
+            ("social_media_links", SocialMediaLinksBlock()),
+            ("stack_list", StackListBlock()),
+            ("todo_list", TodoListBlock()),
+        ],
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("widgets"),
+    ]
+
+    subpage_types = [
+        "base.StaticPage",
+        "blog.BlogIndexPage",
+        "projects.ProjectsIndexPage",
+    ]
 
 
 class StaticPage(Page):
@@ -17,7 +56,7 @@ class StaticPage(Page):
         FieldPanel("body"),
     ]
 
-    parent_page_types = []
+    parent_page_types = ["base.HomePage"]
     subpage_types = []
 
 
@@ -26,35 +65,6 @@ class ContactEmailSettings(BaseGenericSetting):
     email = models.EmailField(blank=True)
 
     panels = [FieldPanel("email")]
-
-
-@register_setting(icon="cog")
-class FooterTextSettings(ClusterableModel, BaseGenericSetting):
-    body = RichTextField(blank=True)
-
-    panels = [
-        FieldPanel("body"),
-    ]
-
-
-@register_setting(icon="cog")
-class SocialMediaSettings(ClusterableModel, BaseGenericSetting):
-    links = StreamField(
-        [
-            (
-                "link",
-                blocks.StructBlock(
-                    [
-                        ("name", blocks.CharBlock()),
-                        ("url", blocks.URLBlock()),
-                    ],
-                ),
-            )
-        ],
-        blank=True,
-    )
-
-    panels = [FieldPanel("links")]
 
 
 @register_setting(icon="site")
