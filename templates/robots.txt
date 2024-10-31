@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow: /admin/
-Disallow: /search/
-Sitemap: https://dnlzrgz.com/sitemap.xml
