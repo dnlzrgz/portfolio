@@ -1,0 +1,25 @@
+{% load wagtailcore_tags %}
+
+<section class="window window--blog-post">
+  <header class="title">
+    <h2 class="title__title">{{ self.title }}</h2>
+  </header>
+
+  <main class="content">
+    <article class="featured_post">
+      <header class="featured_post__header">
+        <h1 class="featured_post__header__title">{{ self.blog_post.title }}</h1>
+      </header>
+
+      <main class="featured_post__content">
+        {{ self.blog_post.tldr|richtext }}
+      </main>
+
+      <footer class="featured_post__footer">
+        <a href="{{ self.blog_post.url }}" class="featured_post__link">
+          Take a peek
+        </a>
+      </footer>
+    </article>
+  </main>
+</section>

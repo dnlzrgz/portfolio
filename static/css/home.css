@@ -1,0 +1,4 @@
+.home {
+  color: var(--primary-black);
+  background: var(--primary-white) url("/static/assets/noise.svg");
+}

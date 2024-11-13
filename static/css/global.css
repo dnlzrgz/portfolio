@@ -1,0 +1,13 @@
+@import url("/static/css/root.css");
+@import url("/static/css/reset.css");
+@import url("/static/css/fonts.css");
+@import url("/static/css/home.css");
+@import url("/static/css/windows.css");
+@import url("/static/css/widgets/abstract.css");
+@import url("/static/css/widgets/calendar.css");
+@import url("/static/css/widgets/featured-post.css");
+@import url("/static/css/widgets/image.css");
+@import url("/static/css/widgets/note.css");
+@import url("/static/css/widgets/social-media-links.css");
+@import url("/static/css/widgets/stack-list.css");
+@import url("/static/css/widgets/todo-list.css");
