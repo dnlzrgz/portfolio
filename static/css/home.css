@@ -1,4 +1,16 @@
 .home {
-  color: var(--primary-black);
   background: var(--primary-white) url("/static/assets/noise.svg");
+  color: var(--primary-black);
+  overflow: hidden;
+}
+
+#gradient-canvas {
+  --gradient-color-1: var(--primary-white);
+  --gradient-color-2: var(--primary-light);
+  --gradient-color-3: var(--primary-lighter);
+  --gradient-color-4: var(--primary-lightest);
+
+  height: 100svh;
+  width: 100svw;
+  z-index: 0;
 }
