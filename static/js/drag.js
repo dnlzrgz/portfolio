@@ -1,6 +1,6 @@
 {
   /**
-   * Adds a draggable effect to windows' in the home page.
+   * Adds a draggable effect to the windows/widgets in the home page.
    **/
 
   const windows = document.querySelectorAll(".window");

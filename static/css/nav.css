@@ -1,0 +1,30 @@
+.nav {
+  background: var(--primary-white);
+  border-radius: var(--border-radius-md);
+  border: var(--spacing-1) solid var(--primary-black);
+  bottom: 0;
+  display: flex;
+  font-size: var(--font-size-lg);
+  gap: var(--spacing-5);
+  left: 50%;
+  margin-bottom: var(--spacing-5);
+  padding: var(--spacing-3-5) var(--spacing-5);
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.nav__link {
+  color: var(--primary-black);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--accent);
+    text-decoration: var(--accent) wavy underline;
+  }
+}
+
+.nav__link--active {
+  color: var(--accent);
+  text-decoration: var(--accent) wavy underline;
+}

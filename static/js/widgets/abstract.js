@@ -44,8 +44,11 @@
     circles = circles.filter((circle) => !circle.isFinished());
   }
 
-  function mousePressed() {
+  function mousePressed(event) {
     if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+      event.preventDefault();
+      event.stopPropagation();
+
       let newCircle = new Circle(mouseX, mouseY);
       circles.push(newCircle);
     }
