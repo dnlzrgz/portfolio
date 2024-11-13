@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static wagtailcore_tags %}
+
+{% block extra_js %}
+  <script src="{% static 'js/app.js' %}" defer></script>
+{% endblock extra_js %}
+
+{% block body_class %}home{% endblock %}
+
+{% block content %}
+  {% with widgets=page.widgets  %}
+    {{ widgets }}
+  {% endwith %}
+{% endblock %}

@@ -52,24 +52,25 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}" charset="utf-8">
 
         {% block extra_css %}
         {% endblock extra_css %}
 
         {# JS #}
-        <script src="{% static 'js/app.js' %}" defer></script>
-
         {% block extra_js %}
         {% endblock extra_js %}
     </head>
 
-    <body class="body">
+    <body class="body {% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-
-        {% include 'includes/nav.html' %}
 
         {% block content %}
         {% endblock %}
+
+
+        {{ debug }}
+
+        {# include 'includes/nav.html' #}
     </body>
 </html>

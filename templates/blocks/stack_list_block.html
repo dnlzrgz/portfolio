@@ -1,0 +1,13 @@
+<section class="window window--stack-list">
+  <header class="title">
+    <h2 class="title__title">stack</h2>
+  </header>
+
+  <main class="content">
+    <ul role="list" class="stack-list">
+      {% for item in self.stack_items %}
+        <li class="stack-list__item">{{ item.Item }}</li>
+      {% endfor %}
+    </ul>
+  </main>
+</section>

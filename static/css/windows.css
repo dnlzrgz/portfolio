@@ -1,0 +1,42 @@
+/**
+ * Windows styles
+ **/
+
+.window {
+  background: var(--primary-white);
+  border-radius: var(--border-radius-lg);
+  border: var(--spacing-1) solid var(--primary-black);
+  box-shadow: var(--box-shadow-level-2);
+  box-shadow: var(--spacing-1) var(--spacing-1-5) var(--primary-black);
+  overflow: clip;
+  position: absolute;
+
+  .title {
+    background: transparent;
+    color: var(--primary-black);
+    cursor: grab;
+    padding: var(--spacing-4) var(--spacing-3);
+    user-select: none;
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
+
+    &:has(.title__title) {
+      background: var(--primary-white);
+      border-bottom: var(--spacing-1) solid var(--primary-black);
+    }
+  }
+
+  .title__title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .content {
+    padding: var(--spacing-3);
+    position: relative;
+  }
+}

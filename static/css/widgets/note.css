@@ -1,0 +1,15 @@
+.window--note {
+  width: var(--w-124);
+
+  .content {
+    h2 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--spacing-3);
+    }
+
+    p {
+      font-size: var(--font-size-lg);
+    }
+  }
+}

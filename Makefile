@@ -15,6 +15,9 @@ update:
 	uv lock --upgrade
 	uv sync
 
+download-p5js:
+	curl -sL https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js -o static/js/p5.min.js
+
 download-highlight:
 	curl -sL https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css -o static/css/highlight.css
 	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js -o static/js/highlight.js
