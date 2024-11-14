@@ -51,30 +51,30 @@ wheels = [
 
 [[package]]
 name = "boto3"
-version = "1.35.59"
+version = "1.35.60"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "botocore" },
     { name = "jmespath" },
     { name = "s3transfer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/af/ca/09fb332e8bab219df4832337978d7c8227571b86fdcfb28355f591cf544f/boto3-1.35.59.tar.gz", hash = "sha256:81f4d8d6eff3e26b82cabd42eda816cfac9482821fdef353f18d2ba2f6e75f2d", size = 111011 }
+sdist = { url = "https://files.pythonhosted.org/packages/04/30/af5b971fc103db5425c45c36b8fcfbcc4d5818fc782350a3a6e29f47d670/boto3-1.35.60.tar.gz", hash = "sha256:e573504c67c3e438fd4b0222119ed1a73b644c78eb3b6dee0b36a6c70ecf7677", size = 111063 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/ad/b8ca386a511b0b3cf1f9e45426b570a83246b01010a18de87786b212d3b1/boto3-1.35.59-py3-none-any.whl", hash = "sha256:8f8ff97cb9cb2e1ec7374209d0c09c1926b75604d6464c34bafaffd6d6cf0529", size = 139178 },
+    { url = "https://files.pythonhosted.org/packages/a8/5a/05403bb7ed56ada90bfd7b6e537007d50c79502e5339ce41a0db102c5a12/boto3-1.35.60-py3-none-any.whl", hash = "sha256:a34d28de1a1f6ca6ec3edd05c26db16e422293d8f9dcd94f308059a434596753", size = 139179 },
 ]
 
 [[package]]
 name = "botocore"
-version = "1.35.59"
+version = "1.35.60"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jmespath" },
     { name = "python-dateutil" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ff/19/f4609e3f9ae2c166fd1350e9128b647f9a1d3ecd2e01db08cd0227c2b9e0/botocore-1.35.59.tar.gz", hash = "sha256:de0ce655fedfc02c87869dfaa3b622488a17ff37da316ef8106cbe1573b83c98", size = 12966883 }
+sdist = { url = "https://files.pythonhosted.org/packages/87/46/4c10ff89b2a164863a1d5e995e6230a76fa3f636f4144b9af24ea5f92f35/botocore-1.35.60.tar.gz", hash = "sha256:378f53037d817bed2c04a006b7319745e664030182211429c924647273b29bc9", size = 12972523 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/05/8c/31ca91afc34b03de36ca560fde66af0c32e205c8a22bf4222b6ae2c424b7/botocore-1.35.59-py3-none-any.whl", hash = "sha256:bcd66d7f55c8d1b6020eb86f2d87893fe591fb4be6a7d2a689c18be586452334", size = 12755348 },
+    { url = "https://files.pythonhosted.org/packages/b2/35/cd48dfb057e68dfd31f2b10a761f76fd67e05ef87a07133d766f7c4aed17/botocore-1.35.60-py3-none-any.whl", hash = "sha256:ddccfc39a0a55ac0321191a36d29c2ea9be2c96ceefb3928dd3c91c79c494d50", size = 12762009 },
 ]
 
 [[package]]
@@ -638,11 +638,11 @@ wheels = [
 
 [[package]]
 name = "setuptools"
-version = "75.4.0"
+version = "75.5.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/e2/73/c1ccf3e057ef6331cc6861412905dc218203bde46dfe8262c1631aa7fb11/setuptools-75.4.0.tar.gz", hash = "sha256:1dc484f5cf56fd3fe7216d7b8df820802e7246cfb534a1db2aa64f14fcb9cdcb", size = 1336593 }
+sdist = { url = "https://files.pythonhosted.org/packages/c8/db/722a42ffdc226e950c4757b3da7b56ff5c090bb265dccd707f7b8a3c6fee/setuptools-75.5.0.tar.gz", hash = "sha256:5c4ccb41111392671f02bb5f8436dfc5a9a7185e80500531b133f5775c4163ef", size = 1336032 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/21/df/7c6bb83dcb45b35dc35b310d752f254211cde0bcd2a35290ea6e2862b2a9/setuptools-75.4.0-py3-none-any.whl", hash = "sha256:b3c5d862f98500b06ffdf7cc4499b48c46c317d8d56cb30b5c8bce4d88f5c216", size = 1223131 },
+    { url = "https://files.pythonhosted.org/packages/fe/df/88ccbee85aefbca071db004fdc8f8d2507d55d5a9dc27ebb93c92edb1bd8/setuptools-75.5.0-py3-none-any.whl", hash = "sha256:87cb777c3b96d638ca02031192d40390e0ad97737e27b6b4fa831bea86f2f829", size = 1222710 },
 ]
 
 [[package]]

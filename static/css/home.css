@@ -1,16 +1,42 @@
 .home {
-  background: var(--primary-white) url("/static/assets/noise.svg");
-  color: var(--primary-black);
+  background: var(--white) url("/static/assets/noise.svg");
+  color: var(--black);
   overflow: hidden;
 }
 
 #gradient-canvas {
-  --gradient-color-1: var(--primary-white);
+  --gradient-color-1: var(---white);
   --gradient-color-2: var(--primary-light);
   --gradient-color-3: var(--primary-lighter);
   --gradient-color-4: var(--primary-lightest);
 
   height: 100svh;
+  left: 0;
+  position: absolute;
+  top: 0;
   width: 100svw;
   z-index: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .home {
+    display: grid;
+    gap: var(--spacing-3);
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: auto;
+    padding: var(--spacing-3);
+    padding-bottom: var(--spacing-24);
+  }
+
+  #gradient-canvas {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
 }

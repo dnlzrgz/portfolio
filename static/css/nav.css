@@ -1,7 +1,7 @@
 .nav {
-  background: var(--primary-white);
+  background: var(--white);
   border-radius: var(--border-radius-md);
-  border: var(--spacing-1) solid var(--primary-black);
+  border: var(--spacing-1) solid var(--black);
   bottom: 0;
   display: flex;
   font-size: var(--font-size-lg);
@@ -9,13 +9,13 @@
   left: 50%;
   margin-bottom: var(--spacing-5);
   padding: var(--spacing-3-5) var(--spacing-5);
-  position: absolute;
+  position: fixed;
   transform: translateX(-50%);
   z-index: 9999;
 }
 
 .nav__link {
-  color: var(--primary-black);
+  color: var(--black);
   text-decoration: none;
 
   &:hover {

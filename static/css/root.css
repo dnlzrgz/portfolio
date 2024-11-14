@@ -4,27 +4,16 @@
 
 :root {
   /* Color palette */
-  --primary-white: #fbefef;
-  --primary-lightest: #f7dede;
-  --primary-lighter: #efbdbd;
-  --primary-light: #e79d9d;
-  --primary: #dd7878;
+  --accent: #7287fd;
+  --black: #210808;
   --primary-dark: #d65c5c;
   --primary-darker: #ce3b3b;
   --primary-darkest: #ce3b3b;
-  --primary-black: #210808;
-  --accent: #7287fd;
-
-  --blue: #7287fd;
-  --background: #eff1f5;
-  --mantle: #e6e9ef;
-  --crust: #dce0e8;
-  --foreground: #4c4f69;
-  --green: #40a02b;
-  --orange: #fe640b;
-  --yellow: #df8e1d;
-  --red: #d20f39;
-  --white: #fff;
+  --primary-light: #e79d9d;
+  --primary-lighter: #efbdbd;
+  --primary-lightest: #f7dede;
+  --primary: #dd7878;
+  --white: #fbefef;
 
   /* Font size */
   --font-size-xs: 0.75rem;
@@ -160,18 +149,6 @@
   --w-min: min-content;
   --w-max: max-content;
   --w-fit: fit-content;
-
-  /* Box shadow */
-  --m-shadow-color: var(--crust);
-  --box-shadow-level-1: 0 1px 2px var(--m-shadow-color, #0000001a);
-  --box-shadow-level-2: 0 1px 3px var(--m-shadow-color, #0000001a),
-    0 1px 2px var(--m-shadow-color, #0000001a);
-  --box-shadow-level-3: 0 4px 6px var(--m-shadow-color, #0000001a),
-    0 2px 4px var(--m-shadow-color, #0000001a);
-  --box-shadow-level-4: 0 10px 15px var(--m-shadow-color, #0000001a),
-    0 4px 6px var(--m-shadow-color, #0000001a);
-  --box-shadow-level-5: 0 20px 25px var(--m-shadow-color, #0000001a),
-    0 10px 10px var(--m-shadow-color, #0000001a);
 
   /**
    * Breakpoints:

@@ -1,6 +1,5 @@
 {
   const chars = "↑↓←→↖↗↘↙↔↕";
-  const gridSize = 20;
   const colors = [
     "#dc8a78",
     "#dd7878",
@@ -21,6 +20,7 @@
 
   let circles = [];
   let gridSpacing = 0;
+  let gridSize = 20;
   let grid = [];
   let charIndex = 0;
   let colorIndex = 0;
@@ -28,6 +28,9 @@
   function setup() {
     const canvas = createCanvas(400, 400);
     canvas.parent("abstract");
+
+    gridSize = min(width, height) / 20;
+
     grid = createGrid();
   }
 

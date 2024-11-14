@@ -1,43 +1,71 @@
-{
-  /**
-   * Adds a draggable effect to the windows/widgets in the home page.
-   **/
+/**
+ * Enables draggable-like effect for elements with the class "widget".
+ * Is only activated if the viewport width is greater than or equal to the specified width threshold.
+ *
+ * @param {number} widthThreshold - The minimum viewport width (in pixels) required to enable dragging. Default is 768 pixels.
+ */
+const addDraggable = (widthThreshold = 768) => {
+  const viewportWidth = window.innerWidth;
 
-  const windows = document.querySelectorAll(".window");
+  if (viewportWidth < widthThreshold) {
+    return;
+  }
+
+  const widgets = document.querySelectorAll(".widget");
   let zIndex = 1;
 
-  windows.forEach((win) => {
-    const title = win.querySelector(".title");
+  const bringToFront = (widget) => {
+    zIndex += 1;
+    widget.style.zIndex = zIndex;
+  };
 
-    win.addEventListener("mousedown", () => {
-      zIndex += 1;
-      win.style.zIndex = zIndex;
-    });
+  const handleDrag = (widget, e, isTouchEvent) => {
+    const title = widget.querySelector(".title");
+    title.classList.add("is-dragging");
 
-    title.addEventListener("mousedown", (e) => {
-      title.classList.add("is-dragging");
+    const left = widget.offsetLeft;
+    const top = widget.offsetTop;
+    const startX = isTouchEvent ? e.touches[0].pageX : e.pageX;
+    const startY = isTouchEvent ? e.touches[0].pageY : e.pageY;
 
-      let left = win.offsetLeft;
-      let top = win.offsetTop;
+    const drag = (e) => {
+      e.preventDefault();
+      const pageX = isTouchEvent ? e.touches[0].pageX : e.pageX;
+      const pageY = isTouchEvent ? e.touches[0].pageY : e.pageY;
+      widget.style.left = left + (pageX - startX) + "px";
+      widget.style.top = top + (pageY - startY) + "px";
+    };
 
-      let startX = e.pageX;
-      let startY = e.pageY;
+    const endDrag = () => {
+      title.classList.remove("is-dragging");
+      document.removeEventListener(
+        isTouchEvent ? "touchmove" : "mousemove",
+        drag,
+      );
+      document.removeEventListener(
+        isTouchEvent ? "touchend" : "mouseup",
+        endDrag,
+      );
+    };
 
-      const drag = (e) => {
-        e.preventDefault();
-        win.style.left = left + (e.pageX - startX) + "px";
-        win.style.top = top + (e.pageY - startY) + "px";
-      };
+    document.addEventListener(isTouchEvent ? "touchmove" : "mousemove", drag);
+    document.addEventListener(isTouchEvent ? "touchend" : "mouseup", endDrag);
+  };
 
-      const mouseUp = () => {
-        title.classList.remove("is-dragging");
+  widgets.forEach((widget) => {
+    const title = widget.querySelector(".title");
 
-        document.removeEventListener("mousemove", drag);
-        document.removeEventListener("mouseup", mouseUp);
-      };
+    const bringToFrontHandler = () => bringToFront(widget);
+    widget.addEventListener("mousedown", bringToFrontHandler);
+    widget.addEventListener("touchstart", bringToFrontHandler);
 
-      document.addEventListener("mousemove", drag);
-      document.addEventListener("mouseup", mouseUp);
+    title.addEventListener("mousedown", (e) => handleDrag(widget, e, false));
+
+    title.addEventListener("touchstart", (e) => {
+      bringToFront(widget);
+      handleDrag(widget, e, true);
     });
   });
-}
+};
+
+addDraggable();
