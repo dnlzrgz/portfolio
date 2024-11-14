@@ -1,9 +1,0 @@
-.window--abstract {
-  height: var(--w-100);
-  width: var(--w-100);
-
-  .content {
-    padding: 0;
-    cursor: pointer;
-  }
-}
