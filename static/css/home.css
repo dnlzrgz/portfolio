@@ -1,14 +1,14 @@
 .home {
-  background: var(--white) url("/static/assets/noise.svg");
-  color: var(--black);
+  background: var(--accent);
+  color: var(--foreground);
   overflow: hidden;
 }
 
 #gradient-canvas {
-  --gradient-color-1: var(---white);
-  --gradient-color-2: var(--primary-light);
-  --gradient-color-3: var(--primary-lighter);
-  --gradient-color-4: var(--primary-lightest);
+  --gradient-color-1: var(--white);
+  --gradient-color-2: var(--primary);
+  --gradient-color-3: var(--accent);
+  --gradient-color-4: var(--white);
 
   height: 100svh;
   left: 0;
@@ -18,20 +18,28 @@
   z-index: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  #gradient-canvas {
+    --gradient-color-1: var(--black-hex);
+    --gradient-color-2: var(--primary-hex);
+    --gradient-color-3: var(--accent-hex);
+    --gradient-color-4: var(--black-hex);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .home {
     display: grid;
     gap: var(--spacing-3);
     grid-auto-flow: row;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     overflow: auto;
     padding: var(--spacing-3);
-    padding-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-56);
   }
 
   #gradient-canvas {
-    display: none;
-    visibility: hidden;
+    position: fixed;
   }
 }
 

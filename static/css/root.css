@@ -4,16 +4,11 @@
 
 :root {
   /* Color palette */
-  --accent: #7287fd;
-  --black: #210808;
-  --primary-dark: #d65c5c;
-  --primary-darker: #ce3b3b;
-  --primary-darkest: #ce3b3b;
-  --primary-light: #e79d9d;
-  --primary-lighter: #efbdbd;
-  --primary-lightest: #f7dede;
-  --primary: #dd7878;
-  --white: #fbefef;
+  --accent: #6a8faf;
+  --black: #0a0a0a;
+  --primary: #ff9233;
+  --white: #f5f5f5;
+  --background: var(--white);
 
   /* Font size */
   --font-size-xs: 0.75rem;
@@ -62,6 +57,17 @@
   --border-radius-lg: 1.2rem;
   --border-radius-xl: 1.6rem;
   --border-radius-xxl: 2rem;
+
+  /* Box shadow */
+  --box-shadow-offset-y: 4px;
+  --box-shadow-blur-radius: 24px;
+  --box-shadow: 0 var(--box-shadow-offset-y) var(--box-shadow-blur-radius)
+    hsla(0, 0%, 4%, var(--box-shadow-opacity, 0.1));
+
+  /* Text decoration */
+  --text-decoration-color: var(--accent);
+  --text-decoration-underline: var(--text-decoration-color) underline;
+  --text-decoration-line-through: var(--text-decoration-color) line-through;
 
   /* Spacing */
   --spacing-0: 0px;
@@ -158,4 +164,11 @@
    *  xl: 1200px
    *  xxl: 1500px
    **/
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground: var(--white);
+    --background: var(--black);
+  }
 }

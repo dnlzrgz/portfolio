@@ -1,4 +1,7 @@
 <section class="widget widget--social-links">
+  <header class="title">
+    <h2 class="title__title">{{ self.title }}</h2>
+  </header>
   <main class="content">
     <ul role="list" class="social-links">
       {% for item in self.links %}
@@ -8,8 +11,4 @@
       {% endfor %}
     </ul>
   </main>
-
-  <header class="title">
-    <h2 class="title__title">{{ self.title }}</h2>
-  </header>
 </section>

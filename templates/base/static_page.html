@@ -8,16 +8,14 @@
   <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
 {% endblock og %}
 
+{% block body_class %}static{% endblock %}
+
 {% block content %}
-  <header class="header header--post">
-    <div class="hero hero--post">
-      <h1 class="hero__title">
-        {{ page.title }}
-      </h1>
-    </div>
+  <header class="static__header">
+    <h1 class="static__title">{{ page.title }}</h1>
   </header>
 
-  <main class="main main--post">
+  <main class="static__content">
     {{ page.body|richtext }}
   </main>
 {% endblock %}

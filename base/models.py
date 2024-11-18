@@ -66,6 +66,9 @@ class ContactEmailSettings(BaseGenericSetting):
 
     panels = [FieldPanel("email")]
 
+    class Meta:
+        verbose_name = "Contact email"
+
 
 @register_setting(icon="site")
 class SiteSettings(BaseSiteSetting):

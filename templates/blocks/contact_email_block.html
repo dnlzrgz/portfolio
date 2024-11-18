@@ -1,5 +1,8 @@
+{% load wagtailsettings_tags %}
+
 <section class="widget widget--contact">
   <header class="title">
-    <a href="mailto:{{ contact_email }}">Contact</a>
+    {% get_settings %}
+    <a href="mailto:{{ settings.base.ContactEmailSettings.email  }}">Contact</a>
   </header>
 </section>

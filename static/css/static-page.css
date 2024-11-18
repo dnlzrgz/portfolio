@@ -1,0 +1,58 @@
+.static {
+  background: var(--white);
+  color: var(--foreground);
+  margin: 0 auto;
+  max-width: 65ch;
+  overflow: auto;
+  padding-bottom: var(--spacing-56);
+  padding-top: var(--spacing-32);
+}
+
+.static__header {
+  margin-bottom: var(--spacing-9);
+}
+
+.static__title {
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-normal);
+  text-align: center;
+}
+
+.static__content {
+  h1,
+  h2,
+  h3 {
+    font-weight: var(--font-weight-normal);
+    margin-bottom: var(--spacing-5);
+    margin-top: var(--spacing-5);
+  }
+
+  h1 {
+    font-size: var(--font-size-7xl);
+    text-align: center;
+  }
+
+  h2 {
+    font-size: var(--font-size-5xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-3xl);
+  }
+
+  a {
+    color: var(--accent);
+
+    &:visited {
+      color: var(--foreground);
+    }
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  p {
+    margin-bottom: var(--spacing-5);
+  }
+}

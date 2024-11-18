@@ -1,32 +1,23 @@
 {
   const chars = "↑↓←→↖↗↘↙↔↕";
   const colors = [
-    "#dc8a78",
-    "#dd7878",
-    "#ea76cb",
-    "#8839ef",
-    "#d20f39",
-    "#e64553",
-    "#fe640b",
-    "#df8e1d",
-    "#40a02b",
-    "#179299",
-    "#04a5e5",
-    "#209fb5",
-    "#1e66f5",
-    "#7287fd",
+    "#ffb370",
+    "#ff9233",
+    "#f57200",
+    "#567d9f",
+    "#6a8faf",
+    "#88a5bf",
   ];
   const len_colors = colors.length;
 
   let circles = [];
-  let gridSpacing = 0;
   let gridSize = 20;
   let grid = [];
-  let charIndex = 0;
-  let colorIndex = 0;
 
   function setup() {
-    const canvas = createCanvas(400, 400);
+    const { offsetWidth, offsetHeight } = document.getElementById("abstract");
+
+    const canvas = createCanvas(offsetWidth, offsetHeight);
     canvas.parent("abstract");
 
     gridSize = min(width, height) / 20;
@@ -58,15 +49,15 @@
   }
 
   function createGrid() {
-    let rows = floor(height / (gridSize + gridSpacing)) + 2;
-    let cols = floor(width / (gridSize + gridSpacing)) + 2;
-    let grid = [];
+    const rows = floor(height / gridSize) + 2;
+    const cols = floor(width / gridSize) + 2;
+    const grid = [];
 
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
         grid.push({
-          x: j * (gridSize + gridSpacing),
-          y: i * (gridSize + gridSpacing),
+          x: j * gridSize,
+          y: i * gridSize,
           textSize: 30,
           charIndex: 0,
           color: colors[len_colors - 1],
@@ -89,19 +80,15 @@
 
   function checkCollision(circle) {
     for (let i = 0; i < grid.length; i++) {
-      let centerX = circle.x;
-      let centerY = circle.y;
-      let radius = circle.radius;
+      const { x: centerX, y: centerY, radius } = circle;
 
       let rectX = grid[i].x + gridSize / 2;
       let rectY = grid[i].y + gridSize / 2;
-
       let a = atan2(rectY - centerY, rectX - centerX);
-
       let rX = centerX + radius * cos(a);
       let rY = centerY + radius * sin(a);
-
       let cc = width;
+
       if (dist(rectX, rectY, centerX, centerY) <= circle.radius) {
         grid[i].color = color(10);
         charIndex = int(
