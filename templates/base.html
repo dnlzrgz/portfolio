@@ -27,7 +27,8 @@
         {% endif %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="color-scheme" content="light">
+
+        <meta name="color-scheme" content="light dark">
 
         <meta property="og:url" content="{{ page.full_url }}">
         <meta property="og:locale" content="en_US">
@@ -36,6 +37,23 @@
         {% block og %}
             <meta property="og:type" content="website">
         {% endblock og %}
+
+        {# TODO: handle in admin #}
+        <script type="application/ld+json">
+            {
+                "@context" : "https://schema.org",
+                "@type" : "WebSite",
+                "name" : "dnlzrgz",
+                "url" : "https://dnlzrgz.com"
+                "author": {
+                    "@type": "Person",
+                    "name": "Daniel"
+                },
+            }
+        </script>
+
+        {% block jsonld %}
+        {% endblock jsonld %}
 
         {# Robots #}
         <meta name="robots" content="index,follow">
@@ -52,7 +70,7 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
 
         {% block extra_css %}
         {% endblock extra_css %}

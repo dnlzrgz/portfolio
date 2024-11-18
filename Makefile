@@ -40,5 +40,8 @@ build:
 buildserver:
 	uv run manage.py buildserver
 
+publish:
+	uv run manage.py publish
+
 runserver:
 	uv run manage.py runserver

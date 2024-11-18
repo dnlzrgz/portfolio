@@ -22,7 +22,7 @@
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
-  color-scheme: light;
+  color-scheme: light dark;
   hanging-punctuation: first last;
   text-size-adjust: none;
 }
@@ -30,9 +30,10 @@ html {
 body {
   font-family: "Geist", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  line-height: 1.5;
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  min-height: 100vh; /* Fallback */
   min-height: 100svh;
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
 }
 
@@ -59,7 +60,6 @@ label {
 
 p,
 li {
-  max-width: 75ch;
   text-wrap: pretty;
 }
 
