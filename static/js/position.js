@@ -9,8 +9,8 @@
  */
 const randomlyPositionWidgets = (
   widthThreshold = 768,
-  cols = 24,
-  rows = 12,
+  cols = 16,
+  rows = 24,
   padding = 20,
 ) => {
   const viewportWidth = window.innerWidth;

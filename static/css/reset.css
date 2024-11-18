@@ -44,6 +44,7 @@ h4,
 h5,
 h6 {
   text-wrap: balance;
+  font-weight: var(--font-weight-thin);
 }
 
 h1,
