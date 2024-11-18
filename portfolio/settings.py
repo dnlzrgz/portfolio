@@ -231,14 +231,34 @@ WAGTAILEMBEDS_FINDERS = [
     },
 ]
 
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    "default": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "h2",
+                "h3",
+                "h4",
+                "bold",
+                "italic",
+                "link",
+                "document-link",
+                "image",
+                "embed",
+                "code",
+                "superscript",
+                "subscript",
+                "strikethrough",
+                "blockquote",
+            ]
+        },
+    },
+}
+
 # Images
-WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAIL_IMAGES_AVIF_QUALITY", 50)
-WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAIL_IMAGES_JPEG_QUALITY", 40)
-WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAIL_IMAGES_WEBP_QUALITY", 45)
-
-# Private pages
-WAGTAIL_PRIVATE_PAGE_OPTIONS = {"SHARED_PASSWORD": True}
-
+WAGTAILIMAGES_AVIF_QUALITY = env.int("WAGTAIL_IMAGES_AVIF_QUALITY", 75)
+WAGTAILIMAGES_JPEG_QUALITY = env.int("WAGTAIL_IMAGES_JPEG_QUALITY", 80)
+WAGTAILIMAGES_WEBP_QUALITY = env.int("WAGTAIL_IMAGES_WEBP_QUALITY", 80)
 
 # Frontend cache invalidator
 # https://docs.wagtail.org/en/stable/reference/contrib/frontendcache.html
