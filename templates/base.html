@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,53 +14,52 @@
             {% endblock %}
 
             {% block title_suffix %}
-                {% wagtail_site as current_site %}
-                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+                | {{ settings.base.SiteSettings.title_suffix }}
             {% endblock %}
         </title>
 
-        <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
-
         {% if page.search_description %}
             <meta name="description" content="{{ page.search_description }}" />
-            <meta property="og:description" content="{{ page.search_description }}">
         {% endif %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         <meta name="color-scheme" content="light dark">
+        <link rel="canonical" href="{{ page.get_site.root_url }}">
 
-        <meta property="og:url" content="{{ page.full_url }}">
-        <meta property="og:locale" content="en_US">
-        <link rel="canonical" href="{{ page.full_url }}">
-
-        {% block og %}
-            <meta property="og:type" content="website">
-        {% endblock og %}
-
-        {# TODO: handle in admin #}
-        <script type="application/ld+json">
-            {
-                "@context" : "https://schema.org",
-                "@type" : "WebSite",
-                "name" : "dnlzrgz",
-                "url" : "https://dnlzrgz.com"
-                "author": {
-                    "@type": "Person",
-                    "name": "Daniel"
-                },
-            }
-        </script>
-
-        {% block jsonld %}
-        {% endblock jsonld %}
+        {% if settings.base.SiteSettings.author_name %}
+            <meta name="author" content="{{ settings.base.SiteSettings.author_name }}" />
+        {% endif %}
 
         {# Robots #}
         <meta name="robots" content="index,follow">
 
+        {# OG tags #}
+        <meta property="og:title" content="{{ page.seo_title|default:page.title }}" />
+        <meta property="og:description" content="{{ page.search_description }}" />
+        <meta property="og:site_name" content="{{ settings.base.SiteSettings.site_name|default:'dnlzrgz' }}" />
+        <meta property="og:locale" content="en_US" />
+
+        {% block og %}
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ page.full_url }}" />
+        {% endblock og %}
+
+        {# JSON+LD #}
+        {% block jsonld %}
+        {% endblock jsonld %}
+
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}
             <base target="_blank">
+        {% endif %}
+
+        {# Fediverse settings #}
+        {% if settings.base.SiteSettings.mastodon_verification %}
+            <link rel="me" href="{{ settings.base.SiteSettings.mastodon_verification }}"/>
+        {% endif %}
+
+        {% if settings.base.SiteSettings.fediverse_handle %}
+            <meta name="fediverse:creator" content="{{ settings.base.SiteSettings.fediverse_handle }}" />
         {% endif %}
 
         {# Favicon #}
@@ -81,8 +80,6 @@
     </head>
 
     <body class="body {% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
-
         {% block content %}
         {% endblock %}
 
