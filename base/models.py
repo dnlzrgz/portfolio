@@ -38,8 +38,20 @@ class HomePage(Page):
         blank=True,
     )
 
+    og_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("widgets"),
+    ]
+
+    promote_panels = Page.promote_panels + [
+        FieldPanel("og_image"),
     ]
 
     subpage_types = [
