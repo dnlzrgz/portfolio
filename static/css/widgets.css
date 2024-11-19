@@ -43,13 +43,12 @@
   width: var(--w-100);
 
   .content {
-    cursor: pointer;
     padding: 0;
   }
 
   .p5canvas {
-    width: 100%;
     height: auto;
+    width: 100%;
   }
 }
 

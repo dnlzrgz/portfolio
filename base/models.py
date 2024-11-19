@@ -1,6 +1,6 @@
 from django.db import models
 from wagtail.models import Page, StreamField
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField
 from wagtail.contrib.settings.models import (
     BaseGenericSetting,
@@ -76,9 +76,37 @@ class SiteSettings(BaseSiteSetting):
         verbose_name="Title suffix",
         max_length=255,
         help_text="The suffix for the title meta tag e.g. ' | dnlzrgz'",
-        default="dnlzrgz",
+        blank=True,
+    )
+
+    author_name = models.CharField(
+        verbose_name="Author name",
+        max_length=255,
+        help_text="Author name of the site.",
+        blank=True,
+    )
+
+    fediverse_handle = models.CharField(
+        verbose_name="Fediverse handle",
+        max_length=255,
+        help_text="Your hanlde on the fediverse (e.g., @username@instance).",
+        blank=True,
+    )
+
+    mastodon_verification = models.URLField(
+        verbose_name="Mastodon verification URL",
+        help_text="Link to your Mastodon profile for verification.",
+        blank=True,
     )
 
     panels = [
         FieldPanel("title_suffix"),
+        FieldPanel("author_name"),
+        MultiFieldPanel(
+            [
+                FieldPanel("fediverse_handle"),
+                FieldPanel("mastodon_verification"),
+            ],
+            "Fediverse settings",
+        ),
     ]
