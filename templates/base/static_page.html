@@ -8,6 +8,20 @@
   <meta property="article:modified_time" content="{{ page.latest_revision_created_at|date:'c' }}">
 {% endblock og %}
 
+{% block ldjson %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "url": "{{ page.full_url }}",
+      "headline": "{{ page.title }}",
+      "datePublished": "{{ page.first_published_at|date:'c' }}",
+      "dateModified": "{{ page.latest_revision_created_at|date:'c' }}",
+      "author": { "@id": "#main-author" }
+    }
+  </script>
+{% endblock ldjson %}
+
 {% block body_class %}static{% endblock %}
 
 {% block content %}
