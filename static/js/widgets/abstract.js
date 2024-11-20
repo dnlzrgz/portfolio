@@ -1,13 +1,23 @@
 {
   const chars = "↑↓←→↖↗↘↙↔↕";
+  const rootStyles = getComputedStyle(document.documentElement);
   const colors = [
-    "#ffb370",
-    "#ff9233",
-    "#f57200",
-    "#567d9f",
-    "#6a8faf",
-    "#88a5bf",
+    rootStyles.getPropertyValue("--primary-light").trim(),
+    rootStyles.getPropertyValue("--primary").trim(),
+    rootStyles.getPropertyValue("--primary-dark").trim(),
+    rootStyles.getPropertyValue("--accent-dark").trim(),
+    rootStyles.getPropertyValue("--accent").trim(),
+    rootStyles.getPropertyValue("--accent-light").trim(),
   ];
+  let white = rootStyles.getPropertyValue("--white").trim();
+
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    white = rootStyles.getPropertyValue("--black").trim();
+  }
+
   const len_colors = colors.length;
 
   let circles = [];
@@ -26,7 +36,7 @@
   }
 
   function draw() {
-    background("#fff");
+    background(white);
     drawGrid();
 
     for (let i = 0; i < circles.length; i++) {

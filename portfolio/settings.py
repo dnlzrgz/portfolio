@@ -282,10 +282,6 @@ BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/build/")
 
 BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 
-AWS_BUCKET_NAME = env.str("AWS_BUCKET_NAME")
-AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
-
 
 # Logging
 # https://docs.djangoproject.com/en/5.0/topics/logging/

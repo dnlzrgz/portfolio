@@ -13,45 +13,47 @@
   {% endif %}
 {% endblock og %}
 
+{% block ldjson %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "url": "{{ page.full_url }}",
+      "headline": "{{ page.title }}",
+      "description": "{{ page.search_description }}",
+      "datePublished": "{{ page.first_published_at|date:'c' }}",
+      "dateModified": "{{ page.latest_revision_created_at|date:'c' }}",
+      "author": { "@id": "#main-author" }
+    }
+  </script>
+{% endblock ldjson %}
+
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/highlight.css' %}" charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/prism/prism.css' %}">
 {% endblock extra_css %}
 
 {% block extra_js %}
-  <script src="{% static 'js/highlight.css.js' %}" defer></script>
-  <script src="{% static 'js/highlight.go.js' %}" defer></script>
-  <script src="{% static 'js/highlight.html.js' %}" defer></script>
-  <script src="{% static 'js/highlight.javascript.js' %}" defer></script>
-  <script src="{% static 'js/highlight.js' %}" defer></script>
-  <script src="{% static 'js/highlight.python.js' %}" defer></script>
-  <script src="{% static 'js/highlight.sql.js' %}" defer></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      hljs.highlightAll();
-    });
-  </script>
+  <script src="{% static 'js/prism/prism.js' %}" defer></script>
 {% endblock extra_js %}
 
+{% block body_class %}static{% endblock %}
+
 {% block content %}
-  <header class="header header--post">
-    <div class="hero hero--post">
-      <p class="hero__date">
-        {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
-      </p>
+  <header class="static__header">
+    <p class="static__date">
+      {{ page.first_published_at|date:'SHORT_DATE_FORMAT' }}
+    </p>
 
-      <h1 class="hero__title">
-        {{ page.title }}
-      </h1>
+    <h1 class="static__title">
+      {{ page.title }}
+    </h1>
 
-
-      <div class="hero__summary">
-        {{ page.tldr|richtext }}
-      </div>
+    <div class="static__summary">
+      {{ page.tldr|richtext }}
     </div>
   </header>
 
-  <main class="main main--post">
+  <main class="static__content">
     {% for block in page.body %}
       {% if block.block_type == 'heading' %}
         <h2>{{ block.value }}</h2>

@@ -1,7 +1,8 @@
 .nav {
-  background: var(--background);
+  background: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
   border: 1px solid var(--background);
+  border-color: light-dark(var(--background), var(--foreground));
   bottom: 0;
   box-shadow: var(--box-shadow);
   display: flex;
@@ -16,7 +17,7 @@
 }
 
 .nav__link {
-  color: var(--foreground);
+  color: light-dark(var(--foreground), var(--background));
   text-decoration: none;
 
   &:hover {
