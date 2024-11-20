@@ -1,9 +1,6 @@
 .static {
-  background: var(--white);
-  color: var(--foreground);
-  margin: 0 auto;
-  max-width: 65ch;
-  overflow: auto;
+  background: light-dark(var(--background), var(--foreground));
+  color: light-dark(var(--foreground), var(--background));
   padding: var(--spacing-9);
   padding-bottom: var(--spacing-56);
   padding-top: var(--spacing-32);
@@ -11,29 +8,34 @@
 
 .static__header {
   margin-bottom: var(--spacing-9);
+  text-align: center;
 }
 
 .static__title {
   font-size: var(--font-size-7xl);
   font-weight: var(--font-weight-thin);
+}
+
+.static__summary {
+  font-size: var(--font-size-2xl);
+  margin: 0 auto;
+  margin-top: var(--spacing-5);
+  max-width: 45ch;
   text-align: center;
 }
 
 .static__content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-9);
   font-size: var(--font-size-xl);
+  gap: var(--spacing-9);
+  margin: 0 auto;
+  max-width: 65ch;
 
   h1,
   h2,
   h3 {
     font-weight: var(--font-weight-thin);
-  }
-
-  h1 {
-    font-size: var(--font-size-7xl);
-    text-align: center;
   }
 
   h2 {
@@ -70,5 +72,9 @@
     padding: var(--spacing-3);
     padding-bottom: var(--spacing-56);
     padding-top: var(--spacing-32);
+  }
+
+  .static__title {
+    font-size: var(--font-size-5xl);
   }
 }

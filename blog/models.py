@@ -1,20 +1,50 @@
-from django.dispatch import receiver
-from django.db.models.signals import pre_delete
-from django.db import models
 from django.core.paginator import Paginator
-from modelcluster.fields import ParentalKey
+from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from wagtail import blocks
-from wagtail.models import Page, StreamField
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.contrib.frontend_cache.utils import PurgeBatch
+from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import RichTextField
+from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page, StreamField
 from wagtail.search import index
 from wagtail.signals import page_published
-from wagtail.embeds.blocks import EmbedBlock
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.images.blocks import ImageChooserBlock
-from wagtail.contrib.frontend_cache.utils import PurgeBatch
-from blog.custom_blocks import CodeBlock
+
+
+class CodeBlock(blocks.StructBlock):
+    language = blocks.ChoiceBlock(
+        choices=[
+            ("bash", "bash"),
+            ("c", "c"),
+            ("css", "css"),
+            ("django", "django"),
+            ("go", "golang"),
+            ("html", "html"),
+            ("java", "java"),
+            ("javascript", "javascript"),
+            ("json", "json"),
+            ("makefile", "makefile"),
+            ("markdown", "markdown"),
+            ("nginx", "nginx"),
+            ("php", "php"),
+            ("plaintext", "plaintext"),
+            ("python", "python"),
+            ("rust", "rust"),
+            ("sql", "sql"),
+            ("yaml", "yaml"),
+            ("zsh", "zsh"),
+        ]
+    )
+    code = blocks.TextBlock()
+
+    class Meta:
+        icon = "code"
+        template = "blocks/code_block.html"
 
 
 class BlogIndexPage(Page):

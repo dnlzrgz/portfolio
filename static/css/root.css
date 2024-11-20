@@ -4,11 +4,16 @@
 
 :root {
   /* Color palette */
+  --accent-dark: #567d9f;
+  --accent-light: #88a5bf;
   --accent: #6a8faf;
   --black: #0a0a0a;
+  --primary-dark: #f57200;
+  --primary-light: #ffb370;
   --primary: #ff9233;
   --white: #f5f5f5;
   --background: var(--white);
+  --foreground: var(--black);
 
   /* Font size */
   --font-size-xs: 0.75rem;
@@ -164,11 +169,4 @@
    *  xl: 1200px
    *  xxl: 1500px
    **/
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: var(--white);
-    --background: var(--black);
-  }
 }

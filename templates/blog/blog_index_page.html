@@ -3,35 +3,33 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-  <header class="header header--blog">
-    <div class="hero hero--blog">
-      <h1 class="hero__title">
-        {{ page.title }}
-      </h1>
-    </div>
+  <header class="">
+    <h1 class="">
+      {{ page.title }}
+    </h1>
   </header>
 
-  <main class="main blog">
+  <main class="">
     {% for post in posts %}
       {% with post=post.specific %}
-        <article class="article">
-          <header class="article__header">
-            <time class="article__date">
+        <article class="">
+          <header class="">
+            <time class="">
               {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
             </time>
 
-            <h2 class="article__title">
+            <h2 class="">
               {{ post.title }}
             </a>
           </h2>
         </header>
 
-        <main class="article__summary">
+        <main class="">
           {{ post.tldr|richtext }}
         </main>
 
         <footer>
-          <a href="{{ post.url }}" class="article__link">
+          <a href="{{ post.url }}" class="">
             Read more
           </a>
         </footer>

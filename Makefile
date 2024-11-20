@@ -18,15 +18,9 @@ update:
 download-p5js:
 	curl -sL https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js -o static/js/p5.min.js
 
-download-highlight:
-	curl -sL https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css -o static/css/highlight.css
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js -o static/js/highlight.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/css.min.js -o static/js/highlight.css.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/go.min.js -o static/js/highlight.go.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/html.min.js -o static/js/highlight.html.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/javascript.min.js -o static/js/highlight.javascript.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/python.min.js -o static/js/highlight.python.js
-	curl -sL https://unpkg.com/@highlightjs/cdn-assets@11.9.0/languages/sql.min.js -o static/js/highlight.sql.js
+download-prism:
+	curl -sL https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css -o static/css/prism/prism.css
+	curl -sl https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js -o static/js/prism/prism.js
 
 collect:
 	uv run manage.py collectstatic --no-input
@@ -41,7 +35,7 @@ buildserver:
 	uv run manage.py buildserver
 
 publish:
-	uv run manage.py publish
+	npx wrangler pages deploy /tmp/build
 
 runserver:
 	uv run manage.py runserver

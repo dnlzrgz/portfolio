@@ -3,16 +3,17 @@
  **/
 
 .widget {
-  background: var(--background);
+  background: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
   border: 1px solid var(--background);
+  border-color: light-dark(var(--background), var(--foreground));
   box-shadow: var(--box-shadow);
   overflow: clip;
   position: absolute;
 
   .title {
     background: transparent;
-    color: var(--foreground);
+    color: light-dark(var(--foreground), var(--background));
     cursor: grab;
     display: flex;
     padding: var(--spacing-4) var(--spacing-9);
@@ -191,7 +192,7 @@
   background: transparent;
 
   .title {
-    background: var(--background);
+    background: light-dark(var(--background), var(--foreground));
   }
 
   .content {
@@ -224,7 +225,7 @@
   width: var(--w-96);
 
   .title {
-    background: var(--background);
+    background: light-dark(var(--background), var(--foreground));
   }
 
   .content {
@@ -290,7 +291,7 @@
     padding: var(--spacing-5) var(--spacing-9);
 
     a {
-      color: var(--foreground);
+      color: light-dark(var(--foreground), var(--background));
       text-decoration: none;
 
       &:hover {

@@ -1,6 +1,6 @@
 .home {
   background: var(--accent);
-  color: var(--foreground);
+  color: light-dark(var(--foreground), var(--background));
   overflow: hidden;
 }
 
@@ -20,10 +20,10 @@
 
 @media (prefers-color-scheme: dark) {
   #gradient-canvas {
-    --gradient-color-1: var(--black-hex);
-    --gradient-color-2: var(--primary-hex);
-    --gradient-color-3: var(--accent-hex);
-    --gradient-color-4: var(--black-hex);
+    --gradient-color-1: var(--black);
+    --gradient-color-2: var(--primary);
+    --gradient-color-3: var(--accent);
+    --gradient-color-4: var(--black);
   }
 }
 
