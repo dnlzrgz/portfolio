@@ -2,37 +2,57 @@
 
 {% load wagtailcore_tags %}
 
+{% block ldjson %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "url": "{{ page.full_url }}",
+      "headline": "{{ page.title }}",
+      "mainEntity":[
+        {% for post in posts %}
+          {
+            "@type": "Article",
+            "url": "{{ post.url }}",
+            "headline": "{{ post.title }}",
+            "datePublished": "{{ post.first_published_at|date:'c' }}",
+            "dateModified": "{{ post.latest_revision_created_at|date:'c' }}",
+            "author": { "@id": "#main-author", }
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endblock ldjson %}
+
+{% block body_class %}blog{% endblock %}
+
 {% block content %}
-  <header class="">
-    <h1 class="">
+  <header class="blog__header">
+    <h1 class="blog__title">
       {{ page.title }}
     </h1>
   </header>
 
-  <main class="">
+  <main class="blog__list" role="list">
     {% for post in posts %}
       {% with post=post.specific %}
-        <article class="">
-          <header class="">
-            <time class="">
-              {{ post.first_published_at|date:'SHORT_DATE_FORMAT' }}
+        <article class="blog__post" role="listitem">
+          <header class="blog__post__header">
+            <time class="blog__post__date">
+              {{ post.date|date:'SHORT_DATE_FORMAT' }}
             </time>
 
-            <h2 class="">
-              {{ post.title }}
+            <a href="{{ post.url }}" class="blog__post__link">
+              <h2 class="blog__post__title">
+                {{ post.title }}
+              </h2>
             </a>
-          </h2>
-        </header>
+          </header>
 
-        <main class="">
-          {{ post.tldr|richtext }}
-        </main>
-
-        <footer>
-          <a href="{{ post.url }}" class="">
-            Read more
-          </a>
-        </footer>
+          <main class="blog__post__content">
+            {{ post.tldr|richtext }}
+          </main>
         </article>
       {% endwith %}
     {% endfor %}

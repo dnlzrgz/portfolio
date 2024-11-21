@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from django.db import models
+from django.db.models.fields import datetime
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -76,6 +77,7 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogPostPage(Page):
+    date = models.DateField(default=datetime.date.today)
     tldr = RichTextField(blank=True)
     tags = ClusterTaggableManager(
         through=BlogPageTag,
@@ -102,6 +104,7 @@ class BlogPostPage(Page):
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
+                FieldPanel("date"),
                 FieldPanel("tldr"),
                 FieldPanel("tags"),
             ],

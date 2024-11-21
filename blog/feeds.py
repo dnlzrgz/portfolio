@@ -15,6 +15,7 @@ class RssFeed(BuildableFeed):
         "development",
         "web",
         "api",
+        "backend",
         "microservices",
         "fast api",
     )
