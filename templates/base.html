@@ -88,10 +88,10 @@
         <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
 
         {# CSS #}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
-
         {% block extra_css %}
         {% endblock extra_css %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
 
         {# JS #}
         {% block extra_js %}
