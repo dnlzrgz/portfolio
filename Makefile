@@ -18,10 +18,6 @@ update:
 download-p5js:
 	curl -sL https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js -o static/js/p5.min.js
 
-download-prism:
-	curl -sL https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css -o static/css/prism/prism.css
-	curl -sl https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js -o static/js/prism/prism.js
-
 collect:
 	uv run manage.py collectstatic --no-input
 
