@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
     "wagtail.contrib.frontend_cache",
+    "wagtail.contrib.sitemaps",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -280,7 +281,12 @@ BAKERY_MULTISITE = env.bool("WAGTAIL_BAKERY_MULTISITE", False)
 
 BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/build/")
 
-BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
+BAKERY_VIEWS = (
+    "blog.feeds.RssFeed",
+    "portfolio.views.RobotsView",
+    "portfolio.views.SitemapView",
+    "wagtailbakery.views.AllPublishedPagesView",
+)
 
 
 # Logging

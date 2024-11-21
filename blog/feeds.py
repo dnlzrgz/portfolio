@@ -1,28 +1,29 @@
-from django.contrib.syndication.views import Feed
-from django.utils.feedgenerator import Atom1Feed
+from bakery.feeds import BuildableFeed
 from blog.models import BlogPostPage
 
 
-class RssFeed(Feed):
+class RssFeed(BuildableFeed):
     title = "dnlzrgz - Blog"
     link = "/"
     description = "Lates posts from dnlzrgz's blog on software development with Python, Django, FastAPI and more."
-    feed_url = "/rss/"
+    feed_url = "/rss.xml"
+    build_path = "rss.xml"
     author_name = "dnlzrgz"
     categories = (
         "python",
         "django",
-        "web development",
+        "development",
+        "web",
+        "api",
         "microservices",
         "fast api",
-        "api development",
     )
     feed_copyright = "Copyright ©2024, dnlzrgz"
 
     language = "en"
 
     def items(self):
-        return BlogPostPage.objects.order_by("-first_published_at")[:10]
+        return BlogPostPage.objects.live().order_by("-first_published_at")[:20]
 
     def item_title(self, item):
         return item.title
@@ -41,9 +42,3 @@ class RssFeed(Feed):
 
     def item_categories(self, item):
         return [tag.name for tag in item.tags.all()]
-
-
-class AtomFeed(RssFeed):
-    feed_type = Atom1Feed
-    link = "/atom/"
-    subtitle = RssFeed.description
