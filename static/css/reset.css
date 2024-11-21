@@ -93,12 +93,18 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
-pre,
-code {
+pre[class*="language-"],
+code[class*="language-"] {
+  background: light-dark(var(--background), var(--foreground));
+  color: light-dark(var(--foreground), var(--background));
   font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
-  font-style: monospace;
+  hyphens: none;
   overflow-x: auto;
+  tab-size: 4;
+  text-shadow: none;
+  word-break: normal;
+  word-spacing: normal;
 }
 
 body,
