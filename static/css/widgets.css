@@ -256,25 +256,22 @@
 
   .todo {
     accent-color: var(--accent);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2-5);
-    justify-content: center;
     padding: var(--spacing-5) 0;
   }
 
   .todo__label {
-    display: inline-flex;
     align-items: start;
-    gap: var(--spacing-2-5);
     cursor: pointer;
+    display: inline-flex;
+    gap: var(--spacing-2-5);
+    margin-bottom: var(--spacing-3);
     user-select: none;
   }
 
   .todo__checkbox {
     cursor: pointer;
-    width: var(--w-6);
-    height: var(--w-6);
+    min-height: var(--w-5);
+    min-width: var(--w-5);
   }
 
   .todo__label:has(.todo__checkbox:checked) {

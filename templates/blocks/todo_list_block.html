@@ -5,14 +5,12 @@
     </h2>
   </header>
 
-  <main class="content">
-    <ul role="list" class="todo">
-      {% for item in self.default_tasks %}
-        <label for="task-{{ forloop.counter }}" role="listitem" class="todo__label">
-          <input type="checkbox" id="task-{{ forloop.counter }}" {% if item.done %}checked{% endif %} class="todo__checkbox" />
-          {{ item.label }}
-        </label>
-      {% endfor %}
-    </ul>
+  <main class="content" role="list" class="todo">
+    {% for item in self.default_tasks %}
+      <label for="task-{{ forloop.counter }}" role="listitem" class="todo__label">
+        <input type="checkbox" id="task-{{ forloop.counter }}" {% if item.done %}checked{% endif %} class="todo__checkbox" />
+        {{ item.label }}
+      </label>
+    {% endfor %}
   </main>
 </section>
