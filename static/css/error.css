@@ -1,0 +1,10 @@
+.error {
+  background: light-dark(var(--background), var(--foreground));
+  color: light-dark(var(--foreground), var(--background));
+  display: grid;
+  place-items: center;
+
+  h1 {
+    font-size: var(--font-size-7xl);
+  }
+}
