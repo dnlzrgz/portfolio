@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ status_code }} | dnlzrgz</title>
+
+    {# Favicon #}
+    <link rel="apple-touch-icon" href="{% static 'assets/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
+
+    {# CSS #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
+  </head>
+
+  <body class="body error">
+    <h1>{{ status_code }}</h1>
+
+    {% include 'includes/nav.html' %}
+  </body>
+</html>

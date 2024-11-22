@@ -283,6 +283,8 @@ BUILD_DIR = env.str("WAGTAIL_BAKERY_BUILD_DIR", "/tmp/build/")
 
 BAKERY_VIEWS = (
     "blog.feeds.RssFeed",
+    "portfolio.views.Custom404View",
+    "portfolio.views.Custom500View",
     "portfolio.views.RobotsView",
     "portfolio.views.SitemapView",
     "wagtailbakery.views.AllPublishedPagesView",
