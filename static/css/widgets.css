@@ -3,7 +3,7 @@
  **/
 
 .widget {
-  animation: fadeIn 300ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: fadeIn 350ms cubic-bezier(0, 0, 0.2, 1) forwards;
   background: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
   border: 1px solid var(--background);
