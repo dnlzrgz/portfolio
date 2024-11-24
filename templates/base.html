@@ -92,10 +92,6 @@
         {% endblock extra_css %}
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
-
-        {# JS #}
-        {% block extra_js %}
-        {% endblock extra_js %}
     </head>
 
     <body class="body {% block body_class %}{% endblock %}">
@@ -103,5 +99,9 @@
         {% endblock %}
 
         {% include 'includes/nav.html' %}
+
+        {# JS #}
+        {% block extra_js %}
+        {% endblock extra_js %}
     </body>
 </html>
