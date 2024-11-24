@@ -2,106 +2,110 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            {% block title %}
-                {% if page.seo_title %}
-                    {{ page.seo_title }}
-                {% else %}
-                    {{ page.title }}
-                {% endif %}
-            {% endblock %}
-
-            {% block title_suffix %}
-                | {{ settings.base.SiteSettings.title_suffix }}
-            {% endblock %}
-        </title>
-
-        <meta name="description" content="{{ page.search_description }}" />
-
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="color-scheme" content="light dark">
-        <link rel="canonical" href="{{ page.get_site.root_url }}">
-
-        <meta name="author" content="{{ settings.base.SiteSettings.author_name }}" />
-
-        {# Robots #}
-        <meta name="robots" content="index,follow">
-
-        {# OG tags #}
-        <meta property="og:title" content="{{ page.seo_title|default:page.title }}" />
-        <meta property="og:description" content="{{ page.search_description }}" />
-        <meta property="og:site_name" content="{{ settings.base.SiteSettings.site_name|default:'dnlzrgz' }}" />
-        <meta property="og:locale" content="en_US" />
-
-        {% if page.og_image %}
-            {% image page.og_image original as og_image %}
-            <meta property="og:image" content="{{ og_image.url }}" />
-            <meta property="og:image:width" content="{{ og_image.width }}" />
-            <meta property="og:image:height" content="{{ og_image.height }}" />
-            <meta property="og:image:alt" content="{{ og_image.alt }}" />
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      {% block title %}
+        {% if page.seo_title %}
+          {{ page.seo_title }}
+        {% else %}
+          {{ page.title }}
         {% endif %}
+      {% endblock %}
 
-        {% block og %}
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content="{{ page.full_url }}" />
-        {% endblock og %}
+      {% block title_suffix %}
+        | {{ settings.base.SiteSettings.title_suffix }}
+      {% endblock %}
+    </title>
 
-        {# LD+JSON #}
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org/",
-                "@type": "ProfilePage",
-                "mainEntity": {
-                    "@id": "#main-author",
-                    "@type": "Person",
-                    "name": "{{ settings.base.SiteSettings.author_name }}",
-                    "jobTitle": "Developer",
-                    "email": "{{ settings.base.ContactEmailSettings.email }}",
-                    "url": "{{ page.get_site.root_url }}"
-                }
-            }
-        </script>
+    <meta name="description" content="{{ page.search_description }}" />
 
-        {% block ldjson %}
-        {% endblock ldjson %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark">
+    <link rel="canonical" href="{{ page.get_site.root_url }}">
 
-        {# Force all links in the live preview panel to be opened in a new tab #}
-        {% if request.in_preview_panel %}
-            <base target="_blank">
-        {% endif %}
+    <meta name="author" content="{{ settings.base.SiteSettings.author_name }}" />
 
-        {# Fediverse settings #}
-        {% if settings.base.SiteSettings.mastodon_verification %}
-            <link rel="me" href="{{ settings.base.SiteSettings.mastodon_verification }}"/>
-        {% endif %}
+    {# Robots #}
+    <meta name="robots" content="index,follow">
 
-        {% if settings.base.SiteSettings.fediverse_handle %}
-            <meta name="fediverse:creator" content="{{ settings.base.SiteSettings.fediverse_handle }}" />
-        {% endif %}
+    {# OG tags #}
+    <meta property="og:title" content="{{ page.seo_title|default:page.title }}" />
+    <meta property="og:description" content="{{ page.search_description }}" />
+    <meta property="og:site_name" content="{{ settings.base.SiteSettings.site_name|default:'dnlzrgz' }}" />
+    <meta property="og:locale" content="en_US" />
 
-        {# Favicon #}
-        <link rel="apple-touch-icon" href="{% static 'assets/apple-touch-icon.png' %}" />
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
-        <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
+    {% if page.og_image %}
+      {% image page.og_image original as og_image %}
+      <meta property="og:image" content="{{ og_image.url }}" />
+      <meta property="og:image:width" content="{{ og_image.width }}" />
+      <meta property="og:image:height" content="{{ og_image.height }}" />
+      <meta property="og:image:alt" content="{{ og_image.alt }}" />
+    {% endif %}
 
-        {# CSS #}
-        {% block extra_css %}
-        {% endblock extra_css %}
+    {% block og %}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="{{ page.full_url }}" />
+    {% endblock og %}
 
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
-    </head>
+    {# LD+JSON #}
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org/",
+        "@type": "ProfilePage",
+        "mainEntity": {
+          "@id": "#main-author",
+          "@type": "Person",
+          "name": "{{ settings.base.SiteSettings.author_name }}",
+          "jobTitle": "Developer",
+          "email": "{{ settings.base.ContactEmailSettings.email }}",
+          "url": "{{ page.get_site.root_url }}"
+        }
+      }
+    </script>
 
-    <body class="body {% block body_class %}{% endblock %}">
-        {% block content %}
-        {% endblock %}
+    {% block ldjson %}
+    {% endblock ldjson %}
 
-        {% include 'includes/nav.html' %}
+    {# Force all links in the live preview panel to be opened in a new tab #}
+    {% if request.in_preview_panel %}
+      <base target="_blank">
+    {% endif %}
 
-        {# JS #}
-        {% block extra_js %}
-        {% endblock extra_js %}
-    </body>
+    {# Fediverse settings #}
+    {% if settings.base.SiteSettings.mastodon_verification %}
+      <link rel="me" href="{{ settings.base.SiteSettings.mastodon_verification }}"/>
+    {% endif %}
+
+    {% if settings.base.SiteSettings.fediverse_handle %}
+      <meta name="fediverse:creator" content="{{ settings.base.SiteSettings.fediverse_handle }}" />
+    {% endif %}
+
+    {# Favicon #}
+    <link rel="apple-touch-icon" href="{% static 'assets/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicon-16x16.png' %}">
+    <link rel="icon" href="{% static 'assets/favicon.ico' %}" />
+
+    {# Extra <head> tags #}
+    {% block extra_head_tags %}
+    {% endblock extra_head_tags %}
+
+    {# CSS #}
+    {% block extra_css %}
+    {% endblock extra_css %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" charset="utf-8">
+  </head>
+
+  <body class="body {% block body_class %}{% endblock %}">
+    {% block content %}
+    {% endblock %}
+
+    {% include 'includes/nav.html' %}
+
+    {# JS #}
+    {% block extra_js %}
+    {% endblock extra_js %}
+  </body>
 </html>
