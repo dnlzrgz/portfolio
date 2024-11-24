@@ -26,6 +26,7 @@ migrate:
 
 build:
 	uv run manage.py build
+	cp ./_redirects /tmp/build
 
 buildserver:
 	uv run manage.py buildserver
