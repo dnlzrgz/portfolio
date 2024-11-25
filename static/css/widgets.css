@@ -198,7 +198,7 @@
 
   .content {
     backdrop-filter: blur(14px);
-    background-color: hsla(0, 0%, 96%, 0.3);
+    background-color: hsla(0, 0%, 96%, 0.5);
   }
 
   .social-links {
@@ -231,7 +231,7 @@
 
   .content {
     backdrop-filter: blur(14px);
-    background-color: hsla(0, 0%, 96%, 0.3);
+    background-color: hsla(0, 0%, 96%, 0.5);
   }
 
   .stack-list {
