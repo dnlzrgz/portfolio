@@ -133,6 +133,10 @@
   user-select: none;
   width: var(--w-124);
 
+  .title {
+    color: var(--foreground);
+  }
+
   .content {
     padding: var(--spacing-9);
     padding-top: var(--spacing-3);
