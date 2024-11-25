@@ -127,35 +127,20 @@
 }
 
 .widget--blog-post {
-  width: 65ch;
+  background: var(--primary);
+  border-color: var(--primary);
   height: auto;
+  user-select: none;
+  width: var(--w-124);
 
-  .featured_post__header__title {
-    font-size: var(--font-size-5xl);
-    font-weight: var(--font-weight-normal);
-    margin-bottom: var(--spacing-3);
+  .content {
+    padding: var(--spacing-9);
+    padding-top: var(--spacing-3);
   }
 
-  .featured_post__footer {
-    display: flex;
-    flex-shrink: 1;
-  }
-
-  .featured_post__link {
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--foreground);
-    color: var(--foreground);
-    display: block;
-    font-weight: var(--font-weight-normal);
-    margin-top: var(--spacing-5);
-    padding: var(--spacing-3) var(--spacing-5);
-    text-decoration: none;
-    width: auto;
-
-    &:hover {
-      color: var(--background);
-      background: var(--foreground);
-    }
+  .post {
+    border: none;
+    padding: 0;
   }
 }
 

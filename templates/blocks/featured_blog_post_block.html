@@ -6,20 +6,20 @@
   </header>
 
   <main class="content">
-    <article class="featured_post">
-      <header class="featured_post__header">
-        <h1 class="featured_post__header__title">{{ self.blog_post.title }}</h1>
-      </header>
+    <a href="{{ self.blog_post.url }}" class="post">
+      <article>
+        <header class="post__header">
+          <time class="post__date">
+            {{ self.blog_post.date|date:'SHORT_DATE_FORMAT' }}
+          </time>
 
-      <main class="featured_post__content">
-        {{ self.blog_post.tldr|richtext }}
-      </main>
+          <h2 class="post__title">{{ self.blog_post.title }}</h2>
+        </header>
 
-      <footer class="featured_post__footer">
-        <a href="{{ self.blog_post.url }}" class="featured_post__link">
-          Take a peek
-        </a>
-      </footer>
-    </article>
+        <main class="post__content">
+          {{ self.blog_post.tldr|richtext }}
+        </main>
+      </article>
+    </a>
   </main>
 </section>

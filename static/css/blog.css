@@ -32,7 +32,7 @@
 }
 
 .post {
-  /*background: var(--primary);*/
+  background: var(--primary);
   border: 1px solid var(--background);
   border-color: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
