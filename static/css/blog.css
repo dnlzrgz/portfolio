@@ -1,4 +1,12 @@
 .blog {
+  /* Post cards */
+  --post-card-bg-1: var(--primary);
+  --post-card-bg-2: #c8d5b9;
+  --post-card-bg-3: #fc9e4f;
+  --post-card-bg-4: #6a8faf;
+  --post-card-bg-5: #4a7c59;
+  --post-card-bg-6: #03312e;
+
   background: light-dark(var(--background), var(--foreground));
   color: light-dark(var(--foreground), var(--background));
   padding: var(--spacing-9);
@@ -17,48 +25,48 @@
 }
 
 .blog__list {
-  display: flex;
-  flex-direction: column;
-  font-size: var(--font-size-xl);
-  gap: var(--spacing-9);
-  margin: 0 auto;
-  max-width: 65ch;
-  font-weight: var(--font-weight-normal);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--w-96), var(--w-124)));
+  place-content: center;
+  gap: var(--spacing-5);
 }
 
-.blog__post__date {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--spacing-1-5);
-}
-
-.blog__post__link {
-  color: light-dark(var(--foreground), var(--background));
+.post {
+  /*background: var(--primary);*/
+  border: 1px solid var(--background);
+  border-color: light-dark(var(--background), var(--foreground));
+  border-radius: var(--border-radius-xl);
+  color: var(--foreground);
+  padding: var(--spacing-9);
   text-decoration: none;
+  width: 100%;
 
-  &:hover {
-    color: var(--accent);
+  .post__header {
+    margin-bottom: var(--spacing-5);
+
+    time {
+      display: block;
+      margin-bottom: var(--spacing-2-5);
+    }
+
+    h2 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  &:hover h2 {
     text-decoration: underline;
   }
+
+  main {
+    font-size: var(--font-size-xl);
+  }
 }
 
-.blog__post__title {
-  font-size: var(--font-size-5xl);
-  margin-bottom: var(--spacing-3);
-}
-
-@media only screen and (max-width: 768px) {
-  .blog {
-    padding: var(--spacing-3);
-    padding-bottom: var(--spacing-56);
-    padding-top: var(--spacing-32);
-  }
-
-  .blog__title {
-    font-size: var(--font-size-5xl);
-  }
-
-  .blog__post__title {
-    font-size: var(--font-size-3xl);
+@media only screen and (max-width: 800px) {
+  .blog__list {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-9);
   }
 }

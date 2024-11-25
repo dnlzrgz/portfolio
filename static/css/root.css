@@ -4,13 +4,13 @@
 
 :root {
   /* Color palette */
-  --accent-dark: #567d9f;
-  --accent-light: #88a5bf;
-  --accent: #6a8faf;
+  --primary-dark: #567d9f;
+  --primary-light: #88a5bf;
+  --primary: #6a8faf;
   --black: #0a0a0a;
-  --primary-dark: #f57200;
-  --primary-light: #ffb370;
-  --primary: #ff9233;
+  --orange-dark: #f57200;
+  --orange-light: #ffb370;
+  --orange: #ff9233;
   --white: #f5f5f5;
   --background: var(--white);
   --foreground: var(--black);
@@ -70,7 +70,7 @@
     hsla(0, 0%, 4%, var(--box-shadow-opacity, 0.1));
 
   /* Text decoration */
-  --text-decoration-color: var(--accent);
+  --text-decoration-color: var(--primary);
   --text-decoration-underline: var(--text-decoration-color) underline;
   --text-decoration-line-through: var(--text-decoration-color) line-through;
 

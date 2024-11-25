@@ -1,5 +1,5 @@
 .home {
-  background: var(--accent);
+  background: var(--primary);
   color: light-dark(var(--foreground), var(--background));
   overflow: hidden;
 }
@@ -7,7 +7,7 @@
 #gradient-canvas {
   --gradient-color-1: var(--white);
   --gradient-color-2: var(--primary);
-  --gradient-color-3: var(--accent);
+  --gradient-color-3: var(--orange);
   --gradient-color-4: var(--white);
 
   height: 100svh;
@@ -21,8 +21,8 @@
 @media (prefers-color-scheme: dark) {
   #gradient-canvas {
     --gradient-color-1: var(--black);
-    --gradient-color-2: var(--primary);
-    --gradient-color-3: var(--accent);
+    --gradient-color-2: var(--orange);
+    --gradient-color-3: var(--primary);
     --gradient-color-4: var(--black);
   }
 }
