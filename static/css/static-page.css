@@ -47,7 +47,7 @@
   }
 
   a {
-    color: var(--accent);
+    color: var(--primary);
     font-style: italic;
 
     &:visited {
@@ -55,7 +55,7 @@
     }
 
     &:hover {
-      color: var(--accent);
+      color: var(--primary);
     }
   }
 

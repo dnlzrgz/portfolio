@@ -80,7 +80,7 @@
       width: var(--spacing-6);
 
       &:hover {
-        color: var(--accent);
+        color: var(--primary);
       }
     }
   }
@@ -117,12 +117,12 @@
   }
 
   .calendar__day.today {
-    background-color: var(--accent);
+    background-color: var(--primary);
     font-weight: bold;
   }
 
   .calendar__day:hover {
-    background-color: var(--accent);
+    background-color: var(--primary);
   }
 }
 
@@ -214,7 +214,7 @@
       text-decoration: none;
 
       &:hover {
-        color: var(--accent);
+        color: var(--primary);
         text-decoration: var(--text-decoration-underline);
       }
     }
@@ -243,7 +243,7 @@
   }
 
   .stack-list__item {
-    background: var(--accent);
+    background: var(--primary);
     border-radius: 999px;
     color: var(--white);
     font-size: var(--font-size-base);
@@ -256,7 +256,7 @@
   width: var(--w-80);
 
   .todo {
-    accent-color: var(--accent);
+    accent-color: var(--primary);
     padding: var(--spacing-5) 0;
   }
 
@@ -293,7 +293,7 @@
       text-decoration: none;
 
       &:hover {
-        color: var(--accent);
+        color: var(--primary);
         text-decoration: var(--text-decoration-underline);
       }
     }

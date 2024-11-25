@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
 
 {% block ldjson %}
   <script type="application/ld+json">
@@ -25,6 +25,10 @@
   </script>
 {% endblock ldjson %}
 
+{% block extra_js %}
+  <script src="{% static 'js/blog.js' %}" defer></script>
+{% endblock extra_js %}
+
 {% block body_class %}blog{% endblock %}
 
 {% block content %}
@@ -37,23 +41,22 @@
   <main class="blog__list" role="list">
     {% for post in posts %}
       {% with post=post.specific %}
-        <article class="blog__post" role="listitem">
-          <header class="blog__post__header">
-            <time class="blog__post__date">
-              {{ post.date|date:'SHORT_DATE_FORMAT' }}
-            </time>
-
-            <a href="{{ post.url }}" class="blog__post__link">
-              <h2 class="blog__post__title">
+        <a href="{{ post.url }}" class="post" role="listitem">
+          <article>
+            <header class="post__header">
+              <time class="post__date">
+                {{ post.date|date:'SHORT_DATE_FORMAT' }}
+              </time>
+              <h2 class="post__title">
                 {{ post.title }}
               </h2>
-            </a>
-          </header>
+            </header>
 
-          <main class="blog__post__content">
-            {{ post.tldr|richtext }}
-          </main>
-        </article>
+            <main class="post__content">
+              {{ post.tldr|richtext }}
+            </main>
+          </article>
+        </a>
       {% endwith %}
     {% endfor %}
   </main>

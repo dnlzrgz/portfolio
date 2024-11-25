@@ -5,9 +5,9 @@
     rootStyles.getPropertyValue("--primary-light").trim(),
     rootStyles.getPropertyValue("--primary").trim(),
     rootStyles.getPropertyValue("--primary-dark").trim(),
-    rootStyles.getPropertyValue("--accent-dark").trim(),
-    rootStyles.getPropertyValue("--accent").trim(),
-    rootStyles.getPropertyValue("--accent-light").trim(),
+    rootStyles.getPropertyValue("--orange-dark").trim(),
+    rootStyles.getPropertyValue("--orange").trim(),
+    rootStyles.getPropertyValue("--orange-light").trim(),
   ];
   let white = rootStyles.getPropertyValue("--white").trim();
 
@@ -17,8 +17,6 @@
   ) {
     white = rootStyles.getPropertyValue("--black").trim();
   }
-
-  const len_colors = colors.length;
 
   let circles = [];
   let gridSize = 20;
@@ -70,7 +68,7 @@
           y: i * gridSize,
           textSize: 30,
           charIndex: 0,
-          color: colors[len_colors - 1],
+          color: colors[0],
           text: "◤",
         });
       }
@@ -106,7 +104,7 @@
         );
 
         if (dist(rectX, rectY, rX, rY) > cc) {
-          grid[i].color = colors[len_colors - 1];
+          grid[i].color = colors[0];
           grid[i].text = "◤";
         } else {
           colorIndex = int(
