@@ -108,7 +108,7 @@ class FeaturedProjectBlock(StructBlock):
     Custom `StructBlock` for displaying a featured project.
     """
 
-    title = CharBlock(required=True)
+    title = CharBlock()
     project = PageChooserBlock(
         page_type="projects.ProjectPage",
         required=True,
@@ -124,7 +124,7 @@ class FeaturedBlogPostBlock(StructBlock):
     Custom `StructBlock` for displaying a featured blog post.
     """
 
-    title = CharBlock(required=True)
+    title = CharBlock()
     blog_post = PageChooserBlock(
         page_type="blog.BlogPostPage",
         required=True,
