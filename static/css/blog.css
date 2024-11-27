@@ -9,7 +9,7 @@
 
   background: light-dark(var(--background), var(--foreground));
   color: light-dark(var(--foreground), var(--background));
-  padding: var(--spacing-9);
+  padding: var(--spacing-3);
   padding-bottom: var(--spacing-56);
   padding-top: var(--spacing-32);
 }
@@ -67,6 +67,5 @@
 @media only screen and (max-width: 800px) {
   .blog__list {
     grid-template-columns: 1fr;
-    gap: var(--spacing-9);
   }
 }
