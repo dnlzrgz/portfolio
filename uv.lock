@@ -51,30 +51,30 @@ wheels = [
 
 [[package]]
 name = "boto3"
-version = "1.35.68"
+version = "1.35.70"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "botocore" },
     { name = "jmespath" },
     { name = "s3transfer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/93/73/b3871afc8fd5c65dc43517474894ee74040f2c578b5f06e54d19ee8db94b/boto3-1.35.68.tar.gz", hash = "sha256:091d6bed1422370987a839bff3f8755df7404fc15e9fac2a48e8505356f07433", size = 111027 }
+sdist = { url = "https://files.pythonhosted.org/packages/a9/df/6ca0750a220c5080081bbd702fa4981eec25b3ed95a17358025edfc6d027/boto3-1.35.70.tar.gz", hash = "sha256:121dce8c7102eea6a6047d46bcd74e8a24dac793a4a3857de4f4bad9c12566fd", size = 111042 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ce/4c/f705301ad8463375c137eefc9cbddd23ee1a6681e9db0fc3cb8ae7ba8426/boto3-1.35.68-py3-none-any.whl", hash = "sha256:9b26fa31901da7793c1dcd65eee9bab7e897d8aa1ffed0b5e1c3bce93d2aefe4", size = 139180 },
+    { url = "https://files.pythonhosted.org/packages/dd/ee/cbae52e3a54c96330359fcd0a883072a0970c3a9ed2f3022eec6adf1d40d/boto3-1.35.70-py3-none-any.whl", hash = "sha256:ca385708f83f01b3f27d9d675880d2458cb3b40ed1e25da688f551454ed0c112", size = 139179 },
 ]
 
 [[package]]
 name = "botocore"
-version = "1.35.68"
+version = "1.35.70"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "jmespath" },
     { name = "python-dateutil" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f8/5d/a26f56d44685fb6f321228400f3f400492cbca0e5df7548995099e13c73e/botocore-1.35.68.tar.gz", hash = "sha256:42c3700583a82f2b5316281a073d644a521d6358837e2b446dc458ba5d990fb4", size = 13221088 }
+sdist = { url = "https://files.pythonhosted.org/packages/e3/b5/9bae5c9d884a3195db7528340e1e4ad73a29c0cff7d2be992a8fe435d124/botocore-1.35.70.tar.gz", hash = "sha256:18d1bb505722d9efd50c50719ed8de7284bfe6d3908a9e08756a7646e549da21", size = 13227143 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/20/9c8b7112a7f76d819e09ad2964d0e4211bcde23e41feb0e1e92dd8b89051/botocore-1.35.68-py3-none-any.whl", hash = "sha256:599139d5564291f5be873800711f9e4e14a823395ae9ce7b142be775e9849b94", size = 13015030 },
+    { url = "https://files.pythonhosted.org/packages/11/9b/e7b4fc215c600c596b53ac6fcfe17d9c25998cf9751dd491013df472836c/botocore-1.35.70-py3-none-any.whl", hash = "sha256:ba8a4797cf7c5d9c237e67a62692f5146e895613fd3e6a43b00b66f3a8c7fc73", size = 13024196 },
 ]
 
 [[package]]
@@ -121,7 +121,7 @@ wheels = [
 
 [[package]]
 name = "commitizen"
-version = "3.31.0"
+version = "4.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argcomplete" },
@@ -135,9 +135,9 @@ dependencies = [
     { name = "termcolor" },
     { name = "tomlkit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/ab/71d7338d26c096042269119d93551812897a10378f91af586da2c6aab259/commitizen-3.31.0.tar.gz", hash = "sha256:6ab973e91d07c1e745c6c0efe6dd0708b1f6d8fd7e4ab5e7c773b5ceb3df4ff0", size = 51227 }
+sdist = { url = "https://files.pythonhosted.org/packages/60/ca/4335a56f2f9f1f95d1854ab7d3c485f47c87378db084b76c6e515d474231/commitizen-4.0.0.tar.gz", hash = "sha256:16aff27e01b43015eab1c74eabbca3e284b4988dd1b146a0963282db241dc2c0", size = 51203 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/22/03/62cf9241c5072050c51ba3bade371b4e11372dde9db8fec6da73c579fdf5/commitizen-3.31.0-py3-none-any.whl", hash = "sha256:a28df7ab5b8665d48796c422a97dcfae0d0fce7e2d28404c0e386cf1ebd42c8f", size = 72235 },
+    { url = "https://files.pythonhosted.org/packages/2b/52/de10cf69109b3f878c61591befd76b39083d84ee9cfd5d715ec30dc9c511/commitizen-4.0.0-py3-none-any.whl", hash = "sha256:52873ee589a64cf77fc55570dbd3f987c6ffcd33132d179eb625c4d06ae935f7", size = 72219 },
 ]
 
 [[package]]
