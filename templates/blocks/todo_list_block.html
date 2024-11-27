@@ -1,8 +1,6 @@
 <section class="widget widget--todo-list">
   <header class="title">
-    <h2 class="title__title">
-      To-Do
-    </h2>
+    <h2 class="title__title">To-Do</h2>
   </header>
 
   <main class="content" role="list" class="todo">
@@ -12,5 +10,19 @@
         {{ item.label }}
       </label>
     {% endfor %}
+    <button class="todo__add">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="inherit"
+        viewBox="0 0 256 256"
+        class="todo__add__icon"
+      >
+        <path
+          d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"
+        ></path>
+      </svg>
+    </button>
   </main>
 </section>
