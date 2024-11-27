@@ -16,7 +16,7 @@ class NoteBlock(StructBlock):
     """
 
     title = CharBlock(required=True)
-    content = RichTextBlock()
+    content = RichTextBlock(features=["h1", "h2", "h3", "link"])
 
     class Meta:
         icon = "bold"

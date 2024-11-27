@@ -122,7 +122,7 @@
   }
 
   .calendar__day:hover {
-    background-color: var(--primary);
+    background-color: var(--primary-light);
   }
 }
 
@@ -167,8 +167,12 @@
     gap: var(--spacing-5);
     padding-bottom: var(--spacing-9);
 
-    h2 {
+    h1 {
       font-size: var(--font-size-5xl);
+    }
+
+    h2 {
+      font-size: var(--font-size-3xl);
     }
 
     a {
@@ -258,6 +262,10 @@
     user-select: none;
   }
 
+  .todo__label:last-of-type {
+    margin-bottom: var(--spacing-9);
+  }
+
   .todo__checkbox {
     cursor: pointer;
     min-height: var(--w-5);
@@ -266,6 +274,31 @@
 
   .todo__label:has(.todo__checkbox:checked) {
     text-decoration: var(--text-decoration-line-through);
+  }
+
+  .todo__add {
+    align-items: center;
+    background: var(--primary);
+    border-radius: var(--border-radius-xxl);
+    border: 1px solid light-dark(var(--background), var(--foreground));
+    bottom: var(--spacing-1-5);
+    cursor: pointer;
+    display: inline-flex;
+    height: var(--w-12);
+    justify-content: center;
+    margin-left: auto;
+    position: absolute;
+    right: var(--spacing-1-5);
+    width: var(--w-12);
+
+    &:hover {
+      background: var(--primary-dark);
+    }
+  }
+
+  .todo__add__icon {
+    height: var(--w-6);
+    width: var(--w-6);
   }
 }
 
