@@ -2,14 +2,9 @@
 
 {% load static wagtailcore_tags %}
 
-{% block extra_head_tags %}
-  <link rel="prefetch" as="script" href="{% static 'js/gradient.js' %}">
-  <link rel="prefetch" as="script" href="{% static 'js/position.js' %}">
-{% endblock extra_head_tags %}
-
 {% block extra_js %}
-  <script src="{% static 'js/gradient.js' %}"></script>
-  <script src="{% static 'js/position.js' %}"></script>
+  <script src="{% static 'js/gradient.js' %}" defer></script>
+  <script src="{% static 'js/position.js' %}" defer></script>
   <script src="{% static 'js/drag.js' %}" defer></script>
 {% endblock extra_js %}
 
