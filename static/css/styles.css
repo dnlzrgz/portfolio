@@ -10,28 +10,18 @@
   --background: var(--white);
   --foreground: var(--black);
 
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-tiny: 0.875rem;
   --font-size-base: 1rem;
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
-  --font-size-6xl: 4rem;
   --font-size-7xl: 5rem;
 
-  --font-weight-black: 900;
-  --font-weight-extrabold: 800;
-  --font-weight-bold: 700;
-  --font-weight-semibold: 600;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --font-weight-light: 300;
   --font-weight-thin: 200;
-  --font-weight-hair: 100;
 
   --border-radius-xl: 1.6rem;
   --border-radius-xxl: 2rem;
@@ -261,7 +251,6 @@ dd {
 /**
  * Fonts
  **/
-
 @font-face {
   font-family: "Geist";
   src: url("/static/fonts/Geist/GeistVF.ttf") format("truetype");
@@ -371,9 +360,8 @@ dd {
 /**
  * Widgets
  **/
-
 .widget {
-  animation: fadeIn 250ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: fadeIn 300ms cubic-bezier(0, 0, 0.2, 1) forwards;
   background: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
   border: 1px solid var(--background);
