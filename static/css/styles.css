@@ -1,3 +1,263 @@
+:root {
+  --primary-dark: #567d9f;
+  --primary-light: #88a5bf;
+  --primary: #6a8faf;
+  --black: #0a0a0a;
+  --orange-dark: #f57200;
+  --orange-light: #ffb370;
+  --orange: #ff9233;
+  --white: #f5f5f5;
+  --background: var(--white);
+  --foreground: var(--black);
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-tiny: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 4rem;
+  --font-size-7xl: 5rem;
+
+  --font-weight-black: 900;
+  --font-weight-extrabold: 800;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+  --font-weight-thin: 200;
+  --font-weight-hair: 100;
+
+  --border-radius-xl: 1.6rem;
+  --border-radius-xxl: 2rem;
+
+  --box-shadow-offset-y: 4px;
+  --box-shadow-blur-radius: 24px;
+  --box-shadow: 0 var(--box-shadow-offset-y) var(--box-shadow-blur-radius)
+    hsla(0, 0%, 4%, var(--box-shadow-opacity, 0.1));
+
+  --text-decoration-color: var(--primary);
+  --text-decoration-underline: var(--text-decoration-color) underline;
+  --text-decoration-line-through: var(--text-decoration-color) line-through;
+
+  --spacing-0: 0px;
+  --spacing-px: 1px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+
+  --w-0: 0px;
+  --w-px: 1px;
+  --w-0-5: 0.125rem;
+  --w-1: 0.25rem;
+  --w-1-5: 0.375rem;
+  --w-2: 0.5rem;
+  --w-2-5: 0.625rem;
+  --w-3: 0.75rem;
+  --w-3-5: 0.875rem;
+  --w-4: 1rem;
+  --w-5: 1.25rem;
+  --w-6: 1.5rem;
+  --w-7: 1.75rem;
+  --w-8: 2rem;
+  --w-9: 2.25rem;
+  --w-10: 2.5rem;
+  --w-11: 2.75rem;
+  --w-12: 3rem;
+  --w-14: 3.5rem;
+  --w-16: 4rem;
+  --w-20: 5rem;
+  --w-24: 6rem;
+  --w-28: 7rem;
+  --w-32: 8rem;
+  --w-36: 9rem;
+  --w-40: 10rem;
+  --w-44: 11rem;
+  --w-48: 12rem;
+  --w-52: 13rem;
+  --w-56: 14rem;
+  --w-60: 15rem;
+  --w-64: 16rem;
+  --w-72: 18rem;
+  --w-80: 20rem;
+  --w-96: 24rem;
+  --w-100: 25rem;
+  --w-104: 26rem;
+  --w-108: 27rem;
+  --w-112: 28rem;
+  --w-116: 29rem;
+  --w-120: 30rem;
+  --w-124: 31rem;
+  --w-128: 32rem;
+  --w-auto: auto;
+  --w-full: 100%;
+  --w-min: min-content;
+  --w-max: max-content;
+  --w-fit: fit-content;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+* {
+  font-size: 100%;
+  margin: 0;
+  min-width: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  color-scheme: light dark;
+  hanging-punctuation: first last;
+  text-size-adjust: none;
+}
+
+body {
+  font-family: "Geist", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  min-height: 100vh; /* Fallback */
+  min-height: 100svh;
+  text-rendering: optimizeSpeed;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  font-weight: var(--font-weight-thin);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+canvas,
+img,
+picture,
+svg,
+video {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+pre[class*="language-"],
+code[class*="language-"] {
+  background: light-dark(var(--background), var(--foreground));
+  color: light-dark(var(--foreground), var(--background));
+  font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  hyphens: none;
+  overflow-x: auto;
+  tab-size: 4;
+  text-shadow: none;
+  word-break: normal;
+  word-spacing: normal;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5ex;
+  }
+}
+
 /**
  * Fonts
  **/
@@ -111,12 +371,9 @@
 /**
  * Widgets
  **/
-/**
- * Widgets styles
- **/
 
 .widget {
-  animation: fadeIn 350ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: fadeIn 250ms cubic-bezier(0, 0, 0.2, 1) forwards;
   background: light-dark(var(--background), var(--foreground));
   border-radius: var(--border-radius-xl);
   border: 1px solid var(--background);
