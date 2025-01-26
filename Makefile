@@ -16,7 +16,7 @@ update:
 	uv sync
 
 download-p5js:
-	curl -sL https://cdn.jsdelivr.net/npm/p5@1.11.2/lib/p5.min.js -o static/js/p5.min.js
+	curl -sL https://cdn.jsdelivr.net/npm/p5@1.11.3/lib/p5.min.js -o static/js/p5.min.js
 
 collect:
 	uv run manage.py collectstatic --no-input

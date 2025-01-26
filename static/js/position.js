@@ -21,37 +21,28 @@ const randomlyPositionWidgets = (
   }
 
   const widgets = document.querySelectorAll(".widget");
-
   const cellWidth = viewportWidth / cols;
   const cellHeight = viewportHeight / rows;
 
-  const positions = Array.from(widgets).map((widget) => {
+  const minXY = padding;
+  const maxX = viewportWidth - padding;
+  const maxY = viewportHeight - padding;
+
+  for (let i = 0; i < widgets.length; i++) {
+    const widget = widgets[i];
     const widgetWidth = widget.offsetWidth;
     const widgetHeight = widget.offsetHeight;
 
-    const randomRow = Math.floor(Math.random() * rows);
-    const randomCol = Math.floor(Math.random() * cols);
+    const randomRow = (Math.random() * rows) | 0;
+    const randomCol = (Math.random() * cols) | 0;
+    const baseX = randomCol * cellWidth + (cellWidth - widgetWidth) / 2;
+    const baseY = randomRow * cellHeight + (cellHeight - widgetHeight) / 2;
+    const randomX = Math.max(minXY, Math.min(baseX, maxX - widgetWidth));
+    const randomY = Math.max(minXY, Math.min(baseY, maxY - widgetHeight));
 
-    const randomX = Math.min(
-      randomCol * cellWidth + (cellWidth - widgetWidth) / 2 + padding,
-      viewportWidth - widgetWidth - padding,
-    );
-    const randomY = Math.min(
-      randomRow * cellHeight + (cellHeight - widgetHeight) / 2 + padding,
-      viewportHeight - widgetHeight - padding,
-    );
-
-    return {
-      widget,
-      x: Math.max(randomX, padding),
-      y: Math.max(randomY, padding),
-    };
-  });
-
-  positions.forEach(({ widget, x, y }) => {
-    widget.style.left = `${x}px`;
-    widget.style.top = `${y}px`;
-  });
+    widget.style.left = `${randomX}px`;
+    widget.style.top = `${randomY}px`;
+  }
 };
 
 randomlyPositionWidgets();

@@ -24,12 +24,11 @@
 
   function setup() {
     const { offsetWidth, offsetHeight } = document.getElementById("abstract");
-
     const canvas = createCanvas(offsetWidth, offsetHeight);
+
     canvas.parent("abstract");
 
-    gridSize = min(width, height) / 20;
-
+    gridSize = Math.min(width, height) / 20;
     grid = createGrid();
   }
 
@@ -57,8 +56,8 @@
   }
 
   function createGrid() {
-    const rows = floor(height / gridSize) + 2;
-    const cols = floor(width / gridSize) + 2;
+    const rows = Math.floor(height / gridSize) + 2;
+    const cols = Math.floor(width / gridSize) + 2;
     const grid = [];
 
     for (let i = 0; i < rows; i++) {
@@ -93,8 +92,8 @@
       let rectX = grid[i].x + gridSize / 2;
       let rectY = grid[i].y + gridSize / 2;
       let a = atan2(rectY - centerY, rectX - centerX);
-      let rX = centerX + radius * cos(a);
-      let rY = centerY + radius * sin(a);
+      let rX = centerX + radius * Math.cos(a);
+      let rY = centerY + radius * Math.sin(a);
       let cc = width;
 
       if (dist(rectX, rectY, centerX, centerY) <= circle.radius) {
