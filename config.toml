@@ -1,0 +1,6 @@
+[site]
+static_dir = "static/"
+templates_dir = "templates/"
+content_dir = "content/"
+build_dir = "output/"
+base_url = 'https://marastatic.com'
