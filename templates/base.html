@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="{{ params.general.description }}" />
+        <meta name="keywords" content="{{ params.general.keywords | join(', ') }}">
+        <title>
+            {% block title %}
+            {% endblock title %}
+        | dnlzrgz</title>
+        <meta name="author" content="{{ params.general.author.name }}" />
+        <link rel="me" href="{{ params.general.author.mastodon_account }}" />
+        <meta name="fediverse:creator"
+              content="{{ params.general.author.fediverse_creator }}" />
+
+        {# CSS #}
+        <link rel="stylesheet" href="/static/css/output.css">
+
+        {# TODO: add JSON+LD #}
+        {# TODO: add OG tags #}
+        {# TODO: add JS scripts #}
+    </head>
+    <body class="{% block body_class %}{% endblock body_class %} bg-slate-50 text-slate-950">
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>

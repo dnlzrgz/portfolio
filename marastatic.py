@@ -157,6 +157,8 @@ def build(
     output_path = Path(config.site.build_dir)
 
     jinja_env = Jinja2Environment(loader=FileSystemLoader(templates_dir))
+    jinja_env.globals["site"] = config.site
+    jinja_env.globals["params"] = config.params
     pages = defaultdict(list)
 
     for page in list_site_content(content_path):
@@ -173,8 +175,6 @@ def build(
         template_path = f"{relative_parent_path}/{template_name}"
 
         context = {
-            "site": config.site,
-            "params": config.params,
             "metadata": source.metadata,
             "content": content,
         }
@@ -230,19 +230,18 @@ def build(
             except Exception:
                 pass
 
-        sitemap_template_path = f"{relative_parent_path}/sitemap.xml"
-        try:
-            sitemap_output = jinja_env.get_template(sitemap_template_path).render(
-                site=config.site,
-                params=config.params,
-                pages=pages,
-            )
-            sitemap_output_path = output_path / f"{relative_parent_path}/sitemap.xml"
-            sitemap_output_path.write_text(sitemap_output, encoding="utf-8")
+    try:
+        sitemap_output = jinja_env.get_template("/sitemap.xml").render(
+            site=config.site,
+            params=config.params,
+            pages=pages,
+        )
+        sitemap_output_path = output_path / "sitemap.xml"
+        sitemap_output_path.write_text(sitemap_output, encoding="utf-8")
 
-            print("[bold green]Ok:[/] Created sitemap.xml.")
-        except Exception:
-            pass
+        print("[bold green]Ok:[/] Created sitemap.xml.")
+    except Exception:
+        pass
 
     copytree(
         content_path,
