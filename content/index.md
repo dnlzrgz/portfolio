@@ -2,25 +2,28 @@
 title: "Home"
 stack:
   [
-    "python",
-    "django",
-    "django orm",
-    "drf",
-    "django ninja",
-    "wagtail",
-    "fastapi",
-    "pydantic",
-    "docker",
-    "html/css/js",
-    "react",
+    "Python",
+    "Django",
+    "Django ORM",
+    "DRF",
+    "Django Ninja",
+    "Wagtail",
+    "FastAPI",
+    "Pydantic",
+    "Docker",
+    "Docker compose",
+    "HTML",
+    "CSS",
+    "JS",
+    "React",
     "htmx",
-    "alpine.js",
-    "go",
-    "hugo",
-    "sql",
-    "sqlalchemy",
-    "sqlite",
-    "postgres",
+    "Alpine.js",
+    "Go",
+    "Hugo",
+    "SQL",
+    "SQLalchemy",
+    "SQLite",
+    "Postgres",
   ]
 todo:
   [
@@ -29,3 +32,7 @@ todo:
     "Take a good picture",
   ]
 ---
+
+# Hi! I'm Daniel
+
+A _Back-End_ developer specialized in **Python** & **Django**, currently based in Alicante, Spain.

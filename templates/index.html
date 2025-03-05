@@ -3,6 +3,28 @@
     {{ metadata.title }}
 {% endblock title %}
 
+{% block prefetch_rules %}
+<link rel="prefetch" href="{{ pages.blog[-1].url }}" as="document">
+<link rel="prefetch" href="{{ pages.projects[-1].url }}" as="document">
+{% endblock prefetch_rules %}
+
 {% block content %}
-  {% include "includes/gradient_background.html" %}
+{% include "includes/gradient_background.html" %}
+
+<div 
+  class="max-w-screen grid lg:place-items-center gap-3 p-3 lg:p-9 grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-rows-[minmax(200px,1fr)]
+  [grid-template-areas:'intro''avatar''cal''stack''project''blog''testimonials''contact''social']
+  md:[grid-template-areas:'intro_avatar''cal_social''blog_testimonials''project_project''stack_contact']
+  lg:[grid-template-areas:'intro_intro_cal_testimonials_social''avatar_project_project_testimonials_stack''contact_project_project_blog_blog']"
+  >
+  {% include "bento/about.html" %}
+  {% include "bento/contact.html" %}
+  {% include "bento/stack.html" %}
+  {% include "bento/social.html" %}
+  {% include "bento/avatar.html" %}
+  {% include "bento/calendar.html" %}
+  {% include "bento/testimonials.html" %}
+  {% include "bento/project.html" %}
+  {% include "bento/blog.html" %}
+</div>
 {% endblock content %}

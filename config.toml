@@ -6,18 +6,17 @@ build_dir = "output/"
 base_url = "http://localhost"
 
 [params]
-[params.general]
 description = ""
 copyright = ""
 keywords = ["developer", "python"]
 
-[params.general.author]
+[params.author]
 name = "Daniel"
 contact_email = "contact@dnlzrgz.com"
+
 mastodon_account = "https://mastodon.social/@dnlzrgz"
 fediverse_creator = "@dnlzrgz@mastodon.social"
 
-[params.general.links]
 github = "https://github.com/dnlzrgz"
 linkedin = "https://www.linkedin.com/in/daniel-zaragoza-4395b4260/"
 mastodon = "https://mastodon.social/@dnlzrgz"

@@ -24,6 +24,9 @@
   --font-sans: "Geist", "sans-serif";
   --font-mono: "Geist Mono", "sans-serif";
 
+  --grid-template-small: "intro" "cal" "demo" "social" "avatar" "stack"
+    "project" "blog" "contact" "extra";
+
   --animate-circle: circle 30s ease-in-out infinite;
   --animate-vertical: vertical 30s ease-in-out infinite;
   --animate-horizontal: horizontal 30s ease-in-out infinite;
@@ -62,5 +65,16 @@
     100% {
       transform: translateX(-50%) translateY(-10%);
     }
+  }
+}
+
+@layer components {
+  .bento-box {
+    border-width: 1px;
+    border-color: var(--color-stone-100);
+    border-radius: var(--radius-2xl);
+    background-color: var(--color-stone-50);
+    width: 100%;
+    height: 100%;
   }
 }

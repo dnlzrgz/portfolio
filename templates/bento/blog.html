@@ -1,0 +1,11 @@
+<section style="grid-area: blog" class="bento-box grid grid-rows-[1fr_auto]">
+  {% with post=pages.blog[-1] %}
+  <div class="flex flex-col justify-center gap-3 p-6">
+    <h2 class="text-3xl text-balance">{{ post.metadata.title }}</h2>
+    <p class="text-xl text-pretty">{{ post.metadata.description }}</p>
+  </div>
+  <div class="p-0.5 flex flex-row-reverse">
+    {% set link=post.url %} {% include "includes/bento_link.html" %}
+  </div>
+  {% endwith %}
+</section>

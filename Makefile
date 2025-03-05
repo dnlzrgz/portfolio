@@ -4,7 +4,6 @@ lint:
 
 setup:
 	curl -sLo tailwind https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.9/tailwindcss-linux-x64
-	curl -sLo ./static/js/htmx.js https://unpkg.com/htmx.org@2.0.4
 	curl -sLo ./static/js/alpine.js https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js
 
 tailwind:

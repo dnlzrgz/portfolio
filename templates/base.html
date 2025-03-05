@@ -3,23 +3,29 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="{{ params.general.description }}" />
-        <meta name="keywords" content="{{ params.general.keywords | join(', ') }}">
+        <meta name="description" content="{{ config.params.description }}" />
+        <meta name="keywords" content="{{ config.params.keywords | join(', ') }}">
         <title>
             {% block title %}
             {% endblock title %}
         | dnlzrgz</title>
-        <meta name="author" content="{{ params.general.author.name }}" />
-        <link rel="me" href="{{ params.general.author.mastodon_account }}" />
+        <meta name="author" content="{{ config.params.author.name }}" />
+        <link rel="me" href="{{ config.params.author.mastodon_account }}" />
         <meta name="fediverse:creator"
-              content="{{ params.general.author.fediverse_creator }}" />
+              content="{{ config.params.author.fediverse_creator }}" />
 
         {# CSS #}
         <link rel="stylesheet" href="/static/css/output.css">
 
+        {# JS #}
+        <script defer src="/static/js/alpine.js"></script>
+
+        {# Prefetch #}
+        {% block prefetch_rules %}
+        {% endblock prefetch_rules %}
+
         {# TODO: add JSON+LD #}
         {# TODO: add OG tags #}
-        {# TODO: add JS scripts #}
     </head>
     <body class="{% block body_class %}{% endblock body_class %} bg-slate-50 text-slate-950">
         {% block content %}

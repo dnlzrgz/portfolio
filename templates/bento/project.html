@@ -1,0 +1,15 @@
+<section
+  style="grid-area: project"
+  class="bento-box flex flex-col justify-center gap-3 p-6"
+>
+  {% with project=pages.projects[-1] %}
+  <h2 class="text-3xl text-balance">{{ project.metadata.title }}</h2>
+  <p class="text-xl text-pretty">{{ project.metadata.description }}</p>
+  <div class="rounded-lg max-h-[300px] overflow-hidden">
+    <img
+      src="{{ project.metadata.image }}"
+      class="h-auto w-full object-cover"
+    />
+  </div>
+  {% endwith %}
+</section>
