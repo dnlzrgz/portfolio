@@ -1,6 +1,8 @@
-<section class="[grid-area:about] bento-box grid place-items-center">
-    <div class="[&_h1]:text-3xl [&_h1]:font-medium [&_h1]:mb-3 text-xl p-6">{{ content|safe|truncate(240) }}</div>
-    <div class="flex flex-row-reverse w-full">
+<section class="[grid-area:about] bento-box grid place-items-center relative">
+    <div class="[&_h1]:text-3xl [&_h1]:font-medium [&_h1]:mb-3 [&_ins]:decoration-wavy text-xl p-6">
+        {{ content|safe }}
+    </div>
+    <div class="absolute bottom-0 right-0 flex flex-row-reverse w-full">
         {% with link="/about.html",label="about page" %}
             {% include
             "includes/bento_link.html" %}
