@@ -1,5 +1,9 @@
-<section class="[grid-area:cal] bento-box p-3 flex flex-col-reverse gap-1.5"
-         x-data="{ date: new Date(), today() { return this.date.toLocaleDateString(undefined, {day: '2-digit'}); }, monthAndYear() { return this.date.toLocaleDateString(undefined, {month: 'short', year: 'numeric'}); }, }">
-    <span class="text-9xl proportional-nums" x-text="today">06</span>
-    <span class="text-xl" x-text="monthAndYear">Mar 2025</span>
+<section class="[grid-area:cal] bento-box p-6 grid place-items-center"
+         x-data="{ date: new Date(), today() { return this.date.toLocaleDateString(undefined, {weekday: 'long'}); }, day()   { return this.date.toLocaleDateString(undefined, {day: '2-digit'}); }, month() { return this.date.toLocaleDateString(undefined, {month: '2-digit'}); }, year() { return this.date.getFullYear(); }, }">
+    <p class="text-xl lg:text-lg text-left w-full" x-text="today">Thursday</p>
+    <p class="text-9xl lg:text-8xl proportional-nums text-left w-full">
+        <span x-text="day">21</span>.<span x-text="month">06</span>
+    </p>
+    <p class="text-7xl lg:text-5xl proportional-nums text-left w-full"
+       x-text="year">2025</p>
 </section>
