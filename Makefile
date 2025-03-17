@@ -27,5 +27,5 @@ build:
 deploy:
 	rm -rf output && mkdir output
 	make build
-	npx wrangler pages deploy
+	npx wrangler pages deploy output --project-name dnlzrgz
 
