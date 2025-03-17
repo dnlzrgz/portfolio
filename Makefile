@@ -15,12 +15,17 @@ images:
 	uv run images.py
 
 dev:
-	uv run marastatic.py
+	uv run marastatic.py -c config.dev.toml
 	./tailwind -i ./static/css/input.css -o ./output/static/css/output.css --minify
 
 
 build:
-	uv run marastatic.py
+	uv run marastatic.py -c config.toml
 	uv run images.py
 	./tailwind -i ./static/css/input.css -o ./output/static/css/output.css --minify
+
+deploy:
+	rm -rf output && mkdir output
+	make build
+	npx wrangler pages deploy
 

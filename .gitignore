@@ -2,3 +2,4 @@
 /output
 tailwindcss
 config.toml
+config.dev.toml
