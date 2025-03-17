@@ -3,13 +3,11 @@
 {% block title %}
     {{ metadata.title }}
 {% endblock title %}
-
 {% block body_class %}
     min-h-screen
 {% endblock body_class %}
-
 {% block content %}
-    {% set current_page = 'blog' %}
+    {% set current_page = "blog" %}
     {% include "includes/nav.html" %}
     <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-1 md:grid-rows-[400px] gap-6 mt-16 p-3 lg:p-9">
         {% for page in pages | sort(attribute='metadata.publication_date') | reverse %}

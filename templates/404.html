@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    404
+{% endblock title %}
+{% block og_tags %}
+{% endblock og_tags %}
+{% block json_ld %}
+{% endblock json_ld %}
+{% block body_class %}
+    h-screen
+{% endblock body_class %}
+{% block content %}
+    <div class="h-full">
+        {% include "includes/nav.html" %}
+        {% include "includes/gradient_background.html" %}
+        <main class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <h1 class="text-7xl md:text-9xl font-bold">404</h1>
+        </main>
+    </div>
+{% endblock content %}
