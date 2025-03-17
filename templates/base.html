@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% with %} {% set title = config.params.title %} {% set description =
+    config.params.description %} {% set keywords = config.params.keywords %} {%
+    set canonical_url = config.params.canonical_url %} {% set author_name =
+    config.params.author.name %} {% set mastodon_account =
+    config.params.author.mastodon_account %} {% set fediverse_creator =
+    config.params.author.fediverse_creator %} {% set linkedin =
+    config.params.author.linkedin %} {% set github = config.params.author.github
+    %} {% set mastodon = config.params.author.mastodon %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ description }}" />
+    <meta name="keywords" content="{{ keywords | join(', ') }}" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" content="{{ canonical_url }}" />
+    <title>{% block title %} {% endblock title %} | {{ title }}</title>
+    <meta name="author" content="{{ author_name }}" />
+    <link rel="me" href="{{ mastodon_account }}" />
+    <meta name="fediverse:creator" content="{{ fediverse_creator }}" />
+    {# Favicon #}
+    <link rel="icon" href="/static/assets/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/static/assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/static/assets/apple-touch-icon.png" />
+    {# Alpine.js styles #}
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    {# Preload #}
+    <link
+      rel="preload"
+      href="/static/fonts/Geist/Geist[wght].ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+    {# Preload #} {% block preload_rules %} {% endblock preload_rules %} {# OG
+    tags #} {% block og_tags %}
+    <meta property="og:description" content="{{ description }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:site_name" content="{{ title }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ canonical_url }}" />
+    {% endblock og_tags %} {% endwith %} {# JSON+LD #} {% block json_ld %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "{{ config.params.author.name }}",
+        "url": "{{ config.params.canonical_url }}",
+        "description": "{{ config.params.description }}",
+        "image": "/static/images/avatar.jpg",
+        "email": "{{ config.params.author.contact_email }}",
+        "jobTitle": "{{ config.params.author.job_title }}",
+        "sameAs": [
+          "{{ config.params.author.linkedin }}",
+          "{{ config.params.author.github }}",
+          "{{ config.params.author.mastodon }}"
+        ]
+      }
+    </script>
+    {% endblock json_ld %} {# CSS #}
+    <link rel="stylesheet" href="/static/css/output.css" />
+    {% block extra_css %} {% endblock extra_css %} {# JS #}
+    <script src="/static/js/quicklink.js"></script>
+    <script defer src="/static/js/alpine.js"></script>
+    {% block extra_js %} {% endblock extra_js %}
+  </head>
+  <body
+    class="{% block body_class %}{% endblock body_class %} font-sans bg-stone-50 text-stone-950 dark:bg-stone-900 dark:text-stone-50"
+  >
+    {% block content %} {% endblock content %}
+    <script>
+      window.addEventListener("load", () => {
+        quicklink.listen();
+      });
+    </script>
+  </body>
+</html>

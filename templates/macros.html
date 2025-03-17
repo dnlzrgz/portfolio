@@ -1,0 +1,33 @@
+{# Macros #}
+{% macro render_blog_post(page, is_featured) %}
+    {% set image = page.metadata.image %}
+    {% set title = page.metadata.title %}
+    {% set description = page.metadata.description | truncate(240) %}
+    {% set publication_date = page.metadata.publication_date %}
+    {% set tags = page.metadata.tags %}
+    <article class="{% if is_featured %} grid md:col-span-2 md:grid-cols-2 {% else %} flex flex-col text-xl {% endif %} bg-stone-50 dark:bg-stone-950 border border-stone-100 dark:border-stone-900 gap-3 rounded-2xl shadow-sm min-h-[400px] overflow-hidden cursor-pointer select-none hover:[&_h2]:underline">
+        {% if is_featured %}<img src="{{ image }}" class="object-cover h-full w-auto hidden sm:block">{% endif %}
+        <div class="h-full flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <header>
+                    <span class="block text-sm font-medium italic mb-1.5">
+                        {% if tags | length > 1 %}
+                            {{ tags[:-1] | join(", ") }} and {{ tags[-1] }}
+                        {% else %}
+                            {{ tags[0] }}
+                        {% endif %}
+                    </span>
+                    <a href="/{{ page.url }}">
+                        <h2 class="text-3xl">{{ title }}</h2>
+                    </a>
+                </header>
+                <main class="flex flex-col gap-6 text-xl">
+                    {{ description }}
+                </main>
+            </div>
+            <footer class="text-base font-medium">
+                <time datetime="{{ publication_date }}">{{ publication_date }}</time>
+            </footer>
+        </div>
+    </article>
+{% endmacro %}

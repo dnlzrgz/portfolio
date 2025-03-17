@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/**
+ * Fonts
+ **/
+@font-face {
+  font-family: "Geist";
+  src: url("/static/fonts/Geist/Geist[wght].ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/static/fonts/GeistMono/GeistMono[wght].ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: monospace;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Geist", "sans-serif";
+  --font-sans: "Geist", "sans-serif";
+  --font-mono: "Geist Mono", "sans-serif";
+
+  --animate-circle: circle 30s ease-in-out infinite;
+  --animate-vertical: vertical 30s ease-in-out infinite;
+  --animate-horizontal: horizontal 30s ease-in-out infinite;
+
+  @keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes vertical {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes horizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+  }
+
+  @keyframes fade-in {
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@layer components {
+  .bento-box {
+    border-width: 1px;
+    border-color: var(--color-stone-100);
+    border-radius: var(--radius-2xl);
+    background-color: var(--color-stone-50);
+    min-height: 200px;
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+
+    @variant dark {
+      background-color: var(--color-stone-950);
+      border-color: var(--color-stone-900);
+    }
+  }
+}

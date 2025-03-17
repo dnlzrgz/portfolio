@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ metadata.title }}
+{% endblock title %}
+{% block preload_rules %}
+    <link rel="preload"
+          href="/static/fonts/GeistMono/GeistMono[wght].ttf"
+          as="font"
+          type="font/ttf"
+          crossorigin="anonymous" />
+{% endblock preload_rules %}
+{% block og_tags %}
+    <meta property="og:description" content="{{ metadata.description }}" />
+    <meta property="og:title" content="{{ metadata.title }}" />
+    <meta property="og:site_name" content="{{ config.params.title }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    {% if metadata.image %}<meta property="og:image" content="{{ metadata.image }}" />{% endif %}
+{% endblock og_tags %}
+{% block content %}
+    <header>
+        {% set current_page = 'blog' %}
+        {% include "includes/nav.html" %}
+    </header>
+    <main class="p-3 md:p-9 mb-9 md:mb-24 lg:mb-32 md:mx-auto md:max-w-3xl text-lg md:text-xl text-pretty flex flex-col gap-6 [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 dark:[&_pre]:border dark:[&_pre]:border-stone-900 [&_pre]:rounded-2xl [&_img]:rounded-2xl">
+        {% if metadata.image %}<img src="{{ metadata.image }}" class="rounded-2xl mb-3 md:mb-6">{% endif %}
+        <p class="text-sm md:text-base font-medium mb-1.5">{{ metadata.publication_date }}</p>
+        <h1 class="text-3xl md:text-5xl lg:text-7xl text-balance mb-3 md:mb-6">{{ metadata.title }}</h1>
+        <p class="text-lg md:text-xl text-pretty max-w-xl">{{ metadata.description }}</p>
+        <hr class="my-6" />
+        {# TODO: add tags #}
+        {# TODO: add styles for subheaders #}
+        {# TODO: add styles for embeds #}
+        {{ content|safe }}
+    </main>
+</div>
+{% endblock content %}

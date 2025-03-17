@@ -1,0 +1,27 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Blog | {{ config.params.title}}</title>
+<link>{{ config.params.canonical_url }}</link>
+<description></description>
+<atom:link href="https://dnlzrgz.com/blog/rss.xml" rel="self"/>
+<language>en</language>
+
+{% for keyword in config.params.keywords %}
+    <category>{{ keyword }}</category>
+{% endfor %}
+
+<copyright>Copyright ©2025, {{ config.params.title }}</copyright>
+
+<lastBuildDate>{{ now.strftime('%a, %d %b %Y %H:%M:%S %z') }}</lastBuildDate>
+
+{% for page in pages %}
+<item>
+<title>{{ page.title }}</title>
+<link>{{ config.params.canonical_url }}/{{ page.url }}</link>
+<description><p>{{ page.metadata.description }}</p></description>
+<pubDate>{{ page.metadata.pubDate }}</pubDate>
+<guid>{{ page.url }}</guid>
+</item>
+{% endfor %}
+</channel>
+</rss>

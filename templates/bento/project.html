@@ -1,0 +1,20 @@
+<section class="[grid-area:project] bento-box grid grid-rows-[auto_1fr_auto] gap-3">
+    {% with project=pages.projects[0] %}
+        {% set title = project.metadata.title %}
+        {% set description = project.metadata.description %}
+        {% set image = project.metadata.image %}
+        {% set link = project.url %}
+        {% set label = title %}
+        <div class="flex flex-col gap-3 pt-6 px-6">
+            <h2 class="text-3xl text-balance">{{ title }}</h2>
+            <p class="text-xl text-pretty">{{ description|truncate(240) }}</p>
+        </div>
+        <div class="rounded-lg overflow-hidden mx-6">
+            <picture>
+                <source srcset="{{ image | replace('.jpg', '.webp') }}" type="image/webp" />
+                <img src="{{ image }}" class="h-auto w-full object-cover" />
+            </picture>
+        </div>
+        <div class="flex flex-row-reverse w-full">{% include "includes/bento_link.html" %}</div>
+    {% endwith %}
+</section>

@@ -1,0 +1,54 @@
+<section class="[grid-area:social] grid grid-cols-2 w-full h-full gap-3">
+    {% with github=config.params.author.github %}
+        <a href="{{ github }}"
+           aria-label="GitHub"
+           class="grid place-items-center bento-box min-h-auto hover:bg-stone-950 dark:hover:bg-stone-300 hover:border-stone-900 hover:text-stone-50 dark:hover:text-stone-950 transition-colors duration-75 p-9 md:p-3">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-8 h-8"
+                 fill="currentColor"
+                 viewBox="0 0 256 256">
+                <path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z">
+                </path>
+            </svg>
+        </a>
+    {% endwith %}
+    {% with mastodon=config.params.author.mastodon %}
+        <a href="{{ mastodon }}"
+           aria-label="Mastodon"
+           class="grid place-items-center bento-box min-h-auto hover:bg-stone-950 dark:hover:bg-stone-300 hover:border-stone-900 hover:text-stone-50 dark:hover:text-stone-950 transition-colors duration-75 p-9 md:p-3">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-8 h-8"
+                 fill="currentColor"
+                 viewBox="0 0 256 256">
+                <path d="M184,32H72A40,40,0,0,0,32,72V192a40,40,0,0,0,40,40h88a8,8,0,0,0,0-16H72a24,24,0,0,1-24-24v-8H184a40,40,0,0,0,40-40V72A40,40,0,0,0,184,32Zm24,112a24,24,0,0,1-24,24H48V72A24,24,0,0,1,72,48H184a24,24,0,0,1,24,24Zm-24-40v32a8,8,0,0,1-16,0V104a16,16,0,0,0-32,0v32a8,8,0,0,1-16,0V104a16,16,0,0,0-32,0v32a8,8,0,0,1-16,0V104a32,32,0,0,1,56-21.13A32,32,0,0,1,184,104Z">
+                </path>
+            </svg>
+        </a>
+    {% endwith %}
+    {% with linkedin=config.params.author.linkedin %}
+        <a href="{{ linkedin }}"
+           aria-label="LinkedIn"
+           class="grid place-items-center bento-box min-h-auto hover:bg-stone-950 dark:hover:bg-stone-300 hover:border-stone-900 hover:text-stone-50 dark:hover:text-stone-950 transition-colors duration-75 p-9 md:p-3">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-8 h-8"
+                 fill="currentColor"
+                 viewBox="0 0 256 256">
+                <path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z">
+                </path>
+            </svg>
+        </a>
+    {% endwith %}
+    {% with rss_feed=config.params.author.rss_feed %}
+        <a href="{{ rss_feed }}"
+           aria-label="RSS Feed"
+           class="grid place-items-center bento-box min-h-auto hover:bg-stone-950 dark:hover:bg-stone-300 hover:border-stone-900 hover:text-stone-50 dark:hover:text-stone-950 transition-colors duration-75 p-9 md:p-3">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-8 h-8"
+                 fill="currentColor"
+                 viewBox="0 0 256 256">
+                <path d="M224,192a8,8,0,0,1-16,0c0-79.4-64.6-144-144-144a8,8,0,0,1,0-16C152.22,32,224,103.78,224,192ZM64,104a8,8,0,0,0,0,16,72.08,72.08,0,0,1,72,72,8,8,0,0,0,16,0A88.1,88.1,0,0,0,64,104Zm4,72a12,12,0,1,0,12,12A12,12,0,0,0,68,176Z">
+                </path>
+            </svg>
+        </a>
+    {% endwith %}
+</section>

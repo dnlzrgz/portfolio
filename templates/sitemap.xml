@@ -1,0 +1,44 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>{{ config.params.canonical_url }}</loc>
+    <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>{{ config.params.canonical_url }}/about.html</loc>
+    <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  {% for page in pages %}
+  {% if not page == 'root' %}
+  <url>
+    <loc>{{ config.params.canonical_url }}/{{ page }}/</loc>
+    <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  {% endif %}
+  {% endfor %}
+  
+  {% for page in pages.projects %}
+  <url>
+    <loc>{{ config.params.canonical_url }}/{{ page.url }}</loc>
+    <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  {% endfor %}
+
+  {% for page in pages.blog %}
+  <url>
+    <loc>{{ config.params.canonical_url }}/{{ page.url }}</loc>
+    <lastmod>{{ page.metadata.publication_date }}</lastmod>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  {% endfor %}
+</urlset>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ metadata.title }}
+{% endblock title %}
+{% block extra_css %}
+    <link rel="stylesheet" href="/static/css/leaflet.css" />
+{% endblock extra_css %}
+{% block extra_js %}
+    <script defer src="/static/js/leaflet.js"></script>
+    <script defer src="/static/js/map.js"></script>
+{% endblock extra_js %}
+{% block content %}
+    {% include "includes/gradient_background.html" %}
+    <main class="max-w-screen lg:max-h-screen grid lg:place-items-center gap-3 p-3 lg:p-9 grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-rows-[1fr_1fr_1fr] [grid-template-areas:'about''avatar''cal''testimonials''project''blog''map''contact''social'] md:[grid-template-areas:'about_avatar''cal_testimonials''blog_testimonials''project_project''social_map''social_contact'] lg:[grid-template-areas:'about_about_cal_testimonials_social''avatar_project_project_testimonials_map''contact_project_project_blog_blog']">
+        {% include "bento/about.html" %}
+        {% include "bento/contact.html" %}
+        {% include "bento/map.html" %}
+        {% include "bento/social.html" %}
+        {% include "bento/avatar.html" %}
+        {% include "bento/calendar.html" %}
+        {% include "bento/testimonials.html" %}
+        {% include "bento/project.html" %}
+        {% include "bento/blog.html" %}
+    </main>
+{% endblock content %}

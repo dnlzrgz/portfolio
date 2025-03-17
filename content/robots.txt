@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dnlzrgz.com/sitemap.xml

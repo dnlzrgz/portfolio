@@ -1,0 +1,41 @@
+[site]
+static_dir = "static/"
+templates_dir = "templates/"
+content_dir = "content/"
+build_dir = "output/"
+base_url = ""
+
+[params]
+title = ""
+description = ""
+canonical_url = ""
+keywords = []
+
+[params.author]
+name = ""
+contact_email = ""
+job_title = ""
+
+mastodon_account = ""
+fediverse_creator = ""
+
+github = ""
+linkedin = ""
+mastodon = ""
+rss_feed = ""
+
+[[params.testimonies]]
+message = ""
+author = ""
+
+[[params.testimonies]]
+message = ""
+author = ""
+
+[[params.testimonies]]
+message = ""
+author = ""
+
+[[params.testimonies]]
+message = ""
+author = ""

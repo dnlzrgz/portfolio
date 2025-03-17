@@ -1,0 +1,13 @@
+<section class="[grid-area:blog] bento-box grid grid-rows-[1fr_auto]">
+    {% set posts = pages.blog | sort(attribute='metadata.publication_date') %}
+    {% set post = posts[-1] %}
+    {% set title = post.metadata.title %}
+    {% set description = post.metadata.description %}
+    {% set link = post.url %}
+    {% set label = title %}
+    <div class="flex flex-col justify-center gap-3 p-6">
+        <h2 class="text-3xl text-balance">{{ title }}</h2>
+        <p class="text-xl text-pretty">{{ description|truncate(240) }}</p>
+    </div>
+    <div class="p-0.5 flex flex-row-reverse">{% include "includes/bento_link.html" %}</div>
+</section>

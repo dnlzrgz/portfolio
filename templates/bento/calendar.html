@@ -1,0 +1,5 @@
+<section class="[grid-area:cal] bento-box p-3 flex flex-col-reverse gap-1.5"
+         x-data="{ date: new Date(), today() { return this.date.toLocaleDateString(undefined, {day: '2-digit'}); }, monthAndYear() { return this.date.toLocaleDateString(undefined, {month: 'short', year: 'numeric'}); }, }">
+    <span class="text-9xl proportional-nums" x-text="today">06</span>
+    <span class="text-xl" x-text="monthAndYear">Mar 2025</span>
+</section>
