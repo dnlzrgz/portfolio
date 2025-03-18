@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% with %}
-            {% set title = config.params.title %} {% set description = config.params.description %} {% set keywords = config.params.keywords %} {%
-            set canonical_url = config.params.canonical_url %} {% set author_name = config.params.author.name %} {% set mastodon_account = config.params.author.mastodon_account %} {% set fediverse_creator = config.params.author.fediverse_creator %} {% set linkedin = config.params.author.linkedin %} {% set github = config.params.author.github %} {% set mastodon = config.params.author.mastodon %}
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="{{ description }}" />
-            <meta name="keywords" content="{{ keywords | join(', ') }}" />
+            <meta name="description" content="{{ config.params.description }}" />
+            <meta name="keywords" content="{{ config.params.keywords | join(', ') }}" />
             <meta name="color-scheme" content="light dark" />
             <meta name="robots" content="index, follow" />
-            <link rel="canonical" content="{{ canonical_url }}" />
+            <link rel="canonical" content="{{ config.params.canonical_url }}" />
             <title>
                 {% block title %}
                 {% endblock title %}
-            | {{ title }}</title>
-            <meta name="author" content="{{ author_name }}" />
-            <link rel="me" href="{{ mastodon_account }}" />
-            <meta name="fediverse:creator" content="{{ fediverse_creator }}" />
+            | {{ config.params.title }}</title>
+            <meta name="author" content="{{ config.params.author.name }}" />
+            <link rel="me" href="{{ config.params.author.mastodon_account }}" />
+            <meta name="fediverse:creator" content="{{ config.params.author.fediverse_creator }}" />
             {# Favicon #}
             <link rel="icon" href="/static/assets/favicon.ico" sizes="32x32" />
             <link rel="icon" href="/static/assets/icon.svg" type="image/svg+xml" />
@@ -37,18 +34,17 @@
             {# Preload #}
             {% block preload_rules %}
             {% endblock preload_rules %}
-            {# OG
-tags #}
+
+            {# OG tags #}
             {% block og_tags %}
-                <meta property="og:description" content="{{ description }}" />
-                <meta property="og:title" content="{{ title }}" />
-                <meta property="og:site_name" content="{{ title }}" />
+                <meta property="og:description" content="{{ config.params.description }}" />
+                <meta property="og:title" content="{{ config.params.title }}" />
+                <meta property="og:site_name" content="{{ config.params.title }}" />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content="{{ canonical_url }}" />
+                <meta property="og:url" content="{{ config.params.canonical_url }}" />
                 <meta property="og:image" content="/static/images/screenshot.jpg" />
             {% endblock og_tags %}
-        {% endwith %}
         {# JSON+LD #}
         {% block json_ld %}
             <script type="application/ld+json">

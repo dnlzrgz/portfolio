@@ -11,6 +11,7 @@ import argparse
 import sys
 import tomllib
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from random import shuffle
 from shutil import copytree, ignore_patterns
@@ -187,7 +188,7 @@ def build(config: Config) -> None:
     output_path = config.site.build_dir
 
     jinja_env = Jinja2Environment(loader=FileSystemLoader(templates_dir))
-    jinja_env.globals.update(config=config)
+    jinja_env.globals.update(config=config, now=datetime.now())
     jinja_env.filters["shuffle"] = shuffle_list
 
     pages = defaultdict(list)
