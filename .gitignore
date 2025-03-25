@@ -1,5 +1,6 @@
 .wrangler
 /output
 tailwindcss
+tailwind
 config.toml
 config.dev.toml

@@ -25,7 +25,7 @@
         </div>
     </header>
     <main class="p-3 mb-9 md:mb-24 lg:mb-32">
-        <div class="text-xl/8 text-pretty flex flex-col gap-6 items-center [&_p]:max-w-3xl [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 dark:[&_pre]:border dark:[&_pre]:border-stone-900 [&_pre]:rounded-2xl [&_img]:rounded-2xl [&_a]:underline [&_a]:italic">
+        <div class="text-xl/8 text-pretty flex flex-col gap-6 items-center [&_p]:max-w-3xl [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 [&_pre]:rounded-2xl [&_img]:rounded-2xl [&_a]:underline [&_a]:italic">
             {{ content|safe }}
         </div>
         <div class="mt-16">
@@ -37,7 +37,7 @@
         <div class="mt-16">
             <h2 class="mx-auto md:max-w-3xl text-2xl md:text-3xl text-balance mb-9 md:mb-12">Experience</h2>
             {% for experience in metadata.experiences %}
-                <div class="text-xl/8 w-full grid grid-cols-1 md:grid-cols-[1fr_1fr_200px] md:gap-9 md:px-3 py-3 md:py-6 md:border-b md:border-b-stone-950 dark:md:border-b-stone-50">
+                <div class="text-xl/8 w-full grid grid-cols-1 md:grid-cols-[1fr_1fr_200px] md:gap-9 md:px-3 py-3 md:py-6 md:border-b md:border-b-stone-950">
                     <span>{{ experience[0] }}</span> <span>{{ experience[1] }}</span>
                     <div class="flex gap-3 md:gap-9">
                         <span>{{ experience[2] }}</span> <span class="md:hidden">-</span> <span>{{ experience[3] }}</span>

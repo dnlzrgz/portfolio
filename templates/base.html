@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="{{ config.params.description }}" />
-            <meta name="keywords" content="{{ config.params.keywords | join(', ') }}" />
-            <meta name="color-scheme" content="light dark" />
-            <meta name="robots" content="index, follow" />
-            <link rel="canonical" content="{{ config.params.canonical_url }}" />
-            <title>
-                {% block title %}
-                {% endblock title %}
-            | {{ config.params.title }}</title>
-            <meta name="author" content="{{ config.params.author.name }}" />
-            <link rel="me" href="{{ config.params.author.mastodon_account }}" />
-            <meta name="fediverse:creator" content="{{ config.params.author.fediverse_creator }}" />
-            {# Favicon #}
-            <link rel="icon" href="/static/assets/favicon.ico" sizes="32x32" />
-            <link rel="icon" href="/static/assets/icon.svg" type="image/svg+xml" />
-            <link rel="apple-touch-icon" href="/static/assets/apple-touch-icon.png" />
-            {# Alpine.js styles #}
-            <style>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="{{ config.params.description }}" />
+        <meta name="keywords" content="{{ config.params.keywords | join(', ') }}" />
+        <meta name="color-scheme" content="light" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" content="{{ config.params.canonical_url }}" />
+        <title>
+            {% block title %}
+            {% endblock title %}
+            | {{ config.params.title }}
+        </title>
+        <meta name="author" content="{{ config.params.author.name }}" />
+        <link rel="me" href="{{ config.params.author.mastodon_account }}" />
+        <meta name="fediverse:creator"
+              content="{{ config.params.author.fediverse_creator }}" />
+        {# Favicon #}
+        <link rel="icon" href="/static/assets/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/static/assets/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/static/assets/apple-touch-icon.png" />
+        {# Alpine.js styles #}
+        <style>
       [x-cloak] {
         display: none !important;
       }
-            </style>
-            {# Preload #}
-            <link rel="preload"
-                  href="/static/fonts/Geist/Geist[wght].ttf"
-                  as="font"
-                  type="font/ttf"
-                  crossorigin="anonymous" />
-            {# Preload #}
-            {% block preload_rules %}
-            {% endblock preload_rules %}
-
-            {# OG tags #}
-            {% block og_tags %}
-                <meta property="og:description" content="{{ config.params.description }}" />
-                <meta property="og:title" content="{{ config.params.title }}" />
-                <meta property="og:site_name" content="{{ config.params.title }}" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="{{ config.params.canonical_url }}" />
-                <meta property="og:image" content="/static/images/screenshot.jpg" />
-            {% endblock og_tags %}
+        </style>
+        {# Preload #}
+        <link rel="preload"
+              href="/static/fonts/Geist/Geist[wght].ttf"
+              as="font"
+              type="font/ttf"
+              crossorigin="anonymous" />
+        {# Preload #}
+        {% block preload_rules %}
+        {% endblock preload_rules %}
+        {# OG tags #}
+        {% block og_tags %}
+            <meta property="og:description" content="{{ config.params.description }}" />
+            <meta property="og:title" content="{{ config.params.title }}" />
+            <meta property="og:site_name" content="{{ config.params.title }}" />
+            <meta property="og:locale" content="en_US" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ config.params.canonical_url }}" />
+            <meta property="og:image" content="/static/images/screenshot.jpg" />
+        {% endblock og_tags %}
         {# JSON+LD #}
         {% block json_ld %}
             <script type="application/ld+json">
@@ -75,7 +76,7 @@
         {% block extra_js %}
         {% endblock extra_js %}
     </head>
-    <body class="{% block body_class %}{% endblock body_class %} font-sans bg-stone-50 text-stone-950 dark:bg-stone-900 dark:text-stone-50">
+    <body class="{% block body_class %}{% endblock body_class %} font-sans bg-stone-50 text-stone-950">
         {% block content %}
         {% endblock content %}
         <script>
