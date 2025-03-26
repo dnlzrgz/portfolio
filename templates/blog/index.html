@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% import 'macros.html' as macros %}
 {% block title %}
     {{ metadata.title }}
 {% endblock title %}
@@ -9,9 +8,33 @@
 {% block content %}
     {% set current_page = "blog" %}
     {% include "includes/nav.html" %}
-    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-1 md:grid-rows-[400px] gap-6 mt-16 p-3 lg:p-9">
-        {% for page in pages | sort(attribute='metadata.publication_date') | reverse %}
-            {{ macros.render_blog_post(page, loop.first) }}
+    <main class="flex flex-col my-16 p-3 lg:p-9 text-lg lg:text-xl">
+        {% for post in pages | sort(attribute='metadata.publication_date') | reverse %}
+            <section class="grid grid-cols-[auto_1fr_auto_auto] gap-6 p-6 items-start md:items-center border-b border-b-stone-950 select-none cursor-pointer hover:bg-stone-950 hover:text-stone-50 transition-colors duration-75"
+                     x-data
+                     @click="window.location.href='/{{ post.url }}'">
+                <span class="font-mono">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-6 h-6"
+                         fill="currentColor"
+                         viewBox="0 0 256 256">
+                        <path d="M214.86,180.12a8,8,0,0,1-11,2.74L136,142.13V216a8,8,0,0,1-16,0V142.13L52.12,182.86a8,8,0,1,1-8.23-13.72L112.45,128,43.89,86.86a8,8,0,1,1,8.23-13.72L120,113.87V40a8,8,0,0,1,16,0v73.87l67.88-40.73a8,8,0,1,1,8.23,13.72L143.55,128l68.56,41.14A8,8,0,0,1,214.86,180.12Z">
+                        </path>
+                    </svg>
+                </span>
+                <p>{{ post.metadata.title }}</p>
+                <p>{{ post.metadata.publication_date }}</p>
+                <a href="/{{ post.url }}"
+                   class="hover:bg-stone-50 hover:text-stone-950 rounded-full p-1.5 transition-colors duration-75">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="w-6 h-6"
+                         fill="currentColor"
+                         viewBox="0 0 256 256">
+                        <path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z">
+                        </path>
+                    </svg>
+                </a>
+            </section>
         {% endfor %}
     </main>
 {% endblock content %}

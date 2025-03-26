@@ -4,7 +4,10 @@
         <p x-text="flashcards[current].front" x-show="!showAnswer">はじめまして</p>
         <p x-text="flashcards[current].back" x-show="showAnswer"></p>
         <div class="w-full flex gap-3 justify-center">
-            <button @click="next" aria-label="wrong" x-show="showAnswer" x-cloak>
+            <button @click="showAnswer=false"
+                    aria-label="wrong"
+                    x-show="showAnswer"
+                    x-cloak>
                 <svg xmlns="http://www.w3.org/2000/svg"
                      class="w-6 h-6"
                      fill="currentColor"
