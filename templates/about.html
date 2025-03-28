@@ -14,30 +14,24 @@
     <header>
         {% set current_page = "about" %}
         {% include "includes/nav.html" %}
-        <div class="p-3 md:mx-auto mt-16 md:max-w-3xl">
-            {% if metadata.image %}
-                <img src="{{ metadata.image }}"
-                     {% if metadata.image_alt %}alt="{{ metadata.image_alt }}"{% endif %}
-                     class="rounded-2xl mb-3 md:mb-6">
-            {% endif %}
-            <h1 class="text-3xl md:text-5xl lg:text-7xl text-balance">{{ metadata.title }}</h1>
-            <hr class="my-6" />
+        <div class="max-w-3xl mt-16 mx-auto pb-9 px-3 md:px-6 lg:px-0 mb-9 text-pretty border-b border-b-stone-950">
+            <h1 class="text-4xl md:text-5xl lg:text-7xl leading-none text-balance mb-6">{{ metadata.title }}</h1>
         </div>
     </header>
-    <main class="p-3 mb-9 md:mb-24 lg:mb-32">
-        <div class="text-xl/8 text-pretty flex flex-col gap-6 items-center [&_p]:max-w-3xl [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 [&_pre]:rounded-2xl [&_img]:rounded-2xl [&_a]:underline [&_a]:italic">
+    <main class="mb-32">
+        <div class="max-w-3xl px-3 md:px-6 lg:px-0 mx-auto text-xl/8 text-pretty flex flex-col gap-6 [&_h2]:text-3xl md:[&_h2]:text-4xl lg:[&_h2]:text-5xl [&_h3]:text-2xl md:[&_h3]:text-3xl lg:[&_h3]:text-3xl [&_h2,&_h3]:text-balance [&_h2,&_h3,&_img]:mt-9">
             {{ content|safe }}
         </div>
-        <div class="mt-16 p-3 lg:p-9">
-            <h2 class="mx-auto md:max-w-3xl text-2xl md:text-3xl text-balance mb-9 md:mb-12">Stack and Skills</h2>
-            <ul class="text-xl/8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div class="mt-16 px-3 md:px-6 lg:px-9 text-xl">
+            <h2 class="max-w-3xl mx-auto text-3xl md:text-4xl lg:text-5xl text-balance mb-16">Stack and Skills</h2>
+            <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {% for item in metadata.stack | shuffle %}<li class="w-full py-1.5 px-3 md:p-3">{{ item }}</li>{% endfor %}
             </ul>
         </div>
-        <div class="mt-16 p-3 lg:p-9">
-            <h2 class="mx-auto md:max-w-3xl text-2xl md:text-3xl text-balance mb-9 md:mb-12">Experience</h2>
+        <div class="mt-16 px-3 md:px-6 lg:px-9 text-xl">
+            <h2 class="max-w-3xl mx-auto text-3xl md:text-4xl lg:text-5xl text-balance mb-16">Experience</h2>
             {% for experience in metadata.experiences %}
-                <div class="text-xl/8 w-full grid grid-cols-1 md:grid-cols-[1fr_1fr_200px] md:gap-9 py-6 md:border-b md:border-b-stone-950">
+                <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_200px] md:gap-9 py-6 md:border-b md:border-b-stone-950">
                     <span>{{ experience[0] }}</span> <span>{{ experience[1] }}</span>
                     <div class="flex gap-3 md:gap-9">
                         <span>{{ experience[2] }}</span> <span class="md:hidden">-</span> <span>{{ experience[3] }}</span>

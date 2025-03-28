@@ -27,11 +27,13 @@ BINDINGS = [
 
 Note that I don't need to include the action\_ prefix, as stated here.
 
-And this will do it! Now the problem is the gg action.
+And this will do it! Now the problem is the `gg` action.
 
 ## Dealing with more complex key bindings
 
 The issue with gg is that it requires two quick key presses. I drew inspiration from game development in PyGame, where cooldowns are often implemented to prevent spamming actions. The idea is to track the time since the last key press and allow the action only if the keys are pressed within a specified timeframe. So, I came up with a function that keeps an eye on key presses. Here’s what it does: It checks if the key pressed is g and stores it in a reactive variable. If g is pressed again while the first g is still saved, it executes action_scroll_top.
+
+![screenshot](/static/images/vim-keybindings.jpg)
 
 Here’s how the function looks:
 

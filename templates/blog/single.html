@@ -20,16 +20,23 @@
 {% block content %}
     <header>
         {% include "includes/nav.html" %}
+        <div class="max-w-3xl mt-16 mx-auto pb-9 px-3 md:px-6 lg:px-0 mb-9 text-pretty border-b border-b-stone-950">
+            {% if metadata.image %}
+                <picture>
+                    <source srcset="{{ metadata.image | replace('.jpg', '.webp') }}"
+                            type="image/webp" />
+                    <img src="{{ metadata.image }}" class="rounded-2xl mb-9">
+                </picture>
+            {% endif %}
+            <time class="block text-base mb-3"
+                  datetime="{{ metadata.publication_date }}">
+                {{ metadata.publication_date }}
+            </time>
+            <h1 class="text-4xl md:text-5xl lg:text-7xl leading-none text-balance mb-6">{{ metadata.title }}</h1>
+            <p class="text-xl/8">{{ metadata.description }}</p>
+        </div>
     </header>
-    <main class="p-3 md:p-9 mb-9 md:mb-24 lg:mb-32 md:mx-auto md:max-w-3xl text-lg md:text-xl text-pretty flex flex-col gap-6 [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 [&_pre]:rounded-2xl [&_img]:rounded-2xl">
-        {% if metadata.image %}<img src="{{ metadata.image }}" class="rounded-2xl mb-3 md:mb-6">{% endif %}
-        <p class="text-sm md:text-base font-medium mb-1.5">{{ metadata.publication_date }}</p>
-        <h1 class="text-3xl md:text-5xl lg:text-7xl text-balance mb-3 md:mb-6">{{ metadata.title }}</h1>
-        <p class="text-lg md:text-xl text-pretty max-w-xl">{{ metadata.description }}</p>
-        <hr class="my-6" />
-        {# TODO: add tags #}
-        {# TODO: add styles for subheaders #}
-        {# TODO: add styles for embeds #}
+    <main class="max-w-3xl px-3 md:px-6 lg:px-0 mb-32 mx-auto text-xl/8 text-pretty flex flex-col gap-6 [&_h2]:text-3xl md:[&_h2]:text-4xl lg:[&_h2]:text-5xl [&_h3]:text-2xl md:[&_h3]:text-3xl lg:[&_h3]:text-3xl [&_h2,&_h3]:text-balance [&_h2,&_h3,&_img,&_pre]:mt-9 [&_pre]:overflow-x-auto [&_pre]:text-base [&_pre]:p-6 [&_pre]:bg-stone-950 [&_pre]:text-stone-50 [&_pre,&_img]:rounded-2xl [&_ul]:list-disc [&_ol]:list-decimal [&_ul,&_ol]:pl-9 [&_ul,&_ol]:flex [&_ul,&_ol]:flex-col [&_ul,&_ol]:gap-1.5">
         {{ content|safe }}
     </main>
 </div>

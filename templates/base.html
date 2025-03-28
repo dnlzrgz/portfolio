@@ -33,7 +33,7 @@
               as="font"
               type="font/ttf"
               crossorigin="anonymous" />
-        {# Preload #}
+        <link href="/static/js/quicklink.js" rel="preload" as="script">
         {% block preload_rules %}
         {% endblock preload_rules %}
         {# OG tags #}
@@ -80,7 +80,7 @@
         {% block content %}
         {% endblock content %}
         <script>
-      window.addEventListener("load", () => {
+      window.addEventListener('load', () => {
         quicklink.listen();
       });
         </script>
