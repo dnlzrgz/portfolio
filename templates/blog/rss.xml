@@ -16,7 +16,7 @@
 
 {% for page in pages %}
 <item>
-<title>{{ page.title }}</title>
+<title>{{ page.metadata.title }}</title>
 <link>{{ config.params.canonical_url }}/{{ page.url }}</link>
 <description><p>{{ page.metadata.description }}</p></description>
 <pubDate>{{ page.metadata.pubDate }}</pubDate>

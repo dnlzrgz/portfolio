@@ -9,6 +9,31 @@
           type="font/ttf"
           crossorigin="anonymous" />
 {% endblock preload_rules %}
+{% block json_ld %}
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ metadata.title }}",
+  "description": "{{ metadata.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ config.params.author.name }}",
+    "url": "{{ config.params.canonical_url }}",
+    "image": "/static/images/avatar.jpg",
+    "sameAs": [
+      "{{ config.params.author.linkedin }}",
+      "{{ config.params.author.github }}",
+      "{{ config.params.author.mastodon }}"
+    ]
+  },
+  "datePublished": "{{ metadata.publication_date }}",
+  "dateModified": "{{ metadata.publication_date }}",
+  "url": "{{ config.params.canonical_url }}",
+  "mainEntityOfPage": "{{ config.params.canonical_url }}"
+}
+    </script>
+{% endblock json_ld %}
 {% block og_tags %}
     <meta property="og:description" content="{{ metadata.description }}" />
     <meta property="og:title" content="{{ metadata.title }}" />
