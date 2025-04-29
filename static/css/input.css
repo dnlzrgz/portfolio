@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 /**
+ * Page transitions
+ **/
+@view-transition {
+  navigation: auto;
+}
+
+/**
  * Fonts
  **/
 @font-face {
