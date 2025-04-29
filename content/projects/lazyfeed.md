@@ -1,7 +1,6 @@
 ---
 title: "lazyfeed"
 description: "A fast, modern, and simple RSS/Atom feed reader for the terminal written in pure Python."
-short_description: "Simple RSS feed reader for the terminal."
 image: "/static/images/lazyfeed.jpg"
 publication_date: 2025-03-03
 stack: ["python", "textual", "aiohttp"]
