@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    # local
+    "core",
     # django CMS
     "cms",
     "menus",
@@ -44,8 +46,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "cms.middleware.utils.ApphookReloadMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "cms.middleware.utils.ApphookReloadMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -89,7 +91,9 @@ THUMBNAIL_PROCESSORS = (
 )
 
 CMS_TEMPLATES = [
-    ("minimal.html", "Minimal template"),
+    ("home.html", "Home page"),
+    ("blog.html", "Blog list page"),
+    ("blog_post.html", "Post page"),
 ]
 
 WSGI_APPLICATION = "core.wsgi.application"
@@ -151,6 +155,8 @@ DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
