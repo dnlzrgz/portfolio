@@ -15,7 +15,7 @@
       <meta name="description" content="{% page_attribute meta_description %}"/>
       <meta property="og:type" content="website"/>
       <meta property="og:title" content="{% page_attribute "page_title" %}"/>
-      <meta property="og:description" content="{% page_attribute meta_description %}"/>
+      <meta property="og:description" content="{% page_attribute "meta_description" %}"/>
     {% endblock meta %}
 
     {% block canonical_url %}
@@ -33,10 +33,16 @@
   <body {% block body_attrs %}{% endblock %}>
     {% cms_toolbar %}
 
-    {% block navbar %}{% endblock %}
+    {% block navbar %}
+      {% include "includes/nav.html" %}
+    {% endblock %}
 
     {% block content %}
     {% endblock content %}
+
+    {% block footer %}
+      {% include "includes/footer.html" %}
+    {% endblock footer %}
 
     {% block base_js %}{% endblock %}
     {% render_block 'js' %}

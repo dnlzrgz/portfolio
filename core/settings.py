@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     "djangocms_versioning",
     "djangocms_alias",
     "djangocms_text",
+    "djangocms_stories",
+    "parler",
+    "sortedm2m",
+    "taggit",
+    "taggit_autosuggest",
+    "meta",
     "filer",
     "easy_thumbnails",
 ]

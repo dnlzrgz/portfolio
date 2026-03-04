@@ -2,10 +2,41 @@
  * Design tokens & CSS variables
  */
 :root {
+  /* Palette */
   --black: #070707;
   --white: #fff;
 
-  --font: 'Satoshi', sans-serif;
+
+  /* Font */
+  --font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --font-step--3: clamp(0.64rem, 0.6556rem + -0.0201vw, 0.651rem);
+  --font-step--2: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);
+  --font-step--1: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);
+  --font-step-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+  --font-step-1: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);
+  --font-step-2: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);
+  --font-step-3: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);
+  --font-step-4: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);
+  --font-step-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
+  --font-step-6: clamp(3.3592rem, 2.7828rem + 2.5621vw, 4.7684rem);
+  --font-step-7: clamp(4.0311rem, 3.2418rem + 3.508vw, 5.9605rem);
+
+  /* Spacing */
+  --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
+  --space-2xs: clamp(0.5625rem, 0.5369rem + 0.1136vw, 0.625rem);
+  --space-xs: clamp(0.875rem, 0.8494rem + 0.1136vw, 0.9375rem);
+  --space-s: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+  --space-m: clamp(1.6875rem, 1.6108rem + 0.3409vw, 1.875rem);
+  --space-l: clamp(2.25rem, 2.1477rem + 0.4545vw, 2.5rem);
+  --space-xl: clamp(3.375rem, 3.2216rem + 0.6818vw, 3.75rem);
+  --space-2xl: clamp(4.5rem, 4.2955rem + 0.9091vw, 5rem);
+  --space-3xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+  --space-4xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+  --space-5xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+  --space-6xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
+  --space-7xl: clamp(6.75rem, 6.4432rem + 1.3636vw, 7.5rem);
 }
 
 /*
@@ -54,7 +85,7 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: var(--font);
+  font-family: var(--font-sans);
   font-weight: 300;
 }
 
