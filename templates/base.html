@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% block preload %}
+      <link rel="preload" href="{% static '/fonts/satoshi/Satoshi-Variable.woff2' %}" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="{% static '/fonts/satoshi/Satoshi-VariableItalic.woff2' %}" as="font" type="font/woff2" crossorigin>
+    {% endblock preload %}
+
     {% block meta %}
       <meta name="description" content="{% page_attribute meta_description %}"/>
       <meta property="og:type" content="website"/>
@@ -20,8 +25,9 @@
 
     <title>{% block title %}{% page_attribute "page_title" %}{% endblock %}</title>
 
-    {% block base_css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% render_block 'css' %}
+
     {% block page_head %}{% endblock %}
   </head>
   <body {% block body_attrs %}{% endblock %}>
@@ -30,7 +36,6 @@
     {% block navbar %}{% endblock %}
 
     {% block content %}
-      {% placeholder "Content" %}
     {% endblock content %}
 
     {% block base_js %}{% endblock %}
